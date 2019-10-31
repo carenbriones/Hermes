@@ -66,72 +66,100 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //-------------------OUR ROUTES-----------------//
-  //--CHILD--/
-  app.get("/api/child", function(req, res) {
-    // GET ALL CHILDREN
-    db.Child
+//--CHILD--/
+app.get("/api/child", isAuthenticated, function (req, res) {
+  // GET ALL CHILDREN
+  db.Child
     .find({})
-    .then(function(dbChild){
+    .then(function (dbChild) {
       res.json(dbChild);
     })
-    .catch(function(err){
+    .catch(function (err) {
       res.json(err)
     })
-  });
-  
-  app.get("/api/child/:id", function(req, res) {
-    db.Child
-    .findOne({_id: req.params.id})
+});
+
+app.get("/api/child/:id", function (req, res) {
+  db.Child
+    .findOne({ _id: req.params.id })
     .populate("sessions")
-    .then(function(dbChild){
+    .then(function (dbChild) {
       res.json(dbChild);
     })
-    .catch(function(err){
-      res.json(err); 
+    .catch(function (err) {
+      res.json(err);
     })
-  });
-  
-  app.post("/api/child", function(req, res) {
-    console.log("APP.POST'S BODY", req.body)
-    db.Child
-      .create(req.body)
-      .then(function(dbChild) {
-        res.json(dbChild);
-      })
-      .catch(function(err) {
-        res.json(err)
-      })
-  });
-  //--SESSION--//
-  app.post("/api/child/:id", function(req, res) {
-    console.log("SESSION'S BODY", req.body)
-    db.Session
-      .create(req.body)
-      .then(function(dbSession) {
-        return db.Child
+});
+
+// app.post("/api/child", function(req, res) {
+//   console.log("APP.POST'S BODY", req.body)
+//   db.Child
+//     .create(req.body)
+//     .then(function(dbChild) {
+//       res.json(dbChild);
+//     })
+//     .catch(function(err) {
+//       res.json(err)
+//     })
+// });
+// --??? SHOULD I DO THIS INSTEAD ??? ---//
+// ---AUTHENTICATION--????--
+
+app.post("/api/user/:id", function (req, res) {
+  console.log(" child'S BODY", req.body)
+  db.Child
+    .create(req.body)
+    .then(function (dbChild) {
+      return db.User
         .findOneAndUpdate(
-          {_id: req.params.id}, 
-          { $push: { sessions: dbSession } }, 
-          {new: true});
-        })
-      .catch(function(err) {
-        res.json(err)
-      })
-  });
-  
-  app.get("/api/session/:id", function(req, res) {
-    db.Session
-    .findOne({_id: req.params.id})
-    .then(function(dbSession){
+          { _id: req.params.id },
+          { $push: { children: dbChild._id } },
+          { new: true });
+    })
+    .then(function (dbChild) {
+      res.json(dbChild)
+    })
+    .catch(function (err) {
+      res.json(err)
+    })
+});
+
+//--SESSION--//
+app.post("/api/child/:id", function (req, res) {
+  //takes a while on postman
+  console.log("SESSION'S BODY", req.body)
+  db.Session
+    .create(req.body)
+    .then(function (dbSession) {
+      return db.Child
+        .findOneAndUpdate(
+          { _id: req.params.id },
+          { $push: { sessions: dbSession } },
+          { new: true });
+    })
+    .then(function (dbChild) {
+      res.json(dbChild)
+    })
+    .catch(function (err) {
+      res.json(err)
+    })
+});
+
+app.get("/api/session/:id", function (req, res) {
+  db.Session
+    .findOne({ _id: req.params.id })
+    .then(function (dbSession) {
       res.json(dbSession);
     })
-    .catch(function(err){
+    .catch(function (err) {
       res.json(err)
     })
-  });
-  
-  // Find all sessions of a specific child
-  //----------------end of OUR NOTES---------------//
+});
+
+// Find all sessions of a specific child
+
+
+//----------------end of OUR NOTES---------------//
 
 app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => {
   res.send('You are authenticated'); //Sending some response when authenticated

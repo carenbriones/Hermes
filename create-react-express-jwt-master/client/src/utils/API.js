@@ -4,10 +4,6 @@ export default {
   getUser: (id) => {
     return axios.get(`/api/user/${id}`);
   },
-  // sign up a user to our service
-  signUpUser: (username, email, password) => {
-    return axios.post('api/signup', {username: username, email: email, password: password});
-  },
   getChildren: () => {
     return axios.get(`/api/child`);
   },
@@ -26,5 +22,8 @@ export default {
   //post a new session /api/child/:id/sessions
   postNewSession: (childId, newSession) => {
     return axios.post(`/api/child/${childId}/sessions`, newSession);
+  },
+  signUpUser: (name, email, password, address, phoneNumber) => {
+    return axios.post('api/signup', {name: name, email: email, password: password, address: address, phoneNumber: phoneNumber});
   }
 };

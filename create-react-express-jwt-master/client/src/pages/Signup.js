@@ -2,11 +2,38 @@ import React, {Component} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import AuthService from './../components/AuthService';
 import API from './../utils/API';
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  CardTitle,
+  // eslint-disable-next-line
+  Label,
+  // eslint-disable-next-line
+  FormGroup,
+  Form,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+  Container,
+  Row,
+  Col
+} from "reactstrap";
 
 class Signup extends Component {
   constructor() {
     super();
     this.Auth = new AuthService();
+  }
+
+  componentDidMount() {
+    document.body.classList.toggle("register-page");
+  }
+  componentWillUnmount() {
+    document.body.classList.toggle("register-page");
   }
 
   handleFormSubmit = event => {
@@ -33,45 +60,138 @@ class Signup extends Component {
       return <Redirect to="/" />
     }
     return (
-      <div className="container">
-
-        <h1>Signup</h1>
-        <form onSubmit={this.handleFormSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Username:</label>
-            <input className="form-control"
-                   placeholder="Username goes here..."
-                   name="username"
-                   type="text"
-                   id="username"
-                   autoComplete="username"
-                   onChange={this.handleChange}/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email address:</label>
-            <input className="form-control"
-                   placeholder="Email goes here..."
-                   name="email"
-                   type="email"
-                   id="email"
-                   autoComplete="email"
-                   onChange={this.handleChange}/>
-          </div>
-          <div className="form-group">
-            <label htmlFor="pwd">Password:</label>
-            <input className="form-control"
-                   placeholder="Password goes here..."
-                   name="password"
-                   type="password"
-                   id="pwd"
-                   autoComplete="new-password"
-                   onChange={this.handleChange}/>
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-        <p><Link to="/login">Go to Login</Link></p>
-      </div>
-    );
+      <div className="register-page">
+      <Container>
+        <Row>
+          <Col className="ml-auto" lg="5" md="5" style={{zIndex:1}}>
+            <div className="info-area info-horizontal mt-5">
+              <div className="icon icon-primary" style={{marginTop:"0px"}}>
+                <i className="nc-icon nc-chat-33" />
+              </div>
+              <div className="description" style={{color:"#fff"}}>
+                <h5 className="info-title">Track Sessions</h5>
+                <p className="description" style={{color:"#fff"}}>
+                  No more binders of loose papers, and missing pens. The Hermes Tracker 
+                  allows you to track your child's interactions with a click of a 
+                  button.
+                </p>
+              </div>
+            </div>
+            <div className="info-area info-horizontal">
+              <div className="icon icon-primary" style={{marginTop:"0px"}}>
+                <i className="nc-icon nc-chart-bar-32" />
+              </div>
+              <div className="description" style={{color:"#fff"}}>
+                <h5 className="info-title">Visualize Progress</h5>
+                <p className="description" style={{color:"#fff"}}>
+                  Record your data and access your dashboard to see their success
+                  and growth over days, weeks, months. 
+                </p>
+              </div>
+            </div>
+            <div className="info-area info-horizontal">
+              <div className="icon icon-info" style={{marginTop:"0px"}}>
+                <i className="nc-icon nc-book-bookmark" />
+              </div>
+              <div className="description" style={{color:"#fff"}}>
+                <h5 className="info-title">Access Resources</h5>
+                <p className="description" style={{color:"#fff"}}>
+                  Loose leaf handouts can be a pain to keep track of. Our resource
+                  section makes it easy to find those at home activities. 
+                </p>
+              </div>
+            </div>
+          </Col>
+          <Col className="mr-auto" lg="4" md="6">
+            <Card className="card-signup text-center mt-5" style={{zIndex:1}}>
+              <CardHeader>
+                <CardTitle tag="h4">Register</CardTitle>
+              </CardHeader>
+              <CardBody>
+                <Form className="form">
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="nc-icon nc-single-02" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input 
+                    className="form-control"
+                    placeholder="Full Name..."
+                    name="username"
+                    type="text"
+                    id="username"
+                    autoComplete="username"
+                    onChange={this.handleChange}/>
+                  </InputGroup>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="nc-icon nc-email-85" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input 
+                    className="form-control"
+                    placeholder="Email..."
+                    name="email"
+                    type="email"
+                    id="email"
+                    autoComplete="email"
+                    onChange={this.handleChange}/>
+                  </InputGroup>
+                  <InputGroup>
+                    <InputGroupAddon addonType="prepend">
+                      <InputGroupText>
+                        <i className="nc-icon nc-circle-10" />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input 
+                    className="form-control"
+                    placeholder="Password..."
+                    name="password"
+                    type="password"
+                    id="pwd"
+                    autoComplete="new-password"
+                    onChange={this.handleChange} />
+                  </InputGroup>
+                  {/* <FormGroup check className="text-left">
+                    <Label check>
+                      <Input defaultChecked type="checkbox" />
+                      <span className="form-check-sign" />I agree to the{" "}
+                      <a href="#pablo" onClick={e => e.preventDefault()}>
+                        terms and conditions
+                      </a>
+                      .
+                    </Label>
+                  </FormGroup> */}
+                </Form>
+              </CardBody>
+              <CardFooter>
+                <Button
+                  type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
+                  Get Started
+                </Button>
+              </CardFooter>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+      <div
+        className="full-page-background"
+        style={{
+          backgroundImage: `url(${require("../assets/img/bg/child-and-speech-therapist.jpg")})`,
+          position: "absolute",
+            height: "100%",
+            width: "100%",
+            display: "block",
+            top: "0",
+            left: "0",
+            backgroundSize: "cover",
+            backgroundPosition: "center top"
+        }}
+      />
+    </div>
+  );
   }
 }
 

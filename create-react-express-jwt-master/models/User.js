@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
+const Roles = require('../shared/roles');
+
 const UserSchema = new Schema({
   username: {
     type: String,
@@ -25,6 +27,17 @@ const UserSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  address: {
+    type: String
+  },
+  phoneNumber: {
+    type: String
+  },
+  role: {
+    type: String,
+    default: Roles.guardian,
+    enum: [Roles.guardian, Roles.therapist]
   }
 });
 

@@ -79,7 +79,7 @@ class Login extends Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                        placeholder="Unsername..."
+                        placeholder="Email..."
                         type="email"
                         name="email"
                         id="email"

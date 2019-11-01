@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', {useNewUrlParser: true, useCreateIndex: true})
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', { useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("MongoDB Connected!"))
   .catch(err => console.error(err));
 
@@ -35,7 +35,10 @@ mongoose
 app.post('/api/login', (req, res) => {
   auth
     .logUserIn(req.body.email, req.body.password)
-    .then(dbUser => res.json(dbUser))
+    .then(dbUser => {
+      console.log("user data" + dbUser)
+      res.json(dbUser)
+    })
     .catch(err => res.status(400).json(err));
 });
 
@@ -46,19 +49,21 @@ app.post('/api/signup', (req, res) => {
     .catch(err => res.status(400).json(err));
 });
 
-//
-
 // Any route with isAuthenticated is protected and you need a valid token
 // to access
-app.get('/api/user/:id', isAuthenticated, (req, res) => {
-  db.User.findById(req.params.id).then(data => {
-    if(data) {
+app.get('/api/user/:id', /* isAuthenticated, */ (req, res) => {
+  db.User
+  .find(req.params.id)
+  .populate("children")
+  .then(data => {
+    if (data) {
       res.json(data);
     } else {
-      res.status(404).send({success: false, message: 'No user found'});
+      res.status(404).send({ success: false, message: 'No user found' });
     }
   }).catch(err => res.status(400).send(err));
 });
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -67,7 +72,7 @@ if (process.env.NODE_ENV === "production") {
 
 //-------------------OUR ROUTES-----------------//
 //--CHILD--/
-app.get("/api/child", isAuthenticated, function (req, res) {
+app.get("/api/child", function (req, res) {
   // GET ALL CHILDREN
   db.Child
     .find({})
@@ -91,21 +96,7 @@ app.get("/api/child/:id", function (req, res) {
     })
 });
 
-// app.post("/api/child", function(req, res) {
-//   console.log("APP.POST'S BODY", req.body)
-//   db.Child
-//     .create(req.body)
-//     .then(function(dbChild) {
-//       res.json(dbChild);
-//     })
-//     .catch(function(err) {
-//       res.json(err)
-//     })
-// });
-// --??? SHOULD I DO THIS INSTEAD ??? ---//
-// ---AUTHENTICATION--????--
-
-app.post("/api/user/:id", function (req, res) {
+app.post("/api/user/:id/children", function (req, res) {
   console.log(" child'S BODY", req.body)
   db.Child
     .create(req.body)
@@ -125,7 +116,7 @@ app.post("/api/user/:id", function (req, res) {
 });
 
 //--SESSION--//
-app.post("/api/child/:id", function (req, res) {
+app.post("/api/child/:id/sessions", function (req, res) {
   //takes a while on postman
   console.log("SESSION'S BODY", req.body)
   db.Session
@@ -161,6 +152,8 @@ app.get("/api/session/:id", function (req, res) {
 
 //----------------end of OUR NOTES---------------//
 
+
+
 app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => {
   res.send('You are authenticated'); //Sending some response when authenticated
 });
@@ -177,10 +170,10 @@ app.use(function (err, req, res, next) {
 
 // Send every request to the React app
 // Define any API routes before this runs
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });

@@ -38,7 +38,7 @@ class Signup extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.signUpUser(this.state.username, this.state.email, this.state.password)
+    API.signUpUser(this.state.name, this.state.email, this.state.password, this.state.address, this.state.phoneNumber)
       .then(res => {
         // once the user has signed up
         // send them to the login page
@@ -120,10 +120,10 @@ class Signup extends Component {
                       <Input
                         className="form-control"
                         placeholder="Full Name..."
-                        name="username"
+                        name="name"
                         type="text"
-                        id="username"
-                        autoComplete="username"
+                        id="name"
+                        autoComplete="name"
                         onChange={this.handleChange} />
                     </InputGroup>
 

@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 const Roles = require('../shared/roles');
 
 const UserSchema = new Schema({
-  username: {
+  name: {
     type: String,
     required: true,
     trim: true

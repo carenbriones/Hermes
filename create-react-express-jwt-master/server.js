@@ -53,7 +53,7 @@ app.post('/api/signup', (req, res) => {
 // to access
 app.get('/api/user/:id', /* isAuthenticated, */ (req, res) => {
   db.User
-  .find(req.params.id)
+  .findOne({_id: req.params.id})
   .populate("children")
   .then(data => {
     if (data) {

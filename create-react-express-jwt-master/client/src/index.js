@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import './assets/scss/paper-dashboard.css'
 
@@ -12,7 +11,7 @@ import axios from "axios";
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
-import Navbar from './components/Navbar';
+import AuthNavbar from './components/Navbar/AuthNavbar';
 import Footer from './components/Footer/Footer';
 
 
@@ -25,7 +24,6 @@ if(localStorage.getItem("id_token")) {
 ReactDOM.render(
     <Router>
         <div>
-            <Navbar />
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />

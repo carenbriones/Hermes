@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import AuthService from './../components/AuthService';
 import API from './../utils/API';
+import AuthNavbar from './../components/Navbar/AuthNavbar';
 import {
   Button,
   Card,
@@ -60,9 +61,21 @@ class Signup extends Component {
       return <Redirect to="/" />
     }
     return (
-      <div className="register-page">
+      <div className="register-page"
+      style={{
+        backgroundImage: `url(${require("../assets/img/bg/child-and-speech-therapist.jpg")})`,
+        position: "absolute",
+        height: "100%",
+        width: "100%",
+        display: "block",
+        top: "0",
+        left: "0",
+        backgroundSize: "cover",
+        backgroundPosition: "center top"
+      }}>
+        <AuthNavbar />
         <Container>
-          <Row>
+          <Row className="mt-5">
             <Col className="ml-auto" lg="5" md="5" style={{ zIndex: 1 }}>
               <div className="info-area info-horizontal mt-5">
                 <div className="icon icon-primary" style={{ marginTop: "0px" }}>
@@ -218,7 +231,7 @@ class Signup extends Component {
             </Col>
           </Row>
         </Container>
-        <div
+        {/* <div
           className="full-page-background"
           style={{
             backgroundImage: `url(${require("../assets/img/bg/child-and-speech-therapist.jpg")})`,
@@ -232,6 +245,7 @@ class Signup extends Component {
             backgroundPosition: "center top"
           }}
         />
+      </div> */}
       </div>
     );
   }

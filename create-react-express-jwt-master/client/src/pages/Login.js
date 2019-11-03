@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AuthService from './../components/AuthService';
 import { Link, Redirect } from 'react-router-dom';
+import AuthNavbar from './../components/Navbar/AuthNavbar';
 import {
   Button,
   Card,
@@ -57,12 +58,13 @@ class Login extends Component {
 
   render() {
     if (this.Auth.loggedIn()) {
-      return <Redirect to="/" />
+      return <Redirect to="/dashboard" />
     }
     return (
       <div className="login-page">
+        <AuthNavbar />
         <Container>
-          <Row>
+          <Row className="mt-5">
             <Col className="ml-auto mr-auto mt-5" lg="4" md="6">
               <Form className="form">
                 <Card className="card-login">

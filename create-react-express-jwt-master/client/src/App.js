@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import AuthService from './components/AuthService';
 import withAuth from './components/withAuth';
+import Sidebar from './components/Sidebar/Sidebar';
 const Auth = new AuthService();
 
 class App extends Component {
@@ -19,8 +20,13 @@ class App extends Component {
 
   render() {
     return (
+      <>
+      <Sidebar />
       <div className="App">
-        <div className="App-header">
+       
+        <div className="App-header" style={{
+          marginTop:"70px"
+        }}>
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome {this.props.user.email}</h2>
         </div>
@@ -29,6 +35,7 @@ class App extends Component {
           <button type="button" className="btn btn-danger" onClick={this.handleLogout}>Logout</button>
         </p>
       </div>
+      </>
     );
   }
 }

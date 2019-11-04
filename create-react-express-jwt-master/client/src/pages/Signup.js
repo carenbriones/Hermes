@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import AuthService from './../components/AuthService';
 import API from './../utils/API';
 import AuthNavbar from './../components/Navbar/AuthNavbar';
@@ -223,7 +223,9 @@ class Signup extends Component {
                 </CardBody>
                 <CardFooter>
                   <Button
-                    type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
+                    type="submit" className="btn btn-primary" onClick={this.handleFormSubmit} style={{
+                      backgroundColor: "#51bcda !important"
+                    }}>
                     Get Started
                 </Button>
                 </CardFooter>

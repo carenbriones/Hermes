@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AuthService from './../components/AuthService';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import AuthNavbar from './../components/Navbar/AuthNavbar';
 import {
   Button,
@@ -111,7 +111,7 @@ class Login extends Component {
                     <Button
                       block
                       className="btn-round mb-3"
-                      color="warning"
+                      color="primary"
                       type="submit"
                       onClick={this.handleFormSubmit}
                     >

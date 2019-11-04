@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import { createBrowserHistory } from "history";
+
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 import './assets/scss/paper-dashboard.css'
 
 import registerServiceWorker from './registerServiceWorker';
@@ -11,9 +16,9 @@ import axios from "axios";
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
-import AuthNavbar from './components/Navbar/AuthNavbar';
 import Footer from './components/Footer/Footer';
 
+const hist = createBrowserHistory();
 
 // Here is if we have an id_token in localStorage
 if(localStorage.getItem("id_token")) {
@@ -22,7 +27,7 @@ if(localStorage.getItem("id_token")) {
 }
 
 ReactDOM.render(
-    <Router>
+    <Router history={hist}>
         <div>
             <Route exact path="/" component={App} />
             <Route exact path="/login" component={Login} />

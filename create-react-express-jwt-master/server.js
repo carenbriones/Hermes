@@ -32,7 +32,7 @@ mongoose
 
 
 // LOGIN ROUTE
-app.post('/api/login', (req, res) => {
+app.post('/auth/api/login', (req, res) => {
   auth
     .logUserIn(req.body.email, req.body.password)
     .then(dbUser => {
@@ -43,7 +43,7 @@ app.post('/api/login', (req, res) => {
 });
 
 // SIGNUP ROUTE
-app.post('/api/signup', (req, res) => {
+app.post('/auth/api/signup', (req, res) => {
   db.User.create(req.body)
     .then(data => res.json(data))
     .catch(err => res.status(400).json(err));

@@ -67,37 +67,38 @@ class Register extends React.Component {
             <Col className="ml-auto" lg="5" md="5">
               <div className="info-area info-horizontal mt-5">
                 <div className="icon icon-primary">
-                  <i className="nc-icon nc-tv-2" />
+                  <i className="nc-icon nc-tap-01" />
                 </div>
                 <div className="description">
-                  <h5 className="info-title">Marketing</h5>
+                  <h5 className="info-title">Track Sessions</h5>
                   <p className="description">
-                    We've created the marketing campaign of the website. It was
-                    a very interesting collaboration.
+                    Sitting in a room tallying behaviors is outdated. Through our
+                    session tracker you can easily record positive behaviors and 
+                    leave notes on your mobile device.
                   </p>
                 </div>
               </div>
               <div className="info-area info-horizontal">
                 <div className="icon icon-primary">
-                  <i className="nc-icon nc-html5" />
+                  <i className="nc-icon nc-chart-bar-32" />
                 </div>
                 <div className="description">
-                  <h5 className="info-title">Fully Coded in HTML5</h5>
+                  <h5 className="info-title">Visualize Progress</h5>
                   <p className="description">
-                    We've developed the website with HTML5 and CSS3. The client
-                    has access to the code using GitHub.
+                    Visually see how your child is doing daily, weekly, monthly, with 
+                    our aggregated charts from your sessions. 
                   </p>
                 </div>
               </div>
               <div className="info-area info-horizontal">
                 <div className="icon icon-info">
-                  <i className="nc-icon nc-atom" />
+                  <i className="nc-icon nc-cloud-download-93" />
                 </div>
                 <div className="description">
-                  <h5 className="info-title">Built Audience</h5>
+                  <h5 className="info-title">Access Resources</h5>
                   <p className="description">
-                    There is also a Fully Customizable CMS Admin Dashboard for
-                    this product.
+                    Looseleaf pamphlets always get lost between the office and your home.
+                    Have all those resources easily accessible on your dashboard.
                   </p>
                 </div>
               </div>
@@ -195,22 +196,12 @@ class Register extends React.Component {
                         onChange={this.handleChange} />
                     </InputGroup>
 
-                    {/* <FormGroup check className="text-left">
-                    <Label check>
-                      <Input defaultChecked type="checkbox" />
-                      <span className="form-check-sign" />I agree to the{" "}
-                      <a href="#pablo" onClick={e => e.preventDefault()}>
-                        terms and conditions
-                      </a>
-                      .
-                    </Label>
-                  </FormGroup> */}
 
                   </Form>
                 </CardBody>
                 <CardFooter>
                   <Button
-                    type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
+                    type="submit" className="btn btn-info" onClick={this.handleFormSubmit}>
                     Get Started
                 </Button>
                 </CardFooter>
@@ -221,7 +212,7 @@ class Register extends React.Component {
         <div
           className="full-page-background"
           style={{
-            backgroundImage: `url(${require("assets/img/bg/jan-sendereks.jpg")})`
+            backgroundImage: `url(${require("assets/img/bg/girl-and-speech-therapist.jpg")})`
           }}
         />
       </div>

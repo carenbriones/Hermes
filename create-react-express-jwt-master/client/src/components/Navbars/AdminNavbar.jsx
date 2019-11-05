@@ -1,19 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import classnames from "classnames";
 import {
@@ -123,9 +107,9 @@ class AdminNavbar extends React.Component {
               </div>
               <NavbarBrand href="#pablo" onClick={e => e.preventDefault()}>
                 <span className="d-none d-md-block">
-                  Paper Dashboard PRO React
+                  
                 </span>
-                <span className="d-block d-md-none">PD PRO React</span>
+                <span className="d-block d-md-none"></span>
               </NavbarBrand>
             </div>
             <button
@@ -157,7 +141,8 @@ class AdminNavbar extends React.Component {
                   </InputGroupAddon>
                 </InputGroup>
               </Form>
-              <Nav navbar>
+
+              {/* <Nav navbar>
                 <NavItem>
                   <NavLink
                     className="btn-magnify"
@@ -217,7 +202,8 @@ class AdminNavbar extends React.Component {
                     </p>
                   </NavLink>
                 </NavItem>
-              </Nav>
+              </Nav> */}
+
             </Collapse>
           </Container>
         </Navbar>

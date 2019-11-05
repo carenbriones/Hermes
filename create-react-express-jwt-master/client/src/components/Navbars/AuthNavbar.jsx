@@ -1,19 +1,3 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import classnames from "classnames";
 import { NavLink } from "react-router-dom";
@@ -61,8 +45,8 @@ class AuthNavbar extends React.Component {
       >
         <Container>
           <div className="navbar-wrapper">
-            <NavbarBrand href="#pablo" onClick={e => e.preventDefault()}>
-              Paper Dashboard PRO React
+            <NavbarBrand>
+            <img src="https://i.ibb.co/sV4Hhd0/Heremes-Logo-Small.png"/> Hermes Therapy Tracker
             </NavbarBrand>
           </div>
           <button
@@ -84,36 +68,24 @@ class AuthNavbar extends React.Component {
             navbar
           >
             <Nav navbar>
-              <NavItem>
-                <NavLink to="/admin/dashboard" className="nav-link">
-                  <i className="nc-icon nc-layout-11" />
-                  Dashboard
-                </NavLink>
-              </NavItem>
+
+              
+
               <NavItem>
                 <NavLink to="/auth/register" className="nav-link">
-                  <i className="nc-icon nc-book-bookmark" />
+                  <i className="nc-icon nc-simple-add" />
                   Register
                 </NavLink>
               </NavItem>
+
               <NavItem>
                 <NavLink to="/auth/login" className="nav-link">
-                  <i className="nc-icon nc-tap-01" />
+                  <i className="nc-icon nc-circle-10" />
                   Login
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink to="/admin/user-profile" className="nav-link">
-                  <i className="nc-icon nc-satisfied" />
-                  User
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink to="/auth/lock-screen" className="nav-link">
-                  <i className="nc-icon nc-key-25" />
-                  Lock
-                </NavLink>
-              </NavItem>
+
+            
             </Nav>
           </Collapse>
         </Container>

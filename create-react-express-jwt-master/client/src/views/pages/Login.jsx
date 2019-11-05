@@ -102,25 +102,13 @@ class Login extends React.Component {
                       />
                     </InputGroup>
                     <br />
-                    {/* <FormGroup>
-                      <FormGroup check>
-                        <Label check>
-                          <Input
-                            defaultChecked
-                            defaultValue=""
-                            type="checkbox"
-                          />
-                          <span className="form-check-sign" />
-                          Subscribe to newsletter
-                        </Label>
-                      </FormGroup>
-                    </FormGroup> */}
+                  
                   </CardBody>
                   <CardFooter>
                     <Button
                       block
                       className="btn-round mb-3"
-                      color="warning"
+                      color="info"
                       type="submit"
                       onClick={this.handleFormSubmit}
                     >
@@ -135,7 +123,7 @@ class Login extends React.Component {
         <div
           className="full-page-background"
           style={{
-            backgroundImage: `url(${require("assets/img/bg/fabio-mangione.jpg")})`
+            backgroundImage: `url(${require("assets/img/bg/learning-can-be-real-fun.jpg")})`
           }}
         />
       </div>

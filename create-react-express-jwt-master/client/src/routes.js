@@ -1,19 +1,4 @@
-/*!
 
-=========================================================
-* Paper Dashboard PRO React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import Buttons from "views/components/Buttons.jsx";
 import Calendar from "views/Calendar.jsx";
 import Charts from "views/Charts.jsx";
@@ -50,6 +35,13 @@ const routes = [
     name: "Dashboard",
     icon: "nc-icon nc-bank",
     component: Dashboard,
+    layout: "/admin"
+  },
+  {
+    path: "/user-profile",
+    name: "UserProfile",
+    icon: "nc-icon nc-circle-10",
+    component: UserProfile,
     layout: "/admin"
   },
   {
@@ -105,6 +97,7 @@ const routes = [
         path: "/buttons",
         name: "Buttons",
         mini: "B",
+        invisible: true,
         component: Buttons,
         layout: "/admin"
       },

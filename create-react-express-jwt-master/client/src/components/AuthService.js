@@ -53,6 +53,6 @@ export default class AuthService {
         axios.defaults.headers.common['Authorization'] = null;
         localStorage.removeItem('id_token');
         // this will reload the page and reset the state of the application
-        window.location.reload('/auth/registration');
+        window.location.reload('/auth/login');
     }
 }

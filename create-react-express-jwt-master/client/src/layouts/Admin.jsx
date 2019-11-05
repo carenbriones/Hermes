@@ -22,6 +22,7 @@ class Admin extends React.Component {
       backgroundColor: "brown",
       activeColor: "info",
       sidebarMini: false,
+      user: {}
     };
   }
   componentDidMount() {
@@ -30,7 +31,11 @@ class Admin extends React.Component {
       document.documentElement.classList.remove("perfect-scrollbar-off");
       ps = new PerfectScrollbar(this.refs.mainPanel);
     }
-
+    API.getUser(this.props.user.id).then(res => {
+      this.setState({caren: res.data});
+    }).then(() => {
+      // console.log(this.state);
+    })
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -109,4 +114,4 @@ class Admin extends React.Component {
   }
 }
 
-export default Admin;
+export default withAuth(Admin);

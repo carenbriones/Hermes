@@ -41,6 +41,9 @@ import VectorMap from "views/maps/VectorMap.jsx";
 import Widgets from "views/Widgets.jsx";
 import Wizard from "views/forms/Wizard.jsx";
 
+import AddChild from "./components/AddChild/AddChild";
+import NewSession from "./components/NewSession/NewSession";
+
 const routes = [
   {
     path: "/dashboard",
@@ -145,6 +148,35 @@ const routes = [
         name: "Typography",
         mini: "T",
         component: Typography,
+        layout: "/admin"
+      }
+    ]
+  },
+  {
+    collapse: true,
+    name: "Children",
+    icon: "nc-icon nc-single-02",
+    state: "childrenCollapse",
+    views: [
+      {
+        path: "/addChild",
+        name: "Add Child",
+        mini: "AC",
+        component: AddChild,
+        layout: "/admin"
+      },
+      {
+        path: "/viewChildren",
+        name: "View Children",
+        mini: "VC",
+        component: AddChild,
+        layout: "/admin"
+      },
+      {
+        path: "/newSession",
+        name: "New Session",
+        mini: "NS",
+        component: NewSession,
         layout: "/admin"
       }
     ]

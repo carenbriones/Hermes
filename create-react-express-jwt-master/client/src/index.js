@@ -14,6 +14,8 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer/Footer';
+import AddChild from './components/AddChild/AddChild';
+import NewSession from './components/NewSession/NewSession';
 
 
 // Here is if we have an id_token in localStorage
@@ -30,7 +32,9 @@ ReactDOM.render(
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/profile" component={Profile} />
-            <Footer fluid/>
+            <Route exact path="/addChild/:id" component={AddChild} />
+            <Route exact path="/newSession/:id" component={NewSession} />
+            {/* <Footer fluid/> */}
         </div>
     </Router>
     , document.getElementById('root')

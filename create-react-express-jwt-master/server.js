@@ -57,6 +57,7 @@ app.get('/api/user/:id', /* isAuthenticated, */ (req, res) => {
   .populate("children")
   .then(data => {
     if (data) {
+      console.log(data)
       res.json(data);
     } else {
       res.status(404).send({ success: false, message: 'No user found' });

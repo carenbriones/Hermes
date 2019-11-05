@@ -1,28 +1,15 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import { Route, Switch } from "react-router-dom";
+import API from '../utils/API';
+import withAuth from "../components/withAuth"
+
 
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
-import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
+// import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import routes from "routes.js";
 
@@ -32,9 +19,9 @@ class Admin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      backgroundColor: "black",
+      backgroundColor: "brown",
       activeColor: "info",
-      sidebarMini: false
+      sidebarMini: false,
     };
   }
   componentDidMount() {
@@ -43,6 +30,7 @@ class Admin extends React.Component {
       document.documentElement.classList.remove("perfect-scrollbar-off");
       ps = new PerfectScrollbar(this.refs.mainPanel);
     }
+
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -108,14 +96,14 @@ class Admin extends React.Component {
             <Footer fluid />
           )}
         </div>
-        <FixedPlugin
+        {/* <FixedPlugin
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
           sidebarMini={this.state.sidebarMini}
           handleActiveClick={this.handleActiveClick}
           handleBgClick={this.handleBgClick}
           handleMiniClick={this.handleMiniClick}
-        />
+        /> */}
       </div>
     );
   }

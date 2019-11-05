@@ -4,7 +4,7 @@ export default class AuthService {
 
     login = (email, password) => {
         // Get a token
-        return axios.post('api/login', {email: email, password: password})
+        return axios.post('/auth/api/login', {email: email, password: password})
         .then(res => {
             // set the token once the user logs in
             this.setToken(res.data.token);
@@ -53,6 +53,6 @@ export default class AuthService {
         axios.defaults.headers.common['Authorization'] = null;
         localStorage.removeItem('id_token');
         // this will reload the page and reset the state of the application
-        window.location.reload('/');
+        window.location.reload('/auth/login');
     }
 }

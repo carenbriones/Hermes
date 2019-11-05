@@ -24,6 +24,6 @@ export default {
     return axios.post(`/api/child/${childId}/sessions`, newSession);
   },
   signUpUser: (name, email, password, address, phoneNumber) => {
-    return axios.post('api/signup', {name: name, email: email, password: password, address: address, phoneNumber: phoneNumber});
+    return axios.post('/auth/api/signup', {name: name, email: email, password: password, address: address, phoneNumber: phoneNumber});
   }
 };

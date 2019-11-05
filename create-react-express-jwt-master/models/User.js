@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
-const Roles = require('../shared/roles');
+const Roles = require('../client/shared/roles');
 
 const UserSchema = new Schema({
   name: {

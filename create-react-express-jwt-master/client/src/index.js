@@ -1,22 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import './assets/scss/paper-dashboard.css'
-
-import registerServiceWorker from './registerServiceWorker';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import React from "react";
+import ReactDOM from "react-dom";
+import { createBrowserHistory } from "history";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 import axios from "axios";
 
-// Our Components
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import Signup from './pages/Signup';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer/Footer';
-import AddChild from './components/AddChild/AddChild';
-import NewSession from './components/NewSession/NewSession';
+import AuthLayout from "layouts/Auth.jsx";
+import AdminLayout from "layouts/Admin.jsx";
 
+import "bootstrap/dist/css/bootstrap.css";
+import "assets/scss/paper-dashboard.scss?v=1.1.0";
+import "assets/demo/demo.css";
+import "perfect-scrollbar/css/perfect-scrollbar.css";
+
+const hist = createBrowserHistory();
 
 // Here is if we have an id_token in localStorage
 if(localStorage.getItem("id_token")) {
@@ -24,19 +20,14 @@ if(localStorage.getItem("id_token")) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('id_token')}`;
 }
 
+
 ReactDOM.render(
-    <Router>
-        <div>
-            <Navbar />
-            <Route exact path="/" component={App} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/addChild/:id" component={AddChild} />
-            <Route exact path="/newSession/:id" component={NewSession} />
-            {/* <Footer fluid/> */}
-        </div>
-    </Router>
-    , document.getElementById('root')
+  <Router history={hist}>
+    <Switch>
+      <Route path="/auth" render={props => <AuthLayout {...props} />} />
+      <Route path="/admin" render={props => <AdminLayout {...props} />} />
+      <Redirect to="/admin/dashboard" />
+    </Switch>
+  </Router>,
+  document.getElementById("root")
 );
-registerServiceWorker();

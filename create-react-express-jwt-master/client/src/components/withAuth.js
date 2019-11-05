@@ -10,7 +10,7 @@ export default function withAuth(AuthComponent) {
 
         componentDidMount() {
             if (!Auth.loggedIn()) {
-                this.props.history.replace('/signup');
+                this.props.history.replace('/auth/login');
             }
             else {
                 try {
@@ -21,7 +21,7 @@ export default function withAuth(AuthComponent) {
                 }
                 catch(err){
                     Auth.logout();
-                    this.props.history.replace('/signup');
+                    this.props.history.replace('/auth/login');
                 }
             }
         }

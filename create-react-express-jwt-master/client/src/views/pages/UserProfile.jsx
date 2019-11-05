@@ -31,7 +31,25 @@ import {
   Col
 } from "reactstrap";
 
+import withAuth from "../../components/withAuth";
+import API from "../../utils/API";
+
 class UserProfile extends React.Component {
+
+  state = {
+    name: "",
+    email: "",
+  }
+
+  componentDidMount() {
+    API.getUser(this.props.user.id).then(res => {
+      this.setState({
+        name: res.data.name,
+        email: res.data.email
+      })
+    })
+  }
+
   render() {
     return (
       <>
@@ -53,7 +71,7 @@ class UserProfile extends React.Component {
                         className="avatar border-gray"
                         src={require("assets/img/mike.jpg")}
                       />
-                      <h5 className="title">Chet Faker</h5>
+                      <h5 className="title">{this.state.name}</h5>
                     </a>
                     <p className="description">@chetfaker</p>
                   </div>
@@ -311,4 +329,4 @@ class UserProfile extends React.Component {
   }
 }
 
-export default UserProfile;
+export default withAuth(UserProfile);

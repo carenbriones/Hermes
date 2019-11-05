@@ -25,6 +25,8 @@ import Sidebar from "components/Sidebar/Sidebar.jsx";
 import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
 
 import routes from "routes.js";
+import API from "../utils/API";
+import withAuth from "../components/withAuth";
 
 var ps;
 
@@ -34,7 +36,8 @@ class Admin extends React.Component {
     this.state = {
       backgroundColor: "black",
       activeColor: "info",
-      sidebarMini: false
+      sidebarMini: false,
+      user: {}
     };
   }
   componentDidMount() {
@@ -43,6 +46,11 @@ class Admin extends React.Component {
       document.documentElement.classList.remove("perfect-scrollbar-off");
       ps = new PerfectScrollbar(this.refs.mainPanel);
     }
+    API.getUser(this.props.user.id).then(res => {
+      this.setState({caren: res.data});
+    }).then(() => {
+      // console.log(this.state);
+    })
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -108,17 +116,17 @@ class Admin extends React.Component {
             <Footer fluid />
           )}
         </div>
-        <FixedPlugin
+        {/* <FixedPlugin
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
           sidebarMini={this.state.sidebarMini}
           handleActiveClick={this.handleActiveClick}
           handleBgClick={this.handleBgClick}
           handleMiniClick={this.handleMiniClick}
-        />
+        /> */}
       </div>
     );
   }
 }
 
-export default Admin;
+export default withAuth(Admin);

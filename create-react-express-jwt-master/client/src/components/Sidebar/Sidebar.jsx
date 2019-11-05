@@ -6,6 +6,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 
 import avatar from "assets/img/default-avatar.png";
 import logo from "assets/img/hermes-logo.png";
+import API from "../../utils/API";
 
 import AuthService from '../AuthService';
 const Auth = new AuthService();
@@ -124,6 +125,10 @@ class Sidebar extends React.Component {
         suppressScrollY: false
       });
     }
+    console.log(this.props);
+    // API.getUser(this.props.user.id).then(res => {
+    //   this.setState({user: res.data});
+    // })
   }
   componentWillUnmount() {
     // we need to destroy the false scrollbar when we navigate
@@ -136,7 +141,7 @@ class Sidebar extends React.Component {
 // Allows for Logging out of an Account
   handleLogout = () => {
     Auth.logout();
-    this.props.history.replace('/auth/register');
+    this.props.history.replace('/auth/login');
   };
 
   render() {
@@ -178,7 +183,7 @@ class Sidebar extends React.Component {
                 }
               >
                 <span>
-                  USER NAME
+                  {this.props.user.email}
                   <b className="caret" />
                 </span>
               </a>

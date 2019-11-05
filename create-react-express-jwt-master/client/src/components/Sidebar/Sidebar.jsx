@@ -1,27 +1,14 @@
-/*!
-
-=========================================================
-* Paper Dashboard PRO React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, Collapse } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
-import avatar from "assets/img/faces/ayo-ogunseinde-2.jpg";
-import logo from "assets/img/react-logo.png";
+import avatar from "assets/img/default-avatar.png";
+import logo from "assets/img/hermes-logo.png";
+
+import AuthService from '../AuthService';
+const Auth = new AuthService();
 
 var ps;
 
@@ -145,6 +132,13 @@ class Sidebar extends React.Component {
       ps.destroy();
     }
   }
+
+// Allows for Logging out of an Account
+  handleLogout = () => {
+    Auth.logout();
+    this.props.history.replace('/auth/register');
+  };
+
   render() {
     return (
       <div
@@ -154,7 +148,7 @@ class Sidebar extends React.Component {
       >
         <div className="logo">
           <a
-            href="https://www.creative-tim.com"
+            href="/admin/dashboard"
             className="simple-text logo-mini"
           >
             <div className="logo-img">
@@ -162,10 +156,10 @@ class Sidebar extends React.Component {
             </div>
           </a>
           <a
-            href="https://www.creative-tim.com"
+            href="/admin/dashboard"
             className="simple-text logo-normal"
           >
-            Creative Tim
+            HERMES TRACKER
           </a>
         </div>
 
@@ -176,7 +170,7 @@ class Sidebar extends React.Component {
             </div>
             <div className="info">
               <a
-                href="#pablo"
+                href="#"
                 data-toggle="collapse"
                 aria-expanded={this.state.openAvatar}
                 onClick={() =>
@@ -184,7 +178,7 @@ class Sidebar extends React.Component {
                 }
               >
                 <span>
-                  Chet Faker
+                  USER NAME
                   <b className="caret" />
                 </span>
               </a>
@@ -192,20 +186,14 @@ class Sidebar extends React.Component {
                 <ul className="nav">
                   <li>
                     <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">MP</span>
-                      <span className="sidebar-normal">My Profile</span>
+                      <span className="sidebar-mini-icon"><i className="nc-icon nc-circle-10" /></span>
+                      <span className="sidebar-normal">MY PROFILE</span>
                     </NavLink>
                   </li>
-                  <li>
-                    <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">EP</span>
-                      <span className="sidebar-normal">Edit Profile</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">S</span>
-                      <span className="sidebar-normal">Settings</span>
+                  <li >
+                    <NavLink to="#" activeClassName="" onClick={this.handleLogout}>
+                      <span className="sidebar-mini-icon"><i className="nc-icon nc-simple-remove" /></span>
+                      <span className="sidebar-normal">LOGOUT</span>
                     </NavLink>
                   </li>
                 </ul>

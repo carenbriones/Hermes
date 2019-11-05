@@ -35,6 +35,13 @@ const routes = [
     layout: "/admin"
   },
   {
+    path: "/user-profile",
+    name: "UserProfile",
+    icon: "nc-icon nc-circle-10",
+    component: UserProfile,
+    layout: "/admin"
+  },
+  {
     collapse: true,
     name: "Pages",
     icon: "nc-icon nc-book-bookmark",
@@ -87,6 +94,7 @@ const routes = [
         path: "/buttons",
         name: "Buttons",
         mini: "B",
+        invisible: true,
         component: Buttons,
         layout: "/admin"
       },

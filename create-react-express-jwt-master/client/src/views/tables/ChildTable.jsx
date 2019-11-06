@@ -54,12 +54,12 @@ class ChildTable extends React.Component {
                       <td>{child.gender}</td>
                       <td>{child.therapist}</td>
                       <td>
-                        <Button href={"INSERT PATH"} color="info" size="sm">
+                        <Button href={``} color="info" size="sm">
                           View Child
-                        </Button>{` `}
-                        <Button  href={"INSERT PATH"} color="success" size="sm">
+                        </Button>
+                        <Button  href={`newSession/${child._id}`} color="success" size="sm">
                           Start Session
-                        </Button>{` `}
+                        </Button>
       
                       </td>
                     </tr>

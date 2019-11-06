@@ -33,23 +33,16 @@ class NewSession extends Component {
     appropriateResponse: 0,
     difficultyWith: "",
     successWith: "",
-    date: "",
-    _id: ""
+    date: ""
   };
 
-  componentDidMount() {
-    this.setState({
-      _id: this.props.match.params.id
-    })
-  }
-
-  //WE NEED TO FIGURE OUT HOW TO PASS THE CHILD'S ID
   handleFormSubmit = event => {
     event.preventDefault();
+    const hrefs = window.location.href.split("/");
     //console.log(this.props.user.id, this.state);
-    console.log("CHILD ID", this.props.match.params.id, "state", this.state)
+    console.log("CHILD ID", hrefs[hrefs.length - 1], "state", this.state)
 
-    API.postNewSession(this.props.match.params.id, this.state)
+    API.postNewSession(hrefs[hrefs.length - 1], this.state)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
 

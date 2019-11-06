@@ -27,6 +27,10 @@ import Widgets from "views/Widgets.jsx";
 import Wizard from "views/forms/Wizard.jsx";
 import Resources from "views/pages/Resources";
 
+import AddChild from "./components/AddChild/AddChild";
+import NewSession from "./components/NewSession/NewSession";
+import ChildTable from "./views/tables/ChildTable";
+
 const routes = [
   {
     path: "/dashboard",
@@ -147,6 +151,36 @@ const routes = [
         mini: "T",
         component: Typography,
         layout: "/admin"
+      }
+    ]
+  },
+  {
+    collapse: true,
+    name: "Children",
+    icon: "nc-icon nc-single-02",
+    state: "childrenCollapse",
+    views: [
+      {
+        path: "/addChild",
+        name: "Add Child",
+        mini: "AC",
+        component: AddChild,
+        layout: "/admin"
+      },
+      {
+        path: "/viewChildren",
+        name: "View Children",
+        mini: "VC",
+        component: ChildTable,
+        layout: "/admin"
+      },
+      {
+        path: "/newSession/:id",
+        name: "New Session",
+        mini: "NS",
+        component: NewSession,
+        layout: "/admin",
+        invisible: true
       }
     ]
   },

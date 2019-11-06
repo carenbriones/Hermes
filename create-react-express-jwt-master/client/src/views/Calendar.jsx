@@ -38,6 +38,7 @@ class Calendar extends React.Component {
     };
   }
   selectedEvent = event => {
+    // this.props.history.replace("/admin/addChild");
     alert(event.title);
   };
   addNewEventAlert = slotInfo => {

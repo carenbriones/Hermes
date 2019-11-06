@@ -18,6 +18,8 @@ import {
   Col
 } from "reactstrap";
 
+import ChildTable from "../tables/ChildTable";
+
 import withAuth from "../../components/withAuth";
 import API from "../../utils/API";
 
@@ -106,43 +108,7 @@ class UserProfile extends React.Component {
             </Col>
 
             <Col md="8">
-
-              <Card>
-                <CardHeader>
-                  <h5 className="title">Children</h5>
-                </CardHeader>
-                <CardBody>
-                  <Table responsive>
-                    <thead>
-                      <tr>
-                        <th>Child Name</th>
-                        <th>D.O.B</th>
-                        <th>Gender</th>
-                        <th>Therapist</th>
-                        <th>Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Child Name</td>
-                        <td>2 /18/ 2015</td>
-                        <td >Male</td>
-                        <td >Dr. Sleep</td>
-                        <td >
-                          <Button href={"INSERT PATH"} color="info" size="sm">
-                            View Child
-                          </Button>{` `}
-                          <Button  href={"INSERT PATH"} color="success" size="sm">
-                            Start Session
-                          </Button>{` `}
-        
-                        </td>
-                      </tr>
-                      
-                    </tbody>
-                  </Table>
-                </CardBody>
-              </Card>
+              <ChildTable/>
             </Col>
           </Row>
         </div>

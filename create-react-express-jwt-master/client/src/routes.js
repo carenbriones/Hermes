@@ -31,6 +31,7 @@ import Resources from "views/pages/Resources";
 import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
+import Therapists from  "views/pages/Therapists";
 
 const routes = [
   {
@@ -121,6 +122,13 @@ const routes = [
         layout: "/admin"
       }
     ]
+  },
+  {
+    path: "/user-profile",
+    name: "Therapists",
+    icon: "nc-icon nc-badge",
+    component: UserProfile,
+    layout: "/admin"
   },
   {
     path: "/calendar",

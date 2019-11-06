@@ -25,8 +25,9 @@ import ValidationForms from "views/forms/ValidationForms.jsx";
 import VectorMap from "views/maps/VectorMap.jsx";
 import Widgets from "views/Widgets.jsx";
 import Wizard from "views/forms/Wizard.jsx";
+import ChildPage from "components/ChildPage/ChildPage";
+import OneResource from "components/OneResource/OneResource"
 import Resources from "views/pages/Resources";
-
 import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
@@ -222,58 +223,44 @@ const routes = [
   },
   {
     collapse: true,
-    name: "Tables",
+    name: "Resources",
     icon: "nc-icon nc-single-copy-04",
-    state: "tablesCollapse",
+    state: "resourcesCollapse",
     views: [
       {
-        path: "/regular-tables",
-        name: "Regular Tables",
+        path: "/session/1",
+        name: "Session 1",
         mini: "RT",
-        component: RegularTables,
+        component: OneResource,
         layout: "/admin"
       },
       {
-        path: "/extended-tables",
-        name: "Extended Tables",
+        path: "/session/2",
+        name: "Session 2",
         mini: "ET",
-        component: ExtendedTables,
+        component: OneResource,
         layout: "/admin"
       },
       {
-        path: "/react-tables",
-        name: "React Tables",
+        path: "/session/3",
+        name: "Session 3",
         mini: "RT",
-        component: ReactTables,
+        component: OneResource,
         layout: "/admin"
       }
     ]
   },
   {
     collapse: true,
-    name: "Maps",
+    name: "Children",
     icon: "nc-icon nc-pin-3",
-    state: "mapsCollapse",
+    state: "childrenCollapse",
     views: [
       {
-        path: "/google-maps",
-        name: "Google Maps",
+        path: "/childPage",
+        name: "Child Page",
         mini: "GM",
-        component: GoogleMaps,
-        layout: "/admin"
-      },
-      {
-        path: "/full-screen-map",
-        name: "Full Screen Map",
-        mini: "FSM",
-        component: FullScreenMap,
-        layout: "/admin"
-      },
-      {
-        path: "/vector-map",
-        name: "Vector Map",
-        mini: "VM",
-        component: VectorMap,
+        component: ChildPage,
         layout: "/admin"
       }
     ]

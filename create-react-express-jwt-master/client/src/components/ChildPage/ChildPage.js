@@ -39,7 +39,7 @@ class ChildPage extends Component {
     diagnosis: "",
     therapist: "",
     sessions: [],
-    _id: "5dbf656fd78ee927ac00b3dd",
+    _id: "",
     title: "",
     img: "",
     text: [],
@@ -48,7 +48,7 @@ class ChildPage extends Component {
   };
 
   componentDidMount() {
-    API.getOneChild("5dbf656fd78ee927ac00b3dd")
+    API.getOneChild(this.props.match.params.id)
       .then(res => { 
         this.setState(res.data)
       })
@@ -62,10 +62,8 @@ class ChildPage extends Component {
   }
 
   render () {
-      
-      console.log("HAS IEP", this.state.hasIEP)
       return (
-      <div className="container Profile">
+      <div className="content">
       <Container>
           <Row>
             <Col className="col-md-12">
@@ -106,10 +104,11 @@ class ChildPage extends Component {
           </Card>
         </Col>
         </Row>
-        <h5>Today's Session:<Link to={'/newSession/' + this.state._id}>
-          <Button name="_id" value={this.state._id} type="submit" onClick={this.handleStartSession}>
+        <h5>Today's Session:
+          <Button href={`../newSession/${this.state._id}`} name="_id" value={this.state._id}>
             Start
-            </Button></Link></h5>
+          </Button>
+        </h5>
         <Card>
           <CardHeader>
             <CardTitle>
@@ -120,8 +119,6 @@ class ChildPage extends Component {
         <img src={this.state.img}/>
         <br/><br/>
         {this.state.text.map(p => {return <p key={Math.floor(Math.random()*20)}>{p}</p>})}
-        
-        <Link to="/">Go home</Link>
         
         </CardBody>
       </Card>

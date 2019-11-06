@@ -25,16 +25,12 @@ import ValidationForms from "views/forms/ValidationForms.jsx";
 import VectorMap from "views/maps/VectorMap.jsx";
 import Widgets from "views/Widgets.jsx";
 import Wizard from "views/forms/Wizard.jsx";
-<<<<<<< HEAD
 import ChildPage from "components/ChildPage/ChildPage";
 import Resources from "components/Resources/Resources"
-=======
 import Resources from "views/pages/Resources";
-
 import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
->>>>>>> daf30d1cef976506a44db59257cfaffc7211c6b5
 
 const routes = [
   {

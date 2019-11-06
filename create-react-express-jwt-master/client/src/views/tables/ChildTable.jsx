@@ -28,50 +28,47 @@ class ChildTable extends React.Component {
     })
   }
 
-    render() { 
-      return (
-      <div className="content">
-        <Card>
-          <CardHeader>
-            <h5 className="title">Children</h5>
-          </CardHeader>
-          <CardBody>
-            <Table responsive>
-              <thead>
+  render() { 
+    return (
+    <div className="content">
+      <Card>
+        <CardHeader>
+          <h5 className="title">Children</h5>
+        </CardHeader>
+        <CardBody>
+          <Table responsive>
+            <thead>
+              <tr>
+                <th>Child Name</th>
+                <th>D.O.B</th>
+                <th>Gender</th>
+                <th>Therapist</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.children.map((child) => 
                 <tr>
-                  <th>Child Name</th>
-                  <th>D.O.B</th>
-                  <th>Gender</th>
-                  <th>Therapist</th>
-                  <th>Actions</th>
+                  <td>{child.firstName} {child.lastName}</td>
+                  <td>{child.dateOfBirth}</td>
+                  <td>{child.gender}</td>
+                  <td>{child.therapist}</td>
+                  <td>
+                    <Button href={``} color="info" size="sm">
+                      View Child
+                    </Button>
+                    <Button  href={`newSession/${child._id}`} color="success" size="sm">
+                      Start Session
+                    </Button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                  {this.state.children.map((child) => 
-                    <tr>
-                      <td>{child.firstName} {child.lastName}</td>
-                      <td>{child.dateOfBirth}</td>
-                      <td>{child.gender}</td>
-                      <td>{child.therapist}</td>
-                      <td>
-                        <Button href={``} color="info" size="sm">
-                          View Child
-                        </Button>
-                        <Button  href={`newSession/${child._id}`} color="success" size="sm">
-                          Start Session
-                        </Button>
-      
-                      </td>
-                    </tr>
-                  )}
-                
-              </tbody>
-            </Table>
-          </CardBody>
-        </Card>
-      </div>
-  
-    )}
+              )}
+            </tbody>
+          </Table>
+        </CardBody>
+      </Card>
+    </div>
+  )}
 
 }
 

@@ -38,11 +38,10 @@ class NewSession extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    const hrefs = window.location.href.split("/");
     //console.log(this.props.user.id, this.state);
-    console.log("CHILD ID", hrefs[hrefs.length - 1], "state", this.state)
+    console.log("CHILD ID", this.props.match.params.id, "state", this.state)
 
-    API.postNewSession(hrefs[hrefs.length - 1], this.state)
+    API.postNewSession(this.props.match.params.id, this.state)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
 
@@ -78,133 +77,126 @@ class NewSession extends Component {
 
   render() {
     return (
-      <div className="container Profile">
+      <div className="content">
+        {/* ************* SUBMIT SESSION FORM-- MOVE TO THE RIGHT PLACE *************** */}
+        <Col className="mx-auto" md="8" sm="12">
+          <Card className="card-signup text-center mt-5" style={{ zIndex: 1 }}>
+            <CardHeader>
+              <CardTitle tag="h4">NEW SESSION {this.state.childId}</CardTitle>
+            </CardHeader>
+            <CardBody>
+              <Form className="form">
 
-        <Container>
+                {/* ###########  POSITIVE INTERACTIONS ############## */}
+                <InputGroup>
 
-          {/* ************* SUBMIT SESSION FORM-- MOVE TO THE RIGHT PLACE *************** */}
-          <Row>
-            <Col className="mr-auto" lg="4" md="6">
-              <Card className="card-signup text-center mt-5" style={{ zIndex: 1 }}>
-                <CardHeader>
-                  <CardTitle tag="h4">NEW SESSION {this.state.childId}</CardTitle>
-                </CardHeader>
-                <CardBody>
-                  <Form className="form">
+                  <Button
+                    className="form-control"
+                    placeholder="Positive Interactions"
+                    name="positiveInteractions"
+                    id="positiveInteractions"
+                    autoComplete="positiveInteractions"
+                    value={this.state.positiveInteractions}
+                    onClick={this.handleClick}>
+                    {this.state.positiveInteractions} Positive Interactions
+                  </Button>
 
-                    {/* ###########  POSITIVE INTERACTIONS ############## */}
-                    <InputGroup>
+                </InputGroup>
 
-                      <Button
-                        className="form-control"
-                        placeholder="Positive Interactions"
-                        name="positiveInteractions"
-                        id="positiveInteractions"
-                        autoComplete="positiveInteractions"
-                        value={this.state.positiveInteractions}
-                        onClick={this.handleClick}>
-                        {this.state.positiveInteractions} Positive Interactions
-                    </Button>
+                {/* ###########  APPROPRIATE REQUESTS ############## */}
+                <InputGroup>
 
-                    </InputGroup>
+                  <Button
+                    className="form-control"
+                    placeholder="Appropriate Requests"
+                    name="appropriateRequests"
+                    id="appropriateRequests"
+                    autoComplete="appropriateRequests"
+                    value={this.state.appropriateRequests}
+                    onClick={this.handleClick}>
+                    {this.state.appropriateRequests} Appropriate Requests
+                  </Button>
 
-                    {/* ###########  APPROPRIATE REQUESTS ############## */}
-                    <InputGroup>
+                </InputGroup>
 
-                      <Button
-                        className="form-control"
-                        placeholder="Appropriate Requests"
-                        name="appropriateRequests"
-                        id="appropriateRequests"
-                        autoComplete="appropriateRequests"
-                        value={this.state.appropriateRequests}
-                        onClick={this.handleClick}>
-                        {this.state.appropriateRequests} Appropriate Requests
-                    </Button>
+                {/* ###########  APPROPRIATE RESPONSES ############## */}
+                <InputGroup>
 
-                    </InputGroup>
+                  <Button
+                    className="form-control"
+                    placeholder="Appropriate Responses"
+                    name="appropriateResponse"
+                    id="appropriateResponse"
+                    autoComplete="appropriateResponse"
+                    value={this.state.appropriateResponse}
+                    onClick={this.handleClick}>
+                    {this.state.appropriateResponse} Appropriate Responses
+                  </Button>
 
-                    {/* ###########  APPROPRIATE RESPONSES ############## */}
-                    <InputGroup>
+                </InputGroup>
 
-                      <Button
-                        className="form-control"
-                        placeholder="Appropriate Responses"
-                        name="appropriateResponse"
-                        id="appropriateResponse"
-                        autoComplete="appropriateResponse"
-                        value={this.state.appropriateResponse}
-                        onClick={this.handleClick}>
-                        {this.state.appropriateResponse} Appropriate Responses
-            </Button>
+                {/* ###########  HAD DIFFICULTY WITH ############## */}
+                <InputGroup>
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="nc-icon nc-single-02" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    className="form-control"
+                    placeholder="My child had difficulty with"
+                    name="difficultyWith"
+                    type="text"
+                    id="difficultyWith"
+                    autoComplete="difficultyWith"
+                    onChange={this.handleChange} />
+                </InputGroup>
 
-                    </InputGroup>
+                {/* ###########  HAD SUCCESS WITH ############## */}
+                <InputGroup>
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="nc-icon nc-single-02" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    className="form-control"
+                    placeholder="My child had success with"
+                    name="successWith"
+                    type="text"
+                    id="successWith"
+                    autoComplete="successWith"
+                    onChange={this.handleChange} />
+                </InputGroup>
 
-                    {/* ###########  HAD DIFFICULTY WITH ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="nc-icon nc-single-02" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        className="form-control"
-                        placeholder="My child had difficulty with"
-                        name="difficultyWith"
-                        type="text"
-                        id="difficultyWith"
-                        autoComplete="difficultyWith"
-                        onChange={this.handleChange} />
-                    </InputGroup>
+                {/* ###########  SESSION'S DATE ############## */}
+                <InputGroup>
+                  <InputGroupAddon addonType="prepend">
+                    <InputGroupText>
+                      <i className="nc-icon nc-calendar-06" />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <Input
+                    className="form-control"
+                    placeholder="Date of Birth"
+                    name="date"
+                    type="date"
+                    id="date"
+                    autoComplete="date"
+                    onChange={this.handleChange} />
+                </InputGroup>
 
-                    {/* ###########  HAD SUCCESS WITH ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="nc-icon nc-single-02" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        className="form-control"
-                        placeholder="My child had success with"
-                        name="successWith"
-                        type="text"
-                        id="successWith"
-                        autoComplete="successWith"
-                        onChange={this.handleChange} />
-                    </InputGroup>
-
-                    {/* ###########  SESSION'S DATE ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="nc-icon nc-calendar-06" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        className="form-control"
-                        placeholder="Date of Birth"
-                        name="date"
-                        type="date"
-                        id="date"
-                        autoComplete="date"
-                        onChange={this.handleChange} />
-                    </InputGroup>
-
-                  </Form>
-                </CardBody>
-                <CardFooter>
-                  
-                    <Button
-                    type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
-                    End Session</Button>
-                </CardFooter>
-              </Card>
-            </Col>
-          </Row>
-        </Container>
-
-        <Link to="/">Go home</Link>
+              </Form>
+            </CardBody>
+            <CardFooter>
+              
+                <Button
+                  type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
+                  End Session
+                </Button>
+            </CardFooter>
+          </Card>
+        </Col>
       </div>
     )
   }

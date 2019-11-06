@@ -175,7 +175,7 @@ const routes = [
         layout: "/admin"
       },
       {
-        path: "/newSession",
+        path: "/newSession/:id",
         name: "New Session",
         mini: "NS",
         component: NewSession,

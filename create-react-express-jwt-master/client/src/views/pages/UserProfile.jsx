@@ -11,6 +11,8 @@ import {
   FormGroup,
   Form,
   Input,
+  ListGroup,
+  ListGroupItem,
   Table,
   Row,
   Col
@@ -31,6 +33,8 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.match.id)
+
     API.getUser(this.props.user.id).then(res => {
       this.setState({
         name: res.data.name,
@@ -53,30 +57,48 @@ class UserProfile extends React.Component {
                 <div className="image">
                   <img
                     alt="..."
-                    src={require("assets/img/bg/damir-bosnjak.jpg")}
+                    src={require("assets/img/bg/profilebg.jpg")}
                   />
                 </div>
                 <CardBody>
                   <div className="author">
-                    <a href="#" onClick={e => e.preventDefault()}>
+                    <a >
                       <img
                         alt="User Avatar"
                         className="avatar border-gray"
                         src={require("assets/img/onepunch.jpg")}
                       />
-                      <h5 className="title">{this.state.name}</h5>
+                      <h3 className="title" style={{marginBottom: "0px"}}>{this.state.name}</h3>
                     </a>
-                    <p className="description">{this.state.email}</p>
+                    <h5 style={{fontStyle: "italic"}}>{this.state.role} </h5>
                   </div>
-                  <p className="description text-center">
-                    {this.state.role}
-                  </p>
-                  <p className="description text-center">
-                    {this.state.phoneNumber}
-                  </p>
-                  <p className="description text-center">
-                    {this.state.address}
-                  </p>
+
+                  <ListGroup flush>
+
+                  <ListGroupItem><p className="text-center" style={{
+                    fontSize: "1rem",
+                    marginBottom: "0px"
+                  }}>
+                  <i className="nc-icon nc-email-85 mx-2" />    {this.state.email}</p>
+                  </ListGroupItem>
+
+                  <ListGroupItem><p className="text-center" style={{
+                    fontSize: "1rem",
+                    marginBottom: "0px"
+                  }}>
+                  <i className="nc-icon nc-mobile mx-2" /> 
+                    {this.state.phoneNumber}</p>
+                  </ListGroupItem>
+
+                  <ListGroupItem><p className="text-center" style={{
+                    fontSize: "1rem",
+                    marginBottom: "0px"
+                  }}>
+                  <i className="nc-icon nc-pin-3 mx-2" /> 
+                    {this.state.address} </p>
+                  </ListGroupItem>
+
+                  </ListGroup>
                 </CardBody>
 
               </Card>

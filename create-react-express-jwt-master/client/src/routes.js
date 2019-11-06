@@ -75,6 +75,14 @@ const routes = [
         component: NewSession,
         layout: "/admin",
         invisible: true
+      },
+      {
+        path: "/child/:id",
+        name: "Child Info",
+        mini: "NS",
+        component: ChildPage,
+        layout: "/admin",
+        invisible: true
       }
     ]
   },

@@ -65,6 +65,7 @@ class AddChild extends Component {
       })
       .then(res => {
         console.log("data saved", res.data)
+        this.props.history.replace("/admin/user-profile")
       })
       .catch(err => alert(err));
 

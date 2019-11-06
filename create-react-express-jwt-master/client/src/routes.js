@@ -29,6 +29,7 @@ import Resources from "views/pages/Resources";
 
 import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
+import ChildTable from "./views/tables/ChildTable";
 
 const routes = [
   {
@@ -170,7 +171,7 @@ const routes = [
         path: "/viewChildren",
         name: "View Children",
         mini: "VC",
-        component: AddChild,
+        component: ChildTable,
         layout: "/admin"
       },
       {

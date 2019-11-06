@@ -25,6 +25,7 @@ import ValidationForms from "views/forms/ValidationForms.jsx";
 import VectorMap from "views/maps/VectorMap.jsx";
 import Widgets from "views/Widgets.jsx";
 import Wizard from "views/forms/Wizard.jsx";
+import Resources from "views/pages/Resources";
 
 const routes = [
   {
@@ -39,6 +40,13 @@ const routes = [
     name: "UserProfile",
     icon: "nc-icon nc-circle-10",
     component: UserProfile,
+    layout: "/admin"
+  },
+  {
+    path: "/resources",
+    name: "Resources",
+    icon: "nc-icon nc-circle-10",
+    component: Resources,
     layout: "/admin"
   },
   {

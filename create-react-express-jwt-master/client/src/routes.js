@@ -179,7 +179,8 @@ const routes = [
         name: "New Session",
         mini: "NS",
         component: NewSession,
-        layout: "/admin"
+        layout: "/admin",
+        invisible: true
       }
     ]
   },

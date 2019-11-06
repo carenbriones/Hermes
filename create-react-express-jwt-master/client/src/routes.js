@@ -25,16 +25,13 @@ import ValidationForms from "views/forms/ValidationForms.jsx";
 import VectorMap from "views/maps/VectorMap.jsx";
 import Widgets from "views/Widgets.jsx";
 import Wizard from "views/forms/Wizard.jsx";
-<<<<<<< HEAD
 import ChildPage from "components/ChildPage/ChildPage";
-import Resources from "components/Resources/Resources"
-=======
+import OneResource from "components/OneResource/OneResource"
 import Resources from "views/pages/Resources";
 
 import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
->>>>>>> daf30d1cef976506a44db59257cfaffc7211c6b5
 
 const routes = [
   {
@@ -235,21 +232,21 @@ const routes = [
         path: "/session/1",
         name: "Session 1",
         mini: "RT",
-        component: Resources,
+        component: OneResource,
         layout: "/admin"
       },
       {
         path: "/session/2",
         name: "Session 2",
         mini: "ET",
-        component: Resources,
+        component: OneResource,
         layout: "/admin"
       },
       {
         path: "/session/3",
         name: "Session 3",
         mini: "RT",
-        component: Resources,
+        component: OneResource,
         layout: "/admin"
       }
     ]

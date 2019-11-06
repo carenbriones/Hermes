@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import withAuth from './../withAuth';
-import API from './../../utils/API';
+import withAuth from '../withAuth';
+import API from '../../utils/API';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -26,7 +26,7 @@ import { parse } from 'url';
 import resources from "./../../resources.json"
 import { throwStatement } from '@babel/types';
 
-class Resources extends Component {
+class OneResource extends Component {
 
   state = {
     title: "",
@@ -68,6 +68,6 @@ class Resources extends Component {
     )}
 }
 
-export default withAuth(Resources);
+export default withAuth(OneResource);
 
 // 

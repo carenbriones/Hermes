@@ -33,7 +33,7 @@ class AddChild extends Component {
     lastName: "",
     dateOfBirth: "",
     gender: "",
-    hasIEP: false,
+    hasIEP: "",
     school: "",
     diagnosis: "",
     therapist: "",
@@ -80,6 +80,7 @@ class AddChild extends Component {
       diagnosis: "",
       therapist: ""
     })
+    console.log(this.state)
   };
 
   handleChange = event => {
@@ -202,7 +203,7 @@ class AddChild extends Component {
                       
 
                       <Col md="3">
-                        <label>IEP</label>
+                        <label>Does Your Child Have An IEP?</label>
                         <FormGroup>
                           <div className="form-check-radio form-check-inline">
                             <Label check>
@@ -211,8 +212,8 @@ class AddChild extends Component {
                                 
                                 id="true"
                                 type="radio"
-                                name="IEP"
-                                // checked={this.state.hasIEP = true}
+                                name="hasIEP"
+                                // checked={this.state.hasIEP === true}
                                 onChange={this.handleChange}
                                 value="true" />
                               Yes
@@ -226,8 +227,8 @@ class AddChild extends Component {
                                 
                                 id="false"
                                 type="radio"
-                                name="IEP"
-                                // checked={this.state.hasIEP = false}
+                                name="hasIEP"
+                                // checked={this.state.hasIEP === false}
                                 onChange={this.handleChange}
                                 value="false" />
                               No

@@ -26,6 +26,8 @@ import { parse } from 'url';
 import resources from "./../../resources.json"
 import { throwStatement } from '@babel/types';
 
+import SessionTable from "../../views/tables/SessionTable";
+
 class ChildPage extends Component {
 
   state = {
@@ -62,67 +64,69 @@ class ChildPage extends Component {
   }
 
   render () {
-      return (
+    return (
       <div className="content">
-      <Container>
+        <Container>
           <Row>
             <Col className="col-md-12">
-        <h1>{this.state.firstName} {this.state.lastName}</h1>
-        </Col>
-        </Row>
-        <Row>
-          <Col className="col-md-4">
-        <Card>
-          <CardHeader>
-            <CardTitle>
-              <h5>Child's Info.</h5>
-            </CardTitle>
-          </CardHeader>
-          <CardBody>
-        <p><strong>Date of Birth:</strong> {this.state.dateOfBirth.slice(0, 10)}</p>
-        <p><strong>Gender:</strong> {this.state.gender}</p>
-        <p><strong>Has IEP?</strong>: {this.state.hasIEP ? "Yes" : "No" }</p>
-        <p><strong>School:</strong> {this.state.school}</p>
-        <p><strong>Diagnosis:</strong> {this.state.diagnosis}</p>
-        <p><strong>Therapist:</strong> {this.state.therapist}</p>
-        
-        </CardBody>
-        </Card>
-        </Col>
-        <Col className="col-md-8">
+              <h1>{this.state.firstName} {this.state.lastName}</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="col-md-4">
+              <Card>
+                <CardHeader>
+                  <CardTitle>
+                    <h5>Child's Info.</h5>
+                  </CardTitle>
+                </CardHeader>
+                <CardBody>
+                  <p><strong>Date of Birth:</strong> {this.state.dateOfBirth.slice(0, 10)}</p>
+                  <p><strong>Gender:</strong> {this.state.gender}</p>
+                  <p><strong>Has IEP?</strong>: {this.state.hasIEP ? "Yes" : "No" }</p>
+                  <p><strong>School:</strong> {this.state.school}</p>
+                  <p><strong>Diagnosis:</strong> {this.state.diagnosis}</p>
+                  <p><strong>Therapist:</strong> {this.state.therapist}</p>
+                </CardBody>
+              </Card>
+            </Col>
+            <Col className="col-md-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle>
+                    <h5>
+                      Child's progress:
+                    </h5>
+                  </CardTitle>
+                </CardHeader>
+                <CardBody>
+
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+
+          <h5>Today's Session:
+            <Button href={`../newSession/${this.state._id}`} name="_id" value={this.state._id}>
+              Start
+            </Button>
+          </h5>
+          
           <Card>
             <CardHeader>
               <CardTitle>
-                <h5>
-                Child's progress:
-                </h5>
+                <h2>{this.state.title}</h2>
               </CardTitle>
             </CardHeader>
             <CardBody>
-
+              <img src={this.state.img}/>
+              <br/><br/>
+              {this.state.text.map(p => {return <p key={Math.floor(Math.random()*20)}>{p}</p>})}
+            
             </CardBody>
           </Card>
-        </Col>
-        </Row>
-        <h5>Today's Session:
-          <Button href={`../newSession/${this.state._id}`} name="_id" value={this.state._id}>
-            Start
-          </Button>
-        </h5>
-        <Card>
-          <CardHeader>
-            <CardTitle>
-        <h2>{this.state.title}</h2>
-        </CardTitle>
-        </CardHeader>
-        <CardBody>
-        <img src={this.state.img}/>
-        <br/><br/>
-        {this.state.text.map(p => {return <p key={Math.floor(Math.random()*20)}>{p}</p>})}
-        
-        </CardBody>
-      </Card>
-      </Container>
+          <SessionTable/>
+        </Container>
       </div>
     )}
 }

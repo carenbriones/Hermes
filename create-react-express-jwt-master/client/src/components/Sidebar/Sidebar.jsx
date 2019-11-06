@@ -9,6 +9,7 @@ import logo from "assets/img/hermes-logo.png";
 import API from "../../utils/API";
 
 import AuthService from '../AuthService';
+
 const Auth = new AuthService();
 
 var ps;
@@ -18,6 +19,8 @@ class Sidebar extends React.Component {
     super(props);
     this.state = this.getCollapseStates(props.routes);
   }
+
+
   // this creates the intial state of this component based on the collapse routes
   // that it gets through this.props.routes
   getCollapseStates = routes => {
@@ -50,6 +53,8 @@ class Sidebar extends React.Component {
   // this function creates the links and collapses that appear in the sidebar (left menu)
   createLinks = routes => {
     return routes.map((prop, key) => {
+      if(prop.invisible) return null;
+      
       if (prop.redirect) {
         return null;
       }
@@ -118,7 +123,8 @@ class Sidebar extends React.Component {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   };
   componentDidMount() {
-    // if you are using a Windows Machine, the scrollbars will have a Mac look
+
+    // Minimized Scroll Bar
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.refs.sidebar, {
         suppressScrollX: true,
@@ -138,11 +144,13 @@ class Sidebar extends React.Component {
     }
   }
 
-// Allows for Logging out of an Account
+  // Allows for Logging out of an Account
   handleLogout = () => {
     Auth.logout();
     this.props.history.replace('/auth/login');
   };
+
+
 
   render() {
     return (

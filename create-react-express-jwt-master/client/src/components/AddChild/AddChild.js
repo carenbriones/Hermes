@@ -41,14 +41,16 @@ class AddChild extends Component {
 
   componentDidMount() {
     this.setState({
-      _id: this.props.match.params.id
+      _id: this.props.user.id
     })
+    console.log(this.props);
+    // console.log(this.props);
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
 
-    console.log(this.state)
+    // console.log(this.state)
 
     API.postNewChild(this.state._id, 
       { 
@@ -63,7 +65,7 @@ class AddChild extends Component {
       })
       .then(res => {
         console.log("data saved", res.data)
-        res.json(res)
+        this.props.history.replace("/admin/user-profile")
       })
       .catch(err => alert(err));
 
@@ -91,11 +93,11 @@ class AddChild extends Component {
 
   render() {
     return (
-      <div className="container Profile">
-        <Container>
+      <div className="Profile">
+        <Container fluid>
           {/* ************* SUBMIT CHILD FORM *************** */}
           <Row>
-            <Col className="mr-auto" lg="4" md="6">
+            <Col className="mx-5">
               <Card className="card-signup text-center mt-5" style={{ zIndex: 1 }}>
                 <CardHeader>
                   <CardTitle tag="h4">Add a Child</CardTitle>
@@ -258,10 +260,9 @@ class AddChild extends Component {
           </Row>
 
         </Container>
-        <Link to="/">Go home</Link>
       </div>
     )
   }
 }
 
-export default AddChild;
+export default withAuth(AddChild);

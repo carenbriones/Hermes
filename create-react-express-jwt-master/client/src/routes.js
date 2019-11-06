@@ -1,19 +1,4 @@
-/*!
 
-=========================================================
-* Paper Dashboard PRO React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/paper-dashboard-pro-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import Buttons from "views/components/Buttons.jsx";
 import Calendar from "views/Calendar.jsx";
 import Charts from "views/Charts.jsx";
@@ -40,8 +25,16 @@ import ValidationForms from "views/forms/ValidationForms.jsx";
 import VectorMap from "views/maps/VectorMap.jsx";
 import Widgets from "views/Widgets.jsx";
 import Wizard from "views/forms/Wizard.jsx";
+<<<<<<< HEAD
 import ChildPage from "components/ChildPage/ChildPage";
 import Resources from "components/Resources/Resources"
+=======
+import Resources from "views/pages/Resources";
+
+import AddChild from "./components/AddChild/AddChild";
+import NewSession from "./components/NewSession/NewSession";
+import ChildTable from "./views/tables/ChildTable";
+>>>>>>> daf30d1cef976506a44db59257cfaffc7211c6b5
 
 const routes = [
   {
@@ -49,6 +42,20 @@ const routes = [
     name: "Dashboard",
     icon: "nc-icon nc-bank",
     component: Dashboard,
+    layout: "/admin"
+  },
+  {
+    path: "/user-profile",
+    name: "UserProfile",
+    icon: "nc-icon nc-circle-10",
+    component: UserProfile,
+    layout: "/admin"
+  },
+  {
+    path: "/resources",
+    name: "Resources",
+    icon: "nc-icon nc-circle-10",
+    component: Resources,
     layout: "/admin"
   },
   {
@@ -104,6 +111,7 @@ const routes = [
         path: "/buttons",
         name: "Buttons",
         mini: "B",
+        invisible: true,
         component: Buttons,
         layout: "/admin"
       },
@@ -148,6 +156,36 @@ const routes = [
         mini: "T",
         component: Typography,
         layout: "/admin"
+      }
+    ]
+  },
+  {
+    collapse: true,
+    name: "Children",
+    icon: "nc-icon nc-single-02",
+    state: "childrenCollapse",
+    views: [
+      {
+        path: "/addChild",
+        name: "Add Child",
+        mini: "AC",
+        component: AddChild,
+        layout: "/admin"
+      },
+      {
+        path: "/viewChildren",
+        name: "View Children",
+        mini: "VC",
+        component: ChildTable,
+        layout: "/admin"
+      },
+      {
+        path: "/newSession/:id",
+        name: "New Session",
+        mini: "NS",
+        component: NewSession,
+        layout: "/admin",
+        invisible: true
       }
     ]
   },

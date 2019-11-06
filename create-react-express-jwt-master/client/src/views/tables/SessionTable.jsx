@@ -47,8 +47,8 @@ class SessionTable extends React.Component {
             </thead>
             <tbody>
               {this.state.sessions.map((session) => 
-                <tr>
-                  <td>{session.date}</td>
+                <tr key={session._id}>
+                  <td>{session.date.slice(0, 10)}</td>
                   <td>
                     <Button href={``} color="info" size="sm">
                       View Session

@@ -71,7 +71,10 @@ class NewSession extends Component {
       date: document.getElementById("date").value
       
       })
-      .then(res => console.log("DATA SAED!", res.data))
+      .then(res => {
+        console.log("DATA SAED!", res.data)
+        this.props.history.replace(`/admin/child/${this.props.match.params.id}`)
+      })
       .catch(err => console.log(err))
 
     this.setState({

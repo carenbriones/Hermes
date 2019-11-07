@@ -32,6 +32,7 @@ import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
 import Therapists from  "views/pages/Therapists";
+import ViewSession from "views/pages/ViewSession";
 
 
 const routes = [
@@ -85,8 +86,15 @@ const routes = [
         component: ChildPage,
         layout: "/admin",
         invisible: true
+      },
+      {
+        path: "/viewSession/:id",
+        name: "View Session",
+        mini: "VS",
+        component: ViewSession,
+        layout: "/admin",
+        invisible: true
       }
-      
     ]
   },
   {

@@ -124,10 +124,10 @@ const routes = [
     ]
   },
   {
-    path: "/user-profile",
+    path: "/therapists",
     name: "Therapists",
     icon: "nc-icon nc-badge",
-    component: UserProfile,
+    component: Therapists,
     layout: "/admin"
   },
   {

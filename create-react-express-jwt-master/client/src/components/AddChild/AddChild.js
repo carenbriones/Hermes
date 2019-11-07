@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import withAuth from '../withAuth';
 import API from '../../utils/API';
 import ReactDatetime from "react-datetime";
-import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -10,19 +9,14 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  // eslint-disable-next-line
   Label,
-  // eslint-disable-next-line
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
   Row,
-  Col,
+  Col
 } from "reactstrap";
+
 import { parse } from 'url';
 
 class AddChild extends Component {
@@ -96,7 +90,7 @@ class AddChild extends Component {
   render() {
     return (
       
-        <Container>
+        <div className="content container">
           {/* ************* SUBMIT CHILD FORM *************** */}
           <Row>
             <Col>
@@ -300,29 +294,17 @@ class AddChild extends Component {
                 </CardBody>
                 <CardFooter>
                 <Button
-                    type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
+                    type="submit" className="btn btn-primary btn-block" onClick={this.handleFormSubmit}>
                     Add Child
                 </Button>
                 </CardFooter>
               </Card>
 
 
-
-
-
-
-
-
-
-
-
-
-
             </Col>
           </Row>
 
-        </Container>
-      
+          </div>
     )
   }
 }

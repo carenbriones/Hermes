@@ -17,7 +17,6 @@ import {
   Col
 } from "reactstrap";
 
-import { parse } from 'url';
 
 class AddChild extends Component {
 
@@ -165,7 +164,7 @@ class AddChild extends Component {
                           <div className="form-check-radio form-check-inline">
                             <Label check>
                               <Input
-                                defaultChecked
+                                
                   
                                 id="M"
                                 type="radio"
@@ -202,7 +201,7 @@ class AddChild extends Component {
                           <div className="form-check-radio form-check-inline">
                             <Label check>
                               <Input
-                                defaultChecked
+                                
                                 
                                 id="true"
                                 type="radio"

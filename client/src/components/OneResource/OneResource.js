@@ -8,6 +8,8 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
+  CardImg,
+  CardText,
   CardTitle,
   // eslint-disable-next-line
   Label,
@@ -45,25 +47,33 @@ class OneResource extends Component {
   render () {
       
       return (
-      <div className="container Profile">
-      <Container>
+      <div className="content container">
+
+        <Row>
+          <Col>
         <Card>
-          <CardHeader>
-          <strong>Session No. {this.state.id}</strong>
-            <CardTitle>
-        <h2>{this.state.title}</h2>
-        </CardTitle>
-        </CardHeader>
+        <CardImg top src={this.state.img} alt={this.state.title} style={{
+          maxHeight: "300px",
+          width: "100%",
+          objectFit: "cover"
+        }}></CardImg>
+
         <CardBody>
-        <img src={this.state.img}/>
-        <br/><br/>
-        {this.state.text.map(p => {return <p key={Math.floor(Math.random()*20)}>{p}</p>})}
+          <CardTitle><h2 style={{marginBottom:"0px"}}>{this.state.title}</h2>
+          <strong className="text-muted">{this.state.category}</strong></CardTitle>
+          <CardText> {this.state.text.map(p => {return <p key={Math.floor(Math.random()*20)}>{p}</p>})}</CardText>
+       
         
-        <Link to="/">Go home</Link>
+        <Link to="/admin/resources">Back to Resources</Link>
         
         </CardBody>
+          
+           
+        
+       
       </Card>
-      </Container>
+      </Col>
+      </Row>
       </div>
     )}
 }

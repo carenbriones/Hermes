@@ -103,25 +103,12 @@ const routes = [
         layout: "/admin"
       },
       {
-        path: "/session/1",
-        name: "Session 1",
+        path: "/resource/:id",
+        name: "Resource",
         mini: "RT",
         component: OneResource,
-        layout: "/admin"
-      },
-      {
-        path: "/session/2",
-        name: "Session 2",
-        mini: "ET",
-        component: OneResource,
-        layout: "/admin"
-      },
-      {
-        path: "/session/3",
-        name: "Session 3",
-        mini: "RT",
-        component: OneResource,
-        layout: "/admin"
+        layout: "/admin",
+        invisible: true
       }
     ]
   },

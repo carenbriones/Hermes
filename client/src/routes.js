@@ -32,7 +32,6 @@ import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
 import Therapists from  "views/pages/Therapists";
-import ViewSession from "views/pages/ViewSession";
 
 
 const routes = [
@@ -86,15 +85,8 @@ const routes = [
         component: ChildPage,
         layout: "/admin",
         invisible: true
-      },
-      {
-        path: "/viewSession/:id",
-        name: "View Session",
-        mini: "VS",
-        component: ViewSession,
-        layout: "/admin",
-        invisible: true
       }
+      
     ]
   },
   {
@@ -111,25 +103,12 @@ const routes = [
         layout: "/admin"
       },
       {
-        path: "/session/1",
-        name: "Session 1",
+        path: "/resource/:id",
+        name: "Resource",
         mini: "RT",
         component: OneResource,
-        layout: "/admin"
-      },
-      {
-        path: "/session/2",
-        name: "Session 2",
-        mini: "ET",
-        component: OneResource,
-        layout: "/admin"
-      },
-      {
-        path: "/session/3",
-        name: "Session 3",
-        mini: "RT",
-        component: OneResource,
-        layout: "/admin"
+        layout: "/admin",
+        invisible: true
       }
     ]
   },

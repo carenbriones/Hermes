@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import withAuth from '../withAuth';
 import API from '../../utils/API';
-import { Link } from 'react-router-dom';
+import ReactDatetime from "react-datetime";
 import {
   Button,
   Card,
@@ -9,20 +9,14 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  // eslint-disable-next-line
   Label,
-  // eslint-disable-next-line
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
   Row,
-  Col,
+  Col
 } from "reactstrap";
-import { parse } from 'url';
+
 
 class AddChild extends Component {
 
@@ -32,7 +26,7 @@ class AddChild extends Component {
     lastName: "",
     dateOfBirth: "",
     gender: "",
-    hasIEP: false,
+    hasIEP: "",
     school: "",
     diagnosis: "",
     therapist: "",
@@ -52,12 +46,12 @@ class AddChild extends Component {
 
     // console.log(this.state)
 
-    API.postNewChild(this.state._id, 
-      { 
-        firstName: this.state.firstName, 
-        lastName: this.state.lastName, 
-        dateOfBirth: this.state.dateOfBirth, 
-        gender: this.state.gender, 
+    API.postNewChild(this.state._id,
+      {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        dateOfBirth: document.getElementById("dateOfBirth").value,
+        gender: this.state.gender,
         hasIEP: this.state.hasIEP,
         school: this.state.school,
         diagnosis: this.state.diagnosis,
@@ -74,11 +68,12 @@ class AddChild extends Component {
       lastName: "",
       dateOfBirth: "",
       gender: "",
-      hasIEP: false,
+      hasIEP: "",
       school: "",
       diagnosis: "",
       therapist: ""
     })
+    console.log(this.state)
   };
 
   handleChange = event => {
@@ -93,174 +88,222 @@ class AddChild extends Component {
 
   render() {
     return (
-      <div className="Profile">
-        <Container fluid>
+      
+        <div className="content container">
           {/* ************* SUBMIT CHILD FORM *************** */}
           <Row>
-            <Col className="mx-5">
-              <Card className="card-signup text-center mt-5" style={{ zIndex: 1 }}>
+            <Col>
+            
+
+              <Card>
                 <CardHeader>
-                  <CardTitle tag="h4">Add a Child</CardTitle>
+                  <CardTitle tag="h4" className="text-center">Add A New Child</CardTitle>
                 </CardHeader>
                 <CardBody>
-                  <Form className="form">
 
-                    {/* ###########  First Name Field ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="nc-icon nc-single-02" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        className="form-control"
-                        placeholder="First Name"
-                        name="firstName"
-                        type="text"
-                        id="firstName"
-                        autoComplete="firstName"
-                        onChange={this.handleChange} />
-                    </InputGroup>
+                  <Form action="#" method="#">
 
-                    {/* ###########  Last Name Field ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="nc-icon nc-single-02" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        className="form-control"
-                        placeholder="Last Name"
-                        name="lastName"
-                        type="text"
-                        id="lastName"
-                        autoComplete="lastName"
-                        onChange={this.handleChange} />
-                    </InputGroup>
-
-                    {/* ###########  Date of Birth ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="nc-icon nc-calendar-06" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        className="form-control"
-                        placeholder="Date of Birth"
-                        name="dateOfBirth"
-                        type="date"
-                        id="dateOfBirth"
-                        autoComplete="dateOfBirth"
-                        onChange={this.handleChange} />
-                    </InputGroup>
-
-                    {/* ########### GENDER ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
+                    {/* ########### FIRST AND LAST NAME ############ */}
+                    <Row>
+                      <Col>
+                        <label>First Name</label>
+                        <FormGroup>
                           <Input
-                            addon type="radio"
-                            aria-label="M"
-                            name="gender"
-                            value="M"
-                            checked={this.state.gender === "M"}
+                            className="form-control"
+                            placeholder="Sam / Samantha"
+                            name="firstName"
+                            type="text"
+                            id="firstName"
+                            autoComplete="firstName"
                             onChange={this.handleChange}
                           />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input placeholder="M" />
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
+                        </FormGroup>
+                      </Col>
+
+                      <Col>
+                        <label>Last Name</label>
+                        <FormGroup>
                           <Input
-                            addon type="radio"
-                            aria-label="F"
-                            name="gender"
-                            value="F"
-                            checked={this.state.gender === "F"}
+                            className="form-control"
+                            placeholder="Smith"
+                            name="lastName"
+                            type="text"
+                            id="lastName"
+                            autoComplete="lastName"
                             onChange={this.handleChange}
-                            />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input placeholder="F" />
-                    </InputGroup>
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
 
-                    {/* ###########  HAS IEP ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <Input addon type="checkbox" aria-label="Checkbox for following text input" name="hasIEP"/>
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input placeholder="Has IEP" />
-                    </InputGroup>
+                    {/* ########### BIRTHDATE * GENDER * IEP ############ */}
+                    <Row>
+                      <Col md="6">
+                        <label>Date of Birth</label>
+                        <FormGroup>
+                          <ReactDatetime
+                            inputProps={{
+                              className: "form-control",
+                              placeholder: "Click to Select D.O.B",
+                              name: "dateOfBirth",
+                              id: "dateOfBirth",
+                              autoComplete: "dateOfBirth",
+                              
+                            }}
+                            
+                            timeFormat={false}
+                            // onChange={this.handleChange}
+                          />
 
-                    {/* ###########  SCHOOL FIELD ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="nc-icon nc-single-02" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        className="form-control"
-                        placeholder="School"
-                        name="school"
-                        type="text"
-                        id="school"
-                        autoComplete="school"
-                        onChange={this.handleChange} />
-                    </InputGroup>
+                        </FormGroup>
+                      </Col>
 
-                    {/* ###########  DIAGNOSIS FIELD ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="nc-icon nc-single-02" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        className="form-control"
-                        placeholder="Diagnosis"
-                        name="diagnosis"
-                        type="text"
-                        id="diagnosis"
-                        autoComplete="diagnosis"
-                        onChange={this.handleChange} />
-                    </InputGroup>
+                      <Col md="3">
+                        <label>Gender</label>
+                        <FormGroup>
+                          <div className="form-check-radio form-check-inline">
+                            <Label check>
+                              <Input
+                                
+                  
+                                id="M"
+                                type="radio"
+                                name="gender"
+                                // checked={this.state.gender = "Male"}
+                                onChange={this.handleChange}
+                                value="Male" />
+                              Male
+                             <span className="form-check-sign"></span>
+                            </Label>
+                          </div>
 
-                    {/* ###########  THERAPIST FIELD ############## */}
-                    <InputGroup>
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="nc-icon nc-single-02" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        className="form-control"
-                        placeholder="Therapist"
-                        name="therapist"
-                        type="text"
-                        id="therapist"
-                        autoComplete="therapist"
-                        onChange={this.handleChange} />
-                    </InputGroup>
+                          <div className="form-check-radio form-check-inline">
+                          <Label check>
+                              <Input
+                                
+                                id="F"
+                                type="radio"
+                                name="gender"
+                                // checked={this.state.gender = "Female"}
+                                onChange={this.handleChange}
+                                value="Female" />
+                              Female
+                           <span className="form-check-sign"></span>
+                            </Label>
+                          </div>
+                        </FormGroup>
+                      </Col>
+                      
+
+                      <Col md="3">
+                        <label>Does Your Child Have An IEP?</label>
+                        <FormGroup>
+                          <div className="form-check-radio form-check-inline">
+                            <Label check>
+                              <Input
+                                
+                                
+                                id="true"
+                                type="radio"
+                                name="hasIEP"
+                                // checked={this.state.hasIEP === true}
+                                onChange={this.handleChange}
+                                value="true" />
+                              Yes
+                             <span className="form-check-sign"></span>
+                            </Label>
+                          </div>
+
+                          <div className="form-check-radio form-check-inline">
+                          <Label check>
+                              <Input
+                                
+                                id="false"
+                                type="radio"
+                                name="hasIEP"
+                                // checked={this.state.hasIEP === false}
+                                onChange={this.handleChange}
+                                value="false" />
+                              No
+                           <span className="form-check-sign"></span>
+                            </Label>
+                          </div>
+                        </FormGroup>
+                      </Col>
+
+          
+                    </Row>
+
+                     {/* ########### School ############ */}
+                     <Row>
+                      <Col>
+                        <label>What School Does Your Child Attend</label>
+                        <FormGroup>
+                          <Input
+                            className="form-control"
+                            placeholder="School"
+                            name="school"
+                            type="text"
+                            id="school"
+                            autoComplete="school"
+                            onChange={this.handleChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                     {/* ########### Diagnosis ############ */}
+                     <Row>
+                      <Col>
+                        <label>What Is You Child's Diagnosis?</label>
+                        <FormGroup>
+                          <Input
+                           className="form-control"
+                           placeholder="Diagnosis"
+                           name="diagnosis"
+                           type="text"
+                           id="diagnosis"
+                           autoComplete="diagnosis"
+                           onChange={this.handleChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
+                     {/* ########### Therapist ############ */}
+                     <Row>
+                      <Col>
+                        <label>Who Is Your Primary Child's Therapist?</label>
+                        <FormGroup>
+                          <Input
+                           className="form-control"
+                           placeholder="Therapist"
+                           name="therapist"
+                           type="text"
+                           id="therapist"
+                           autoComplete="therapist"
+                           onChange={this.handleChange}
+                          />
+                        </FormGroup>
+                      </Col>
+                    </Row>
 
                   </Form>
+
                 </CardBody>
                 <CardFooter>
-                  <Button
-                    type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
+                <Button
+                    type="submit" className="btn btn-primary btn-block" onClick={this.handleFormSubmit}>
                     Add Child
                 </Button>
                 </CardFooter>
               </Card>
+
+
             </Col>
           </Row>
 
-        </Container>
-      </div>
+          </div>
     )
   }
 }

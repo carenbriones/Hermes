@@ -31,6 +31,8 @@ import Resources from "views/pages/Resources";
 import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
+import Therapists from  "views/pages/Therapists";
+
 
 const routes = [
   {
@@ -84,6 +86,7 @@ const routes = [
         layout: "/admin",
         invisible: true
       }
+      
     ]
   },
   {
@@ -121,6 +124,13 @@ const routes = [
         layout: "/admin"
       }
     ]
+  },
+  {
+    path: "/therapists",
+    name: "Therapists",
+    icon: "nc-icon nc-badge",
+    component: Therapists,
+    layout: "/admin"
   },
   {
     path: "/calendar",

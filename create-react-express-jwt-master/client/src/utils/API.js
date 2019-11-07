@@ -15,6 +15,9 @@ export default {
   getOneSession: (id) => {
     return axios.get(`/api/session/${id}`);
   },
+  getChildSessions: (id) => {
+    return axios.get(`/api/child/${id}/sessions`);
+  },
   //post a new child /api/user/:id
   postNewChild: (userId, newChild) => {
     return axios.post(`/api/user/${userId}/children`, newChild);

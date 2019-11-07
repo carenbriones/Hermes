@@ -77,6 +77,7 @@ app.get("/api/child", function (req, res) {
   // GET ALL CHILDREN
   db.Child
     .find({})
+    .populate("sessions")
     .then(function (dbChild) {
       res.json(dbChild);
     })
@@ -149,7 +150,6 @@ app.get("/api/session/:id", function (req, res) {
 });
 
 // Find all sessions of a specific child
-
 
 //----------------end of OUR NOTES---------------//
 

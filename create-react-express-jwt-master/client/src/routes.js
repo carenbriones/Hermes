@@ -33,6 +33,7 @@ import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
 import Therapists from  "views/pages/Therapists";
 
+
 const routes = [
   {
     path: "/dashboard",
@@ -85,6 +86,7 @@ const routes = [
         layout: "/admin",
         invisible: true
       }
+      
     ]
   },
   {

@@ -48,15 +48,12 @@ class ChildTable extends React.Component {
             </thead>
             <tbody>
               {this.state.children.map((child) => 
-                <tr>
-                  <td>{child.firstName} {child.lastName}</td>
-                  <td>{child.dateOfBirth}</td>
+                <tr key={child._id}>
+                  <td><a href={`child/${child._id}`}>{child.firstName} {child.lastName}</a></td>
+                  <td>{child.dateOfBirth.slice(0, 10)}</td>
                   <td>{child.gender}</td>
                   <td>{child.therapist}</td>
                   <td>
-                    <Button href={``} color="info" size="sm">
-                      View Child
-                    </Button>
                     <Button  href={`newSession/${child._id}`} color="success" size="sm">
                       Start Session
                     </Button>

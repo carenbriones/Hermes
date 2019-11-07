@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import withAuth from '../withAuth';
 import API from '../../utils/API';
 import { Link } from 'react-router-dom';
+import ReactDatetime from "react-datetime";
 import {
   Button,
   Card,
@@ -33,16 +34,44 @@ class NewSession extends Component {
     appropriateResponse: 0,
     difficultyWith: "",
     successWith: "",
-    date: ""
+    date: "",
+
+    // Info for Child Card
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    gender: "",
+    hasIEP: "",
+    school: "",
+    diagnosis: "",
+    therapist: ""
   };
+
+  componentDidMount() {
+    API.getOneChild(this.props.match.params.id)
+      .then(res => {
+        this.setState(res.data)
+      })
+      .catch(err => console.log(err))
+
+
+  }
 
   handleFormSubmit = event => {
     event.preventDefault();
     //console.log(this.props.user.id, this.state);
     console.log("CHILD ID", this.props.match.params.id, "state", this.state)
 
-    API.postNewSession(this.props.match.params.id, this.state)
-      .then(res => console.log(res.data))
+    API.postNewSession(this.props.match.params.id, 
+      {positiveInteractions: this.state.positiveInteractions,
+      appropriateRequests: this.state.appropriateRequests,
+      appropriateResponse: this.state.appropriateResponse,
+      difficultyWith: this.state.difficultyWith,
+      successWith: this.state.successWith,
+      date: document.getElementById("date").value
+      
+      })
+      .then(res => console.log("DATA SAED!", res.data))
       .catch(err => console.log(err))
 
     this.setState({
@@ -52,8 +81,9 @@ class NewSession extends Component {
       difficultyWith: "",
       successWith: "",
       date: ""
+
     })
-  };
+}
 
   handleNoteSubmit = event => {
     event.preventDefault();
@@ -84,126 +114,191 @@ class NewSession extends Component {
 
   render() {
     return (
-      <div className="content">
+      <div className="content container">
+
+        <Card>
+          <Row>
+            <Col md="4">
+              <img src={require("../../assets/img/childavatar.jpg")}
+              />
+            </Col>
+
+            <Col md="8">
+              <CardBody>
+                <CardHeader style={{ paddingLeft: "0px" }}>
+                  <CardTitle>
+                    <h2>{this.state.firstName} {this.state.lastName}</h2>
+                  </CardTitle>
+                </CardHeader>
+                <Row>
+                  <Col md="6">
+                    <span style={{ fontSize: "1.1rem" }}><strong>Date of Birth:</strong> {this.state.dateOfBirth.slice(0, 10)}</span><br />
+                    <span style={{ fontSize: "1.1rem" }}><strong>Gender:</strong> {this.state.gender}</span><br />
+                    <span style={{ fontSize: "1.1rem" }}><strong>Has IEP?</strong>: {this.state.hasIEP ? "Yes" : "No"}</span><br />
+                  </Col>
+                  <Col md="6">
+                    <span style={{ fontSize: "1.1rem" }}><strong>School:</strong> {this.state.school}</span><br />
+                    <span style={{ fontSize: "1.1rem" }}><strong>Diagnosis:</strong> {this.state.diagnosis}</span><br />
+                    <span style={{ fontSize: "1.1rem" }}><strong>Therapist:</strong> {this.state.therapist}</span><br />
+                  </Col>
+
+                  <Col md="12">
+                    <hr></hr>
+                    <h3 style={{ color: "#51cbce" }}>Session In Progress...</h3>
+                  </Col>
+                </Row>
+              </CardBody>
+            </Col>
+
+          </Row>
+        </Card>
+
+
+
+
         {/* ************* SUBMIT SESSION FORM-- MOVE TO THE RIGHT PLACE *************** */}
-        <Col className="mx-auto" md="8" sm="12">
-          <Card className="card-signup text-center mt-5" style={{ zIndex: 1 }}>
-            <CardHeader>
-              <CardTitle tag="h4">NEW SESSION {this.state.childId}</CardTitle>
-            </CardHeader>
-            <CardBody>
-              <Form className="form">
 
+        <Card className="card-signup  mt-5">
+          <CardHeader className="text-center">
+            <CardTitle tag="h4">NEW SESSION {this.state.childId}</CardTitle>
+            <span><i>Use the form below to keep track of your child's interactions during their therapy session.</i></span>
+          </CardHeader>
+          <CardBody>
+            <hr></hr>
+            <Form className="form">
+              <Row className="text-center">
                 {/* ###########  POSITIVE INTERACTIONS ############## */}
-                <InputGroup>
-
-                  <Button
-                    className="form-control"
-                    placeholder="Positive Interactions"
-                    name="positiveInteractions"
-                    id="positiveInteractions"
-                    autoComplete="positiveInteractions"
-                    value={this.state.positiveInteractions}
-                    onClick={this.handleClick}>
-                    {this.state.positiveInteractions} Positive Interactions
+                <Col md="4">
+                  <Card>
+                    <CardHeader style={{ fontSize: "1.1rem" }}># of Positive Interactions</CardHeader>
+                    <CardBody>
+                      <h1 style={{
+                        marginBlock: "0px",
+                        fontSize: "4.5em",
+                        color: "#51bcda"
+                      }}>{this.state.positiveInteractions}</h1>
+                      <Button
+                        className="btn-block"
+                        color="info"
+                        placeholder="Positive Interactions"
+                        name="positiveInteractions"
+                        id="positiveInteractions"
+                        autoComplete="positiveInteractions"
+                        value={this.state.positiveInteractions}
+                        onClick={this.handleClick}>
+                        <i className="nc-icon nc-simple-add" /> Positive Interactions
                   </Button>
+                    </CardBody>
+                  </Card>
 
-                </InputGroup>
 
+                </Col>
                 {/* ###########  APPROPRIATE REQUESTS ############## */}
-                <InputGroup>
-
-                  <Button
-                    className="form-control"
-                    placeholder="Appropriate Requests"
-                    name="appropriateRequests"
-                    id="appropriateRequests"
-                    autoComplete="appropriateRequests"
-                    value={this.state.appropriateRequests}
-                    onClick={this.handleClick}>
-                    {this.state.appropriateRequests} Appropriate Requests
+                <Col md="4">
+                  <Card>
+                    <CardHeader style={{ fontSize: "1.1rem" }}># of Appropriate Requests</CardHeader>
+                    <CardBody>
+                      <h1 style={{
+                        marginBlock: "0px",
+                        fontSize: "4.5em",
+                        color: "#51cbce"
+                      }}>{this.state.appropriateRequests}</h1>
+                      <Button
+                        className="btn-block"
+                        color="primary"
+                        placeholder="Appropriate Requests"
+                        name="appropriateRequests"
+                        id="appropriateRequests"
+                        autoComplete="appropriateRequests"
+                        value={this.state.appropriateRequests}
+                        onClick={this.handleClick}>
+                        <i className="nc-icon nc-simple-add" />Appropriate Requests
                   </Button>
+                    </CardBody>
+                  </Card>
 
-                </InputGroup>
-
+                </Col>
                 {/* ###########  APPROPRIATE RESPONSES ############## */}
-                <InputGroup>
+                <Col md="4">
+                  <Card>
+                    <CardHeader style={{ fontSize: "1.1rem" }}># of Appropriate Responses</CardHeader>
+                    <CardBody>
+                      <h1 style={{
+                        marginBlock: "0px",
+                        fontSize: "4.5em",
+                        color: "#6bd098"
+                      }}>{this.state.appropriateResponse}</h1>
 
-                  <Button
-                    className="form-control"
-                    placeholder="Appropriate Responses"
-                    name="appropriateResponse"
-                    id="appropriateResponse"
-                    autoComplete="appropriateResponse"
-                    value={this.state.appropriateResponse}
-                    onClick={this.handleClick}>
-                    {this.state.appropriateResponse} Appropriate Responses
+                      <Button
+                        className="btn-block"
+                        color="success"
+                        placeholder="Appropriate Responses"
+                        name="appropriateResponse"
+                        id="appropriateResponse"
+                        autoComplete="appropriateResponse"
+                        value={this.state.appropriateResponse}
+                        onClick={this.handleClick}>
+                        <i className="nc-icon nc-simple-add" /> Appropriate Responses
                   </Button>
 
-                </InputGroup>
+                    </CardBody>
+                  </Card>
+                </Col>
+              </Row>
+              {/* ###########  HAD DIFFICULTY WITH ############## */}
+              <label style={{ fontSize: "1rem" }}>My child had difficulty with:</label>
+              <FormGroup>
+                <Input
+                  className="form-control"
+                  placeholder="Uses this area to record places where you observered your child having difficulty"
+                  name="difficultyWith"
+                  type="textarea"
+                  id="difficultyWith"
+                  autoComplete="difficultyWith"
+                  onChange={this.handleChange} />
+              </FormGroup>
 
-                {/* ###########  HAD DIFFICULTY WITH ############## */}
-                <InputGroup>
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="nc-icon nc-single-02" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    className="form-control"
-                    placeholder="My child had difficulty with"
-                    name="difficultyWith"
-                    type="text"
-                    id="difficultyWith"
-                    autoComplete="difficultyWith"
-                    onChange={this.handleChange} />
-                </InputGroup>
 
-                {/* ###########  HAD SUCCESS WITH ############## */}
-                <InputGroup>
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="nc-icon nc-single-02" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    className="form-control"
-                    placeholder="My child had success with"
-                    name="successWith"
-                    type="text"
-                    id="successWith"
-                    autoComplete="successWith"
-                    onChange={this.handleChange} />
-                </InputGroup>
+              {/* ###########  HAD SUCCESS WITH ############## */}
+              <label style={{ fontSize: "1rem" }}>My child had SUCCESS with:</label>
+              <FormGroup>
+                <Input
+                  className="form-control"
+                  placeholder="Uses this area to record places your child's accomplishments today"
+                  name="successWith"
+                  type="textarea"
+                  id="successWith"
+                  autoComplete="successWith"
+                  onChange={this.handleChange} />
+              </FormGroup>
 
-                {/* ###########  SESSION'S DATE ############## */}
-                <InputGroup>
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="nc-icon nc-calendar-06" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    className="form-control"
-                    placeholder="Date of Birth"
-                    name="date"
-                    type="date"
-                    id="date"
-                    autoComplete="date"
-                    onChange={this.handleChange} />
-                </InputGroup>
+              {/* ###########  SESSION'S DATE ############## */}
+              <label style={{ fontSize: "1rem" }}>Session Date:</label>
+              <FormGroup>
+                <ReactDatetime
+                inputProps={{
+                  className:"form-control",
+                  name:"date",
+                  id:"date",
+                  autoComplete:"date"
+                  
+                }}
+                  timeFormat={false}
+                  // onChange={this.handleChange} 
+                  />
+              </FormGroup>
 
-              </Form>
-            </CardBody>
-            <CardFooter>
-              
-                <Button
-                  type="submit" className="btn btn-primary" onClick={this.handleFormSubmit}>
-                  End Session
+            </Form>
+          </CardBody>
+          <CardFooter>
+
+            <Button
+              type="submit" className="btn btn-primary btn-block" onClick={this.handleFormSubmit}>
+              End & Submit Session
                 </Button>
-            </CardFooter>
-          </Card>
-        </Col>
+          </CardFooter>
+        </Card>
+
       </div>
     )
   }

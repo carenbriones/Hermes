@@ -31,6 +31,8 @@ import Resources from "views/pages/Resources";
 import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
+import Therapists from  "views/pages/Therapists";
+
 
 const routes = [
   {
@@ -42,21 +44,104 @@ const routes = [
   },
   {
     path: "/user-profile",
-    name: "UserProfile",
+    name: "User Profile",
     icon: "nc-icon nc-circle-10",
     component: UserProfile,
     layout: "/admin"
   },
+  
   {
-    path: "/resources",
+    collapse: true,
+    name: "Children",
+    icon: "nc-icon nc-single-02",
+    state: "childrenCollapse",
+    views: [
+      {
+        path: "/addChild",
+        name: "Add Child",
+        mini: "AC",
+        component: AddChild,
+        layout: "/admin"
+      },
+      {
+        path: "/viewChildren",
+        name: "View Children",
+        mini: "VC",
+        component: ChildTable,
+        layout: "/admin"
+      },
+      {
+        path: "/newSession/:id",
+        name: "New Session",
+        mini: "NS",
+        component: NewSession,
+        layout: "/admin",
+        invisible: true
+      },
+      {
+        path: "/child/:id",
+        name: "Child Info",
+        mini: "NS",
+        component: ChildPage,
+        layout: "/admin",
+        invisible: true
+      }
+      
+    ]
+  },
+  {
+    collapse: true,
     name: "Resources",
-    icon: "nc-icon nc-circle-10",
-    component: Resources,
+    icon: "nc-icon nc-single-copy-04",
+    state: "resourcesCollapse",
+    views: [
+      {
+        path: "/resources",
+        name: "All Resources",
+        mini: "AR",
+        component: Resources,
+        layout: "/admin"
+      },
+      {
+        path: "/session/1",
+        name: "Session 1",
+        mini: "RT",
+        component: OneResource,
+        layout: "/admin"
+      },
+      {
+        path: "/session/2",
+        name: "Session 2",
+        mini: "ET",
+        component: OneResource,
+        layout: "/admin"
+      },
+      {
+        path: "/session/3",
+        name: "Session 3",
+        mini: "RT",
+        component: OneResource,
+        layout: "/admin"
+      }
+    ]
+  },
+  {
+    path: "/therapists",
+    name: "Therapists",
+    icon: "nc-icon nc-badge",
+    component: Therapists,
+    layout: "/admin"
+  },
+  {
+    path: "/calendar",
+    name: "Calendar",
+    icon: "nc-icon nc-calendar-60",
+    component: Calendar,
     layout: "/admin"
   },
   {
     collapse: true,
-    name: "Pages",
+    name: "Other",
     icon: "nc-icon nc-book-bookmark",
     state: "pagesCollapse",
     views: [
@@ -94,15 +179,7 @@ const routes = [
         mini: "UP",
         component: UserProfile,
         layout: "/admin"
-      }
-    ]
-  },
-  {
-    collapse: true,
-    name: "Components",
-    icon: "nc-icon nc-layout-11",
-    state: "componentsCollapse",
-    views: [
+      },
       {
         path: "/buttons",
         name: "Buttons",
@@ -152,45 +229,7 @@ const routes = [
         mini: "T",
         component: Typography,
         layout: "/admin"
-      }
-    ]
-  },
-  {
-    collapse: true,
-    name: "Children",
-    icon: "nc-icon nc-single-02",
-    state: "childrenCollapse",
-    views: [
-      {
-        path: "/addChild",
-        name: "Add Child",
-        mini: "AC",
-        component: AddChild,
-        layout: "/admin"
       },
-      {
-        path: "/viewChildren",
-        name: "View Children",
-        mini: "VC",
-        component: ChildTable,
-        layout: "/admin"
-      },
-      {
-        path: "/newSession/:id",
-        name: "New Session",
-        mini: "NS",
-        component: NewSession,
-        layout: "/admin",
-        invisible: true
-      }
-    ]
-  },
-  {
-    collapse: true,
-    name: "Forms",
-    icon: "nc-icon nc-ruler-pencil",
-    state: "formsCollapse",
-    views: [
       {
         path: "/regular-forms",
         name: "Regular Forms",
@@ -218,73 +257,22 @@ const routes = [
         mini: "W",
         component: Wizard,
         layout: "/admin"
-      }
-    ]
-  },
-  {
-    collapse: true,
-    name: "Resources",
-    icon: "nc-icon nc-single-copy-04",
-    state: "resourcesCollapse",
-    views: [
+      },
       {
-        path: "/session/1",
-        name: "Session 1",
-        mini: "RT",
-        component: OneResource,
+        path: "/widgets",
+        name: "Widgets",
+        icon: "nc-icon nc-box",
+        component: Widgets,
         layout: "/admin"
       },
       {
-        path: "/session/2",
-        name: "Session 2",
-        mini: "ET",
-        component: OneResource,
+        path: "/charts",
+        name: "Charts",
+        icon: "nc-icon nc-chart-bar-32",
+        component: Charts,
         layout: "/admin"
       },
-      {
-        path: "/session/3",
-        name: "Session 3",
-        mini: "RT",
-        component: OneResource,
-        layout: "/admin"
-      }
     ]
-  },
-  {
-    collapse: true,
-    name: "Children",
-    icon: "nc-icon nc-pin-3",
-    state: "childrenCollapse",
-    views: [
-      {
-        path: "/childPage",
-        name: "Child Page",
-        mini: "GM",
-        component: ChildPage,
-        layout: "/admin"
-      }
-    ]
-  },
-  {
-    path: "/widgets",
-    name: "Widgets",
-    icon: "nc-icon nc-box",
-    component: Widgets,
-    layout: "/admin"
-  },
-  {
-    path: "/charts",
-    name: "Charts",
-    icon: "nc-icon nc-chart-bar-32",
-    component: Charts,
-    layout: "/admin"
-  },
-  {
-    path: "/calendar",
-    name: "Calendar",
-    icon: "nc-icon nc-calendar-60",
-    component: Calendar,
-    layout: "/admin"
   }
 ];
 

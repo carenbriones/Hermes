@@ -31,7 +31,7 @@ import Resources from "views/pages/Resources";
 import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
-import Therapists from  "views/pages/Therapists";
+import Therapists from "views/pages/Therapists";
 import ViewSession from "views/pages/ViewSession";
 
 
@@ -51,7 +51,7 @@ const routes = [
     component: UserProfile,
     layout: "/admin"
   },
-  
+
   {
     collapse: true,
     name: "Children",
@@ -96,7 +96,7 @@ const routes = [
         layout: "/admin",
         invisible: true
       }
-      
+
     ]
   },
 
@@ -106,6 +106,13 @@ const routes = [
     icon: "nc-icon nc-single-copy-04",
     component: Resources,
     layout: "/admin"
+  },
+  {
+    path: "/resource/:id",
+    name: "Resource",
+    component: OneResource,
+    layout: "/admin",
+    invisible: true
   },
   // {
   //   collapse: true,

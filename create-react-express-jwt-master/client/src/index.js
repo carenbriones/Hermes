@@ -12,6 +12,8 @@ import "assets/scss/paper-dashboard.scss?v=1.1.0";
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
+import Therapists from "./views/pages/Therapists"
+
 import NewSession from "./components/NewSession/NewSession"
 
 const hist = createBrowserHistory();
@@ -28,6 +30,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/auth" render={props => <AuthLayout {...props} />} />
       <Route path="/admin" render={props => <AdminLayout {...props} />} />
+      <Route path="/therapists" render={Therapists}/>
       <Redirect to="/admin/dashboard" />
     </Switch>
   </Router>,

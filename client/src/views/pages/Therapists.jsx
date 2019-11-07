@@ -30,7 +30,7 @@ function Therapists () {
             <div className="content">
                 <Container>
                     {/* ############# THERAPIST INFO CARD ################ */}
-                        <h2>Meet the team! <i className="nc-icon nc-favourite-28"></i></h2>
+                        <h2>Meet the Therapists! <i className="nc-icon nc-favourite-28"></i></h2>
                         {therapists.map(therapist => 
                         { return (
                             <Card>
@@ -39,11 +39,14 @@ function Therapists () {
                                         <Col md="2">
                                             <img src={therapist.img}/>
                                         </Col>
-                                        <Col md="8">
+                                        <Col md="7">
                                             <h6 className="text-primary"> {therapist.name}, {therapist.title}. <i className="nc-icon nc-badge"></i></h6>
                                             <p ><i className="nc-icon nc-mobile"> </i> <strong>Number: </strong> {therapist.phoneNumber}</p>
                                             <p ><i className="nc-icon nc-email-85"></i> <strong>Email: </strong> {therapist.email}</p>
                                             <p ><i className="nc-icon nc-map-big"></i> <strong>Location: </strong> {therapist.location}</p>
+                                        </Col>
+                                        <Col md="3">
+                                            <img className="float=left"src="https://www.healthdesign.org/sites/default/files/styles/responsive_image/public/pebble/partners/childrens.2color.jpg" />
                                         </Col>
                                     </Row>
                                 </CardBody>

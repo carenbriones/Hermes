@@ -106,10 +106,11 @@ class ChildPage extends Component {
           </Card>
         </Col>
         </Row>
-        <h5>Today's Session:<Link to={'/newSession/' + this.state._id}>
-          <Button name="_id" value={this.state._id} type="submit" onClick={this.handleStartSession}>
+        <h5>Today's Session:
+          <Button href={`newSession/${this.state._id}`} name="_id" value={this.state._id}>
             Start
-            </Button></Link></h5>
+          </Button>
+          </h5>
         <Card>
           <CardHeader>
             <CardTitle>

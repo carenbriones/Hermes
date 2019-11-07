@@ -148,6 +148,40 @@ app.get("/api/session/:id", function (req, res) {
     })
 });
 
+//---NOTES---//
+
+app.post("/api/session/:id/note", function (req, res) {
+  //takes a while on postman
+  console.log("NOTE'S BODY", req.body)
+  db.Note
+    .create(req.body)
+    .then(function (dbNote) {
+      return db.Session
+        .findOneAndUpdate(
+          { _id: req.params.id },
+          { $push: { notes: dbNote } },
+          { new: true });
+    })
+    .then(function (dbSession) {
+      res.json(dbSession)
+    })
+    .catch(function (err) {
+      res.json(err)
+    })
+});
+
+app.get("/api/note/:id", function (req, res) {
+  db.Note
+    .findOne({ _id: req.params.id })
+    .then(function (dbNote) {
+      res.json(dbNote);
+    })
+    .catch(function (err) {
+      res.json(err)
+    })
+});
+
+
 // Find all sessions of a specific child
 
 

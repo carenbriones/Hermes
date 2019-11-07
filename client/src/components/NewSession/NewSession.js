@@ -85,6 +85,13 @@ class NewSession extends Component {
     })
 }
 
+  handleNoteSubmit = event => {
+    event.preventDefault();
+
+    console.log("NOTE SUBMITTED")
+    console.log(this.props.match.params.id)
+  }
+
   handleClick = event => {
     event.preventDefault();
     const { name, value } = event.target;

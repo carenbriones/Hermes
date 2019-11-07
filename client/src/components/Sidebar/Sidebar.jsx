@@ -67,7 +67,7 @@ class Sidebar extends React.Component {
             key={key}
           >
             <a
-              href="#pablo"
+              href="#"
               data-toggle="collapse"
               aria-expanded={this.state[prop.state]}
               onClick={e => {
@@ -160,6 +160,7 @@ class Sidebar extends React.Component {
         data-active-color={this.props.activeColor}
       >
         <div className="logo">
+          
           <a
             href="/admin/dashboard"
             className="simple-text logo-mini"
@@ -197,12 +198,6 @@ class Sidebar extends React.Component {
               </a>
               <Collapse isOpen={this.state.openAvatar}>
                 <ul className="nav">
-                  <li>
-                    <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon"><i className="nc-icon nc-circle-10" /></span>
-                      <span className="sidebar-normal">MY PROFILE</span>
-                    </NavLink>
-                  </li>
                   <li >
                     <NavLink to="#" activeClassName="" onClick={this.handleLogout}>
                       <span className="sidebar-mini-icon"><i className="nc-icon nc-simple-remove" /></span>

@@ -37,78 +37,82 @@ class SessionsGraph extends React.Component {
         sessions: sessions
       })
 
-      // Gets array of dates for labels
-      let sessionDates = [];
-      let positiveInteractions = [];
-      let appropriateRequests = [];
-      let appropriateResponse = [];
-      sessions.map(session => {
-        sessionDates.push(session.date.slice(0, 10));
-        positiveInteractions.push(session.positiveInteractions);
-        appropriateRequests.push(session.appropriateRequests);
-        appropriateResponse.push(session.appropriateResponse);
-      });
-      console.log(positiveInteractions, appropriateRequests, appropriateResponse);
-      
-      this.setState( { data: {
-        labels: sessionDates,
-        datasets: [{
-          label: "Positive Interactions",
-          fill: false,
-          lineTension: 0.1,
-          borderColor: "#007bff",
-          borderCapStyle: 'butt',
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "black",
-          pointBackgroundColor: "white",
-          pointBorderWidth: 1,
-          pointHoverRadius: 8,
-          pointHoverBackgroundColor: "white",
-          pointHoverBorderColor: "black",
-          pointHoverBorderWidth: 2,
-          data: positiveInteractions,
-        }, {
-          label: "Appropriate Requests",
-          fill: true,
-          lineTension: 0.1,
-          borderColor: "#51cbce",
-          borderCapStyle: 'butt',
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "black",
-          pointBackgroundColor: "white",
-          pointBorderWidth: 1,
-          pointHoverRadius: 8,
-          pointHoverBackgroundColor: "white",
-          pointHoverBorderColor: "black",
-          pointHoverBorderWidth: 2,
-          data: appropriateRequests,
-        },
-        {
-          label: "Appropriate Responses",
-          fill: true,
-          lineTension: 0.1,
-          borderColor: "#6bd098",
-          borderCapStyle: 'butt',
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: "black",
-          pointBackgroundColor: "white",
-          pointBorderWidth: 1,
-          pointHoverRadius: 8,
-          pointHoverBackgroundColor: "white",
-          pointHoverBorderColor: "black",
-          pointHoverBorderWidth: 2,
-          data: appropriateResponse,
-        }
-        
-      ]
-    }})
+      this.setData(sessions);
+      this.setOptions();
+    })
+  }
+
+  setData(sessions) {
+    // Gets array of dates for labels
+    let sessionDates = [];
+    let positiveInteractions = [];
+    let appropriateRequests = [];
+    let appropriateResponse = [];
+    sessions.map(session => {
+      sessionDates.push(session.date.slice(0, 10));
+      positiveInteractions.push(session.positiveInteractions);
+      appropriateRequests.push(session.appropriateRequests);
+      appropriateResponse.push(session.appropriateResponse);
+    });
     
+    this.setState( { data: {
+      labels: sessionDates,
+      datasets: [{
+        label: "Positive Interactions",
+        fill: false,
+        lineTension: 0.1,
+        borderColor: "#007bff",
+        borderCapStyle: 'butt',
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "white",
+        pointHoverBorderColor: "black",
+        pointHoverBorderWidth: 2,
+        data: positiveInteractions,
+      }, {
+        label: "Appropriate Requests",
+        fill: true,
+        lineTension: 0.1,
+        borderColor: "#51cbce",
+        borderCapStyle: 'butt',
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "white",
+        pointHoverBorderColor: "black",
+        pointHoverBorderWidth: 2,
+        data: appropriateRequests,
+      },
+      {
+        label: "Appropriate Responses",
+        fill: true,
+        lineTension: 0.1,
+        borderColor: "#6bd098",
+        borderCapStyle: 'butt',
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "white",
+        pointHoverBorderColor: "black",
+        pointHoverBorderWidth: 2,
+        data: appropriateResponse,
+      }]
+    }})
+  }
+
+  setOptions() {
     this.setState({
       options:{
-
         scales: {
           yAxes: [{
             ticks: {
@@ -123,24 +127,24 @@ class SessionsGraph extends React.Component {
         }  
       }
     });
-  })
-}
+  }
 
-render() {
-  return (
-    <>
-      <Card className="card-chart">
-        <CardHeader>
-          <CardTitle><h4>Session Progress</h4></CardTitle>
-        </CardHeader>
-        <CardBody>
-          <Line
-            data={this.state.data}
-            options={this.state.options}
-          />
-        </CardBody>
-      </Card>
-    </>
+
+  render() {
+    return (
+      <>
+        <Card className="card-chart">
+          <CardHeader>
+            <CardTitle><h4>Session Progress</h4></CardTitle>
+          </CardHeader>
+          <CardBody>
+            <Line
+              data={this.state.data}
+              options={this.state.options}
+            />
+          </CardBody>
+        </Card>
+      </>
     )
   }
 }

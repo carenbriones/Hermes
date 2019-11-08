@@ -8,6 +8,7 @@ import {
     CardBody,
     CardFooter,
     CardTitle,
+    CardText,
     // eslint-disable-next-line
     Label,
     // eslint-disable-next-line
@@ -44,7 +45,8 @@ class ChildPage extends Component {
         img: "",
         text: [],
         id: "",
-        category: ""
+        category: "",
+        brief: ""
     };
 
     componentDidMount() {
@@ -53,13 +55,58 @@ class ChildPage extends Component {
                 this.setState(res.data)
             })
             .then(() => {
-                const { title, img, text, id, category } = resources[this.state.sessions.length]
-                this.setState({ title, img, text, id, category })
+                const { title, img, text, id, brief, category } = resources[this.state.sessions.length]
+                this.setState({ title, img, text, id, brief, category })
             })
             .catch(err => console.log(err))
 
 
     }
+
+    showResource(arr) {
+
+        if (arr.length === 0) {
+            return (
+                <Card className="text-center">
+                    <CardBody>
+                        <CardTitle><h3>No Resources At This Time.</h3></CardTitle>
+                        <CardText>Please visit the resource archive to find the resource you are looking for.</CardText>
+                        <Button href="/admin/resources" color="primary">View All Resources</Button>
+                    </CardBody>
+                </Card>
+            )
+        } else {
+            return (
+                <Card>
+                    <Row>
+                        <Col md="4">
+                            <img src={this.state.img} id="resourceImage" style={{
+                                height: "270px",
+                                width: "100%",
+                                borderRadius: "12px 0px 0px 12px",
+                                objectFit: "cover"
+                            }}
+                            />
+                        </Col>
+
+                        <Col md="8">
+                            <CardBody>
+                                <CardHeader style={{ paddingLeft: "0px" }}>
+                                    <CardTitle>
+                                        <h2 style={{ marginBottom: "0px" }}><a href={"/admin/resource/" + this.state.id}>{this.state.title}</a></h2>
+                                        <small className="text-muted">{this.state.category}</small>
+                                    </CardTitle>
+                                </CardHeader>
+                                <p>{this.state.brief}</p>
+                            </CardBody>
+                        </Col>
+
+                    </Row>
+                </Card>
+            )
+        }
+    }
+
 
     render() {
         return (
@@ -76,7 +123,7 @@ class ChildPage extends Component {
 
                             <Col md="8">
                                 <CardBody>
-                                    <CardHeader style={{paddingLeft: "0px"}}>
+                                    <CardHeader style={{ paddingLeft: "0px" }}>
                                         <CardTitle>
                                             <h2>{this.state.firstName} {this.state.lastName}</h2>
                                         </CardTitle>
@@ -124,24 +171,43 @@ class ChildPage extends Component {
                     </Card>
 
 
-                     {/* ############# CHILD SESSION HISTORY ################ */}
+                    {/* ############# CHILD SESSION HISTORY ################ */}
                     <SessionTable />
 
 
-                     {/* ############# RESOURCES ################ */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>
-                                <h2>{this.state.title}</h2>
-                            </CardTitle>
-                        </CardHeader>
-                        <CardBody>
-                            <img src={this.state.img} />
-                            <br /><br />
-                            {this.state.text.map(p => { return <p key={Math.floor(Math.random() * 20)}>{p}</p> })}
-                        </CardBody>
-                    </Card>
-                   
+                    {/* ############# RESOURCES ################ */}
+                 
+                    {/* <Card>
+                    <Row>
+                        <Col md="4">
+                            <img src={this.state.img} id="resourceImage" style={{
+                                height: "270px",
+                                width: "100%",
+                                borderRadius: "12px 0px 0px 12px",
+                                objectFit: "cover"
+                            }}
+                            />
+                        </Col>
+
+                        <Col md="8">
+                            <CardBody>
+                                <CardHeader style={{ paddingLeft: "0px" }}>
+                                    <CardTitle>
+                                        <h2 style={{ marginBottom: "0px" }}><a href={"/admin/resource/" + this.state.id}>{this.state.title}</a></h2>
+                                        <small className="text-muted">{this.state.category}</small>
+                                    </CardTitle>
+                                </CardHeader>
+                                <p>{this.state.brief}</p>
+                            </CardBody>
+                        </Col>
+
+                    </Row>
+                </Card> */}
+                {this.showResource(this.state.title)}
+
+                    
+
+
 
                 </Container>
             </div>

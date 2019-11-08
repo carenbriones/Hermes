@@ -33,6 +33,7 @@ import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
 import Therapists from "views/pages/Therapists";
 import ViewSession from "views/pages/ViewSession";
+import About from "views/pages/About.jsx";
 
 
 const routes = [
@@ -112,6 +113,13 @@ const routes = [
     name: "Resource",
     component: OneResource,
     layout: "/admin",
+    invisible: true
+  },
+  {
+    path: "/about",
+    name: "Resource",
+    component: About,
+    layout: "/auth",
     invisible: true
   },
   // {

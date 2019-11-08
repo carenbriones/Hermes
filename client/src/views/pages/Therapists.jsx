@@ -46,6 +46,7 @@ function Therapists () {
                                             <p ><i className="nc-icon nc-map-big"></i> <strong>Location: </strong> {therapist.location}</p>
                                         </Col>
                                         <Col md="3">
+                                            
                                             <img className="float=left"src="https://www.healthdesign.org/sites/default/files/styles/responsive_image/public/pebble/partners/childrens.2color.jpg" />
                                         </Col>
                                     </Row>

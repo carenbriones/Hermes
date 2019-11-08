@@ -10,20 +10,12 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  // eslint-disable-next-line
-  Label,
-  // eslint-disable-next-line
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
   Row,
-  Col,
+  Col
 } from "reactstrap";
-import { parse } from 'url';
 
 class NewSession extends Component {
 

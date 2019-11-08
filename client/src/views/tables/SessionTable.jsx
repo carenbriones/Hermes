@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom"
 
 // reactstrap components
 import {
@@ -9,8 +8,7 @@ import {
   CardBody,
   CardText,
   CardTitle,
-  Table,
-  Col
+  Table
 } from "reactstrap";
 
 import withAuth from "../../components/withAuth";

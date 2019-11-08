@@ -6,24 +6,14 @@ import {
     Card,
     CardHeader,
     CardBody,
-    CardFooter,
     CardTitle,
     CardText,
-    // eslint-disable-next-line
-    Label,
-    // eslint-disable-next-line
-    FormGroup,
-    Form,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroup,
     Container,
     Row,
-    Col,
+    Col
 } from "reactstrap";
-import resources from "./../../resources.json";
-import { throwStatement } from '@babel/types';
+import resources from "./../../resources.json"
+
 
 import SessionTable from "../../views/tables/SessionTable";
 import SessionsGraph from "../../views/components/SessionsGraph";
@@ -167,32 +157,7 @@ class ChildPage extends Component {
 
                     {/* ############# RESOURCES ################ */}
                  
-                    {/* <Card>
-                    <Row>
-                        <Col md="4">
-                            <img src={this.state.img} id="resourceImage" style={{
-                                height: "270px",
-                                width: "100%",
-                                borderRadius: "12px 0px 0px 12px",
-                                objectFit: "cover"
-                            }}
-                            />
-                        </Col>
-
-                        <Col md="8">
-                            <CardBody>
-                                <CardHeader style={{ paddingLeft: "0px" }}>
-                                    <CardTitle>
-                                        <h2 style={{ marginBottom: "0px" }}><a href={"/admin/resource/" + this.state.id}>{this.state.title}</a></h2>
-                                        <small className="text-muted">{this.state.category}</small>
-                                    </CardTitle>
-                                </CardHeader>
-                                <p>{this.state.brief}</p>
-                            </CardBody>
-                        </Col>
-
-                    </Row>
-                </Card> */}
+                    
                 {this.showResource(this.state.title)}
 
                     

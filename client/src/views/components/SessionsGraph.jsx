@@ -29,9 +29,9 @@ class SessionsGraph extends React.Component {
 
       // Sorts sessions in order of date
       let sessions = res.data;
-      sessions.sort(function(a, b) {
-        return new Date(a.date) - new Date(b.date);
-      })
+      // sessions.sort(function(a, b) {
+      //   return new Date(a.date) - new Date(b.date);
+      // })
 
       this.setState({
         sessions: sessions

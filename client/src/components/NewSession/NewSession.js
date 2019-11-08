@@ -70,7 +70,8 @@ class NewSession extends Component {
       
       })
       .then(res => {
-        console.log("DATA SAED!", res.data)
+        console.log("DATA SAVED!", res.data.session)
+        // console.log("DATE: ", res )
         this.props.history.replace(`/admin/child/${this.props.match.params.id}`)
       })
       .catch(err => console.log(err))
@@ -116,7 +117,7 @@ class NewSession extends Component {
   render() {
     return (
       <div className="content container">
-
+        <Link to={"../child/" + this.state._id}><i className="nc-icon nc-minimal-left" />Back to {this.state.firstName} {this.state.lastName} Profile</Link>
         <Card>
           <Row>
             <Col md="4">
@@ -170,7 +171,7 @@ class NewSession extends Component {
                 {/* ###########  POSITIVE INTERACTIONS ############## */}
                 <Col md="4">
                   <Card>
-                    <CardHeader style={{ fontSize: "1.1rem" }}># of Positive Interactions</CardHeader>
+                    <CardHeader style={{ fontSize: "1.1rem" }}>Positive Interactions</CardHeader>
                     <CardBody>
                       <h1 style={{
                         marginBlock: "0px",
@@ -186,8 +187,8 @@ class NewSession extends Component {
                         autoComplete="positiveInteractions"
                         value={this.state.positiveInteractions}
                         onClick={this.handleClick}>
-                        <i className="nc-icon nc-simple-add" /> Positive Interactions
-                      </Button>
+                        <i className="nc-icon nc-simple-add" /> Interactions
+                  </Button>
                     </CardBody>
                   </Card>
                 </Col>
@@ -196,7 +197,7 @@ class NewSession extends Component {
                 {/* ###########  APPROPRIATE REQUESTS ############## */}
                 <Col md="4">
                   <Card>
-                    <CardHeader style={{ fontSize: "1.1rem" }}># of Appropriate Requests</CardHeader>
+                    <CardHeader style={{ fontSize: "1.1rem" }}>Appropriate Requests</CardHeader>
                     <CardBody>
                       <h1 style={{
                         marginBlock: "0px",
@@ -212,8 +213,8 @@ class NewSession extends Component {
                         autoComplete="appropriateRequests"
                         value={this.state.appropriateRequests}
                         onClick={this.handleClick}>
-                        <i className="nc-icon nc-simple-add" />Appropriate Requests
-                      </Button>
+                        <i className="nc-icon nc-simple-add" />Requests
+                  </Button>
                     </CardBody>
                   </Card>
                 </Col>
@@ -222,7 +223,7 @@ class NewSession extends Component {
                 {/* ###########  APPROPRIATE RESPONSES ############## */}
                 <Col md="4">
                   <Card>
-                    <CardHeader style={{ fontSize: "1.1rem" }}># of Appropriate Responses</CardHeader>
+                    <CardHeader style={{ fontSize: "1.1rem" }}>Appropriate Responses</CardHeader>
                     <CardBody>
                       <h1 style={{
                         marginBlock: "0px",
@@ -239,8 +240,8 @@ class NewSession extends Component {
                         autoComplete="appropriateResponse"
                         value={this.state.appropriateResponse}
                         onClick={this.handleClick}>
-                        <i className="nc-icon nc-simple-add" /> Appropriate Responses
-                      </Button>
+                        <i className="nc-icon nc-simple-add" /> Responses
+                  </Button>
 
                     </CardBody>
                   </Card>

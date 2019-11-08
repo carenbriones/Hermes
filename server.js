@@ -30,8 +30,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose
-  // .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', { useNewUrlParser: true, useCreateIndex: true })
-  .connect(process.env.MONGODB_URI || 'mongodb://user1:password1@ds141248.mlab.com:41248/heroku_mr3t7zbs', { useNewUrlParser: true, useCreateIndex: true })
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', { useNewUrlParser: true, useCreateIndex: true })
+  // .connect(process.env.MONGODB_URI || 'mongodb://user1:password1@ds141248.mlab.com:41248/heroku_mr3t7zbs', { useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("MongoDB Connected!"))
   .catch(err => console.error(err));
 
@@ -149,6 +149,7 @@ app.post("/api/child/:id/sessions", function (req, res) {
 app.get("/api/session/:id", function (req, res) {
   db.Session
     .findOne({ _id: req.params.id })
+    .populate("notes")
     .then(function (dbSession) {
       res.json(dbSession);
     })

@@ -3,6 +3,7 @@ import withAuth from '../../components/withAuth';
 import API from '../../utils/API';
 import { Link } from 'react-router-dom';
 import ReactDatetime from "react-datetime";
+import therapists from "./../../therapists.json"
 
 import {
   Button,
@@ -36,16 +37,37 @@ class ViewSession extends Component {
     difficultyWith: "",
     successWith: "",
     date: "",
-    notes: "",
+    notes: [],
+    note: "",
+    author: "",
+    date: "",
+    noteDate: "",
     alert: null
   };
 
+  //this.props.user.id <<-- GET THE USER ID
   componentDidMount() {
     API.getOneSession(this.props.match.params.id)
       .then(res => {
         this.setState(res.data)
+        console.log("CURRENT SESSION IS", res.data)
       })
+      .then(
+        this.setState({
+          noteDate: new Date()
+        })
+      )
       .catch(err => console.log(err))
+    API.getUser(this.props.user.id)
+      .then(res => {
+        console.log("CURRENT USER", res.data)
+        this.setState({
+          author: res.data.name
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   handleClick = event => {
@@ -70,6 +92,20 @@ class ViewSession extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    
+    alert("SUBMITED")
+    API.postNewNote(this.props.match.params.id, {
+      date: this.state.noteDate,
+      note: this.state.note,
+      author: this.state.author
+    })
+      .then(res => {
+        console.log("note submitted", res.data)
+        window.location.reload(false);
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   render() {
@@ -162,22 +198,36 @@ class ViewSession extends Component {
                 <Input
                   className="form-control"
                   placeholder="Use this area to record any notes you may have for a therapist"
-                  name="nots"
+                  name="note"
                   type="textarea"
-                  id="notes"
-                  autoComplete="notes"
-                  value={this.state.notes}
+                  id="note"
+                  autoComplete="note"
+                  value={this.state.note}
+                  onChange={this.handleChange}
                   />
               </FormGroup>
 
+              <label style={{ fontSize: "1rem" }}>Notes:</label>
+              {this.state.notes.map( note => {
+                return (<p key={note._id}>
+                  <strong>
+                  {note.date.slice(0, 10)}</strong>
+                  <br/>
+                  {note.note}
+                  <br/>
+                  <i>
+                  {note.author}</i>
+                </p>)
+              })}
             </Form>
           </CardBody>
           <CardFooter>
 
             <Button
-              type="submit" className="btn btn-primary btn-block" onClick={this.inputAlert}>
+              type="submit" className="btn btn-primary btn-block" onClick={this.handleFormSubmit}>
               Add Note
             </Button>
+            Author: {this.state.author}
           </CardFooter>
         </Card>
 

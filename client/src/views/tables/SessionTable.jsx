@@ -80,7 +80,7 @@ class SessionTable extends React.Component {
                 {this.state.sessions.map((session) =>
                   <tr key={session._id}>
                     <td>{session.date.slice(0, 10)}</td>
-                    <td className="text-center"></td>
+                <td className="text-center">{session.notes.length > 0 ? <i className="nc-icon nc-paper"/> : ""}</td>
                     <td className="text-center">
                       <Button href={`../viewSession/${session._id}`} color="info" size="sm">
                         View Session

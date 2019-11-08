@@ -31,7 +31,8 @@ import Resources from "views/pages/Resources";
 import AddChild from "./components/AddChild/AddChild";
 import NewSession from "./components/NewSession/NewSession";
 import ChildTable from "./views/tables/ChildTable";
-import Therapists from  "views/pages/Therapists";
+import Therapists from "views/pages/Therapists";
+import ViewSession from "views/pages/ViewSession";
 
 
 const routes = [
@@ -40,7 +41,8 @@ const routes = [
     name: "Dashboard",
     icon: "nc-icon nc-bank",
     component: Dashboard,
-    layout: "/admin"
+    layout: "/admin",
+    invisible: true
   },
   {
     path: "/user-profile",
@@ -49,7 +51,7 @@ const routes = [
     component: UserProfile,
     layout: "/admin"
   },
-  
+
   {
     collapse: true,
     name: "Children",
@@ -85,33 +87,56 @@ const routes = [
         component: ChildPage,
         layout: "/admin",
         invisible: true
-      }
-      
-    ]
-  },
-  {
-    collapse: true,
-    name: "Resources",
-    icon: "nc-icon nc-single-copy-04",
-    state: "resourcesCollapse",
-    views: [
-      {
-        path: "/resources",
-        name: "All Resources",
-        mini: "AR",
-        component: Resources,
-        layout: "/admin"
       },
       {
-        path: "/resource/:id",
-        name: "Resource",
-        mini: "RT",
-        component: OneResource,
+        path: "/viewSession/:id",
+        name: "Child Info",
+        mini: "NS",
+        component: ViewSession,
         layout: "/admin",
         invisible: true
       }
+
     ]
   },
+
+  {
+    path: "/resources",
+    name: "Resources",
+    icon: "nc-icon nc-single-copy-04",
+    component: Resources,
+    layout: "/admin"
+  },
+  {
+    path: "/resource/:id",
+    name: "Resource",
+    component: OneResource,
+    layout: "/admin",
+    invisible: true
+  },
+  // {
+  //   collapse: true,
+  //   name: "Resources",
+  //   icon: "nc-icon nc-single-copy-04",
+  //   state: "resourcesCollapse",
+  //   views: [
+  //     {
+  //       path: "/resources",
+  //       name: "All Resources",
+  //       mini: "AR",
+  //       component: Resources,
+  //       layout: "/admin"
+  //     },
+  //     {
+  //       path: "/resource/:id",
+  //       name: "Resource",
+  //       mini: "RT",
+  //       component: OneResource,
+  //       layout: "/admin",
+  //       invisible: true
+  //     }
+  //   ]
+  // },
   {
     path: "/therapists",
     name: "Therapists",
@@ -131,6 +156,7 @@ const routes = [
     name: "Other",
     icon: "nc-icon nc-book-bookmark",
     state: "pagesCollapse",
+    invisible: true,
     views: [
       {
         path: "/timeline",

@@ -33,7 +33,10 @@ class ChildTable extends React.Component {
     <div className="content">
       <Card>
         <CardHeader>
-          <h5 className="title">Children</h5>
+          <h5 className="title float-left">Children</h5>
+          <Button  href="/admin/addChild" color="info" size="sm" className="float-right">
+                      Add Child
+                    </Button>
         </CardHeader>
         <CardBody>
           <Table responsive>

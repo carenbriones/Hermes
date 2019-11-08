@@ -72,7 +72,8 @@ class NewSession extends Component {
       
       })
       .then(res => {
-        console.log("DATA SAED!", res.data)
+        console.log("DATA SAVED!", res.data.session)
+        // console.log("DATE: ", res )
         this.props.history.replace(`/admin/child/${this.props.match.params.id}`)
       })
       .catch(err => console.log(err))

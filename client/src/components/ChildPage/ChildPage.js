@@ -63,49 +63,49 @@ class ChildPage extends Component {
 
     }
 
-    // showResource(arr) {
+    showResource(arr) {
 
-    //     if (arr.length === 0) {
-    //         return (
-    //             <Card className="text-center">
-    //                 <CardBody>
-    //                     <CardTitle><h3>No Resources At This Time.</h3></CardTitle>
-    //                     <CardText>Please visit the resource archive to find the resource you are looking for.</CardText>
-    //                     <Button href="/admin/resources" color="primary">View All Resources</Button>
-    //                 </CardBody>
-    //             </Card>
-    //         )
-    //     } else {
-    //         return (
-    //             <Card>
-    //                 <Row>
-    //                     <Col md="4">
-    //                         <img src={this.state.img} id="resourceImage" style={{
-    //                             height: "270px",
-    //                             width: "100%",
-    //                             borderRadius: "12px 0px 0px 12px",
-    //                             objectFit: "cover"
-    //                         }}
-    //                         />
-    //                     </Col>
+        if (arr.length === 0) {
+            return (
+                <Card className="text-center">
+                    <CardBody>
+                        <CardTitle><h3>No Resources At This Time.</h3></CardTitle>
+                        <CardText>Please visit the resource archive to find the resource you are looking for.</CardText>
+                        <Button href="/admin/resources" color="primary">View All Resources</Button>
+                    </CardBody>
+                </Card>
+            )
+        } else {
+            return (
+                <Card>
+                    <Row>
+                        <Col md="4">
+                            <img src={this.state.img} id="resourceImage" style={{
+                                height: "270px",
+                                width: "100%",
+                                borderRadius: "12px 0px 0px 12px",
+                                objectFit: "cover"
+                            }}
+                            />
+                        </Col>
 
-    //                     <Col md="8">
-    //                         <CardBody>
-    //                             <CardHeader style={{ paddingLeft: "0px" }}>
-    //                                 <CardTitle>
-    //                                     <h2 style={{ marginBottom: "0px" }}><a href={"/admin/resource/" + this.state.id}>{this.state.title}</a></h2>
-    //                                     <small className="text-muted">{this.state.category}</small>
-    //                                 </CardTitle>
-    //                             </CardHeader>
-    //                             <p>{this.state.brief}</p>
-    //                         </CardBody>
-    //                     </Col>
+                        <Col md="8">
+                            <CardBody>
+                                <CardHeader style={{ paddingLeft: "0px" }}>
+                                    <CardTitle>
+                                        <h2 style={{ marginBottom: "0px" }}><a href={"/admin/resource/" + this.state.id}>{this.state.title}</a></h2>
+                                        <small className="text-muted">{this.state.category}</small>
+                                    </CardTitle>
+                                </CardHeader>
+                                <p>{this.state.brief}</p>
+                            </CardBody>
+                        </Col>
 
-    //                 </Row>
-    //             </Card>
-    //         )
-    //     }
-    // }
+                    </Row>
+                </Card>
+            )
+        }
+    }
 
 
     render() {
@@ -177,7 +177,7 @@ class ChildPage extends Component {
 
                     {/* ############# RESOURCES ################ */}
                  
-                    <Card>
+                    {/* <Card>
                     <Row>
                         <Col md="4">
                             <img src={this.state.img} id="resourceImage" style={{
@@ -202,7 +202,8 @@ class ChildPage extends Component {
                         </Col>
 
                     </Row>
-                </Card>
+                </Card> */}
+                {this.showResource(this.state.title)}
 
                     
 

@@ -44,7 +44,8 @@ class ChildPage extends Component {
         img: "",
         text: [],
         id: "",
-        category: ""
+        category: "",
+        brief: ""
     };
 
     componentDidMount() {
@@ -53,8 +54,8 @@ class ChildPage extends Component {
                 this.setState(res.data)
             })
             .then(() => {
-                const { title, img, text, id, category } = resources[this.state.sessions.length]
-                this.setState({ title, img, text, id, category })
+                const { title, img, text, id, brief, category } = resources[this.state.sessions.length]
+                this.setState({ title, img, text, id, brief, category })
             })
             .catch(err => console.log(err))
 
@@ -129,7 +130,7 @@ class ChildPage extends Component {
 
 
                      {/* ############# RESOURCES ################ */}
-                    <Card>
+                    {/* <Card>
                         <CardHeader>
                             <CardTitle>
                                 <h2>{this.state.title}</h2>
@@ -140,6 +141,35 @@ class ChildPage extends Component {
                             <br /><br />
                             {this.state.text.map(p => { return <p key={Math.floor(Math.random() * 20)}>{p}</p> })}
                         </CardBody>
+                    </Card> */}
+
+
+
+                    <Card>
+                        <Row>
+                            <Col md="4">
+                                <img src={this.state.img} id="resourceImage" style={{
+                                        height: "246px",
+                                        maxWidth: "100%",
+                                        borderRadius: "12px 0px 0px 12px",
+                                        objectFit: "cover"
+                                }}
+                                />
+                            </Col>
+
+                            <Col md="8">
+                                <CardBody>
+                                    <CardHeader style={{paddingLeft: "0px"}}>
+                                        <CardTitle>
+                                            <h2 style={{marginBottom: "0px"}}><a href={"/admin/resource/" + this.state.id}>{this.state.title}</a></h2>
+                                            <small className="text-muted">{this.state.category}</small>
+                                        </CardTitle>
+                                    </CardHeader>
+                                            <p>{this.state.brief}</p>
+                                </CardBody>
+                            </Col>
+
+                        </Row>
                     </Card>
                    
 

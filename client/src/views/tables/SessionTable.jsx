@@ -7,6 +7,8 @@ import {
   Card,
   CardHeader,
   CardBody,
+  CardText,
+  CardTitle,
   Table,
   Col
 } from "reactstrap";
@@ -34,9 +36,24 @@ class SessionTable extends React.Component {
     })
   }
 
-  render() {
-    return (
-      <div className="content">
+  showSessions(arr) {
+    if (arr.length === 0) {
+
+      return (
+        <Card>
+          <CardBody className="text-center">
+            <CardTitle><h3>There Currently Are No Sessions.</h3></CardTitle>
+            <CardText>After you track your first session you will be able to view all your past sessions here. </CardText>
+            <Button href={`../newSession/${this.state.child._id}`} className=" btn-primary">
+              Track Session
+                      </Button>
+          </CardBody>
+        </Card>
+      )
+
+    } else {
+
+      return (
         <Card>
           <CardHeader>
             <h5 className="title float-left">Sessions</h5>
@@ -69,7 +86,16 @@ class SessionTable extends React.Component {
             </Table>
           </CardBody>
         </Card>
-      </div>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <>
+  
+        {this.showSessions(this.state.sessions)}
+      </>
     )
   }
 

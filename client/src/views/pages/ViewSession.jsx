@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import withAuth from '../../components/withAuth';
 import API from '../../utils/API';
-import { Link } from 'react-router-dom';
-import ReactDatetime from "react-datetime";
-import therapists from "./../../therapists.json"
 
 import {
   Button,
@@ -12,20 +9,12 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  // eslint-disable-next-line
-  Label,
-  // eslint-disable-next-line
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
   Row,
   Col,
 } from "reactstrap";
-import { parse } from 'url';
 
 class ViewSession extends Component {
 

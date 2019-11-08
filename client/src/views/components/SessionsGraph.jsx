@@ -1,16 +1,14 @@
 import React from "react";
 // react plugin used to create charts
-import { Line, Bar, Pie } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
 // reactstrap components
 import {
   Card,
   CardHeader,
   CardBody,
-  CardFooter,
-  CardTitle,
-  Row,
-  Col
+  CardTitle
+  
 } from "reactstrap";
 
 import withAuth from "../../components/withAuth";
@@ -29,9 +27,9 @@ class SessionsGraph extends React.Component {
 
       // Sorts sessions in order of date
       let sessions = res.data;
-      // sessions.sort(function(a, b) {
-      //   return new Date(a.date) - new Date(b.date);
-      // })
+      sessions.sort(function(a, b) {
+        return new Date(a.date) - new Date(b.date);
+      })
 
       this.setState({
         sessions: sessions

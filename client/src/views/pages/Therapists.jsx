@@ -1,28 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-    Button,
     Card,
-    CardHeader,
     CardBody,
-    CardFooter,
-    CardTitle,
-    // eslint-disable-next-line
-    Label,
-    // eslint-disable-next-line
-    FormGroup,
-    Form,
-    Input,
-    InputGroupAddon,
-    InputGroupText,
-    InputGroup,
     Container,
     Row,
     Col,
 } from "reactstrap";
 import therapists from "./../../therapists.json"
-import { throwStatement } from '@babel/types';
-
-import SessionTable from "../../views/tables/SessionTable";
 
 function Therapists () {
 

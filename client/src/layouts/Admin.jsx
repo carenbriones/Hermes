@@ -9,7 +9,7 @@ import withAuth from "../components/withAuth"
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
-// import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
+
 
 import routes from "routes.js";
 
@@ -101,14 +101,7 @@ class Admin extends React.Component {
             <Footer fluid />
           )}
         </div>
-        {/* <FixedPlugin
-          bgColor={this.state.backgroundColor}
-          activeColor={this.state.activeColor}
-          sidebarMini={this.state.sidebarMini}
-          handleActiveClick={this.handleActiveClick}
-          handleBgClick={this.handleBgClick}
-          handleMiniClick={this.handleMiniClick}
-        /> */}
+        
       </div>
     );
   }

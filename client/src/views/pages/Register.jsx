@@ -1,7 +1,7 @@
 import React from "react";
 import AuthService from '../../components/AuthService';
 import API from '../../utils/API';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 // reactstrap components
 import {
@@ -11,8 +11,6 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  Label,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,

@@ -12,13 +12,8 @@ import {
     Row,
     Col
 } from "reactstrap";
-<<<<<<< HEAD
 import resources from "./../../resources.json"
 
-=======
-import resources from "./../../resources.json";
-import { throwStatement } from '@babel/types';
->>>>>>> 244dafc0ee3ced3ee9cb82dafa126c8d329c1517
 
 import SessionTable from "../../views/tables/SessionTable";
 import SessionsGraph from "../../views/components/SessionsGraph";

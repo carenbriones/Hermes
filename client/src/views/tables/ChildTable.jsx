@@ -8,8 +8,7 @@ import {
   CardBody,
   CardText,
   CardTitle,
-  Table,
-  Col
+  Table
 } from "reactstrap";
 
 import withAuth from "../../components/withAuth";

@@ -93,14 +93,12 @@ class ViewSession extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     
-    alert("SUBMITED")
     API.postNewNote(this.props.match.params.id, {
       date: this.state.noteDate,
       note: this.state.note,
       author: this.state.author
     })
       .then(res => {
-        console.log("note submitted", res.data)
         window.location.reload(false);
       })
       .catch(err => {
@@ -227,7 +225,6 @@ class ViewSession extends Component {
               type="submit" className="btn btn-primary btn-block" onClick={this.handleFormSubmit}>
               Add Note
             </Button>
-            Author: {this.state.author}
           </CardFooter>
         </Card>
 

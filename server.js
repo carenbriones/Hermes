@@ -30,8 +30,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose
-  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', { useNewUrlParser: true, useCreateIndex: true })
-  // .connect(process.env.MONGODB_URI || 'mongodb://user1:password1@ds141248.mlab.com:41248/heroku_mr3t7zbs', { useNewUrlParser: true, useCreateIndex: true })
+  // .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', { useNewUrlParser: true, useCreateIndex: true })
+  .connect(process.env.MONGODB_URI || 'mongodb://user1:password1@ds141248.mlab.com:41248/heroku_mr3t7zbs', { useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("MongoDB Connected!"))
   .catch(err => console.error(err));
 
@@ -91,6 +91,7 @@ app.get("/api/child", function (req, res) {
     })
 });
 
+// Gets a single child by ID
 app.get("/api/child/:id", function (req, res) {
   db.Child
     .findOne({ _id: req.params.id })
@@ -103,6 +104,7 @@ app.get("/api/child/:id", function (req, res) {
     })
 });
 
+// Creates a child
 app.post("/api/user/:id/children", function (req, res) {
   console.log(" child'S BODY", req.body)
   db.Child
@@ -143,6 +145,7 @@ app.post("/api/child/:id/sessions", function (req, res) {
     })
 });
 
+// Gets single session by id
 app.get("/api/session/:id", function (req, res) {
   db.Session
     .findOne({ _id: req.params.id })
@@ -154,6 +157,20 @@ app.get("/api/session/:id", function (req, res) {
       res.json(err)
     })
 });
+
+// Gets all sessions of a child by child's ID
+app.get("/api/child/:id/sessions", function (req, res) {
+  db.Child
+    .findOne({_id: req.params.id})
+    .populate("sessions")
+    .then(function (dbChild) {
+      res.json(dbChild.sessions);
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+});
+
 
 //---NOTES---//
 
@@ -177,6 +194,7 @@ app.post("/api/session/:id/note", function (req, res) {
     })
 });
 
+// Gets note by id
 app.get("/api/note/:id", function (req, res) {
   db.Note
     .findOne({ _id: req.params.id })

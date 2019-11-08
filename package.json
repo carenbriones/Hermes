@@ -13,6 +13,10 @@
     "heroku-postbuild": "npm run build",
     "map-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.css --source-map true"
   },
+  "engines": {
+    "npm": "6.12.0",
+    "node": "12.8.0"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {

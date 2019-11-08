@@ -47,7 +47,7 @@ class ChildTable extends React.Component {
     } else {
 
       return (
-
+        <div className="content">
         <Card>
           <CardHeader>
             <h5 className="title float-left">Children</h5>
@@ -84,6 +84,7 @@ class ChildTable extends React.Component {
             </Table>
           </CardBody>
         </Card>
+        </div>
 
       )
 

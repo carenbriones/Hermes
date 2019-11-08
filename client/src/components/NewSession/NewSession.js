@@ -53,8 +53,6 @@ class NewSession extends Component {
         this.setState(res.data)
       })
       .catch(err => console.log(err))
-
-
   }
 
   handleFormSubmit = event => {
@@ -156,9 +154,6 @@ class NewSession extends Component {
           </Row>
         </Card>
 
-
-
-
         {/* ************* SUBMIT SESSION FORM-- MOVE TO THE RIGHT PLACE *************** */}
 
         <Card className="card-signup  mt-5">
@@ -170,6 +165,8 @@ class NewSession extends Component {
             <hr></hr>
             <Form className="form">
               <Row className="text-center">
+
+
                 {/* ###########  POSITIVE INTERACTIONS ############## */}
                 <Col md="4">
                   <Card>
@@ -190,12 +187,12 @@ class NewSession extends Component {
                         value={this.state.positiveInteractions}
                         onClick={this.handleClick}>
                         <i className="nc-icon nc-simple-add" /> Positive Interactions
-                  </Button>
+                      </Button>
                     </CardBody>
                   </Card>
-
-
                 </Col>
+
+
                 {/* ###########  APPROPRIATE REQUESTS ############## */}
                 <Col md="4">
                   <Card>
@@ -216,11 +213,12 @@ class NewSession extends Component {
                         value={this.state.appropriateRequests}
                         onClick={this.handleClick}>
                         <i className="nc-icon nc-simple-add" />Appropriate Requests
-                  </Button>
+                      </Button>
                     </CardBody>
                   </Card>
-
                 </Col>
+
+
                 {/* ###########  APPROPRIATE RESPONSES ############## */}
                 <Col md="4">
                   <Card>
@@ -242,12 +240,14 @@ class NewSession extends Component {
                         value={this.state.appropriateResponse}
                         onClick={this.handleClick}>
                         <i className="nc-icon nc-simple-add" /> Appropriate Responses
-                  </Button>
+                      </Button>
 
                     </CardBody>
                   </Card>
                 </Col>
               </Row>
+
+
               {/* ###########  HAD DIFFICULTY WITH ############## */}
               <label style={{ fontSize: "1rem" }}>My child had difficulty with:</label>
               <FormGroup>
@@ -275,6 +275,7 @@ class NewSession extends Component {
                   onChange={this.handleChange} />
               </FormGroup>
 
+
               {/* ###########  SESSION'S DATE ############## */}
               <label style={{ fontSize: "1rem" }}>Session Date:</label>
               <FormGroup>
@@ -290,7 +291,6 @@ class NewSession extends Component {
                   // onChange={this.handleChange} 
                   />
               </FormGroup>
-
             </Form>
           </CardBody>
           <CardFooter>
@@ -298,7 +298,7 @@ class NewSession extends Component {
             <Button
               type="submit" className="btn btn-primary btn-block" onClick={this.handleFormSubmit}>
               End & Submit Session
-                </Button>
+            </Button>
           </CardFooter>
         </Card>
 

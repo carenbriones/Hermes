@@ -104,6 +104,7 @@ app.get("/api/child/:id", function (req, res) {
     })
 });
 
+// Creates a child
 app.post("/api/user/:id/children", function (req, res) {
   console.log(" child'S BODY", req.body)
   db.Child
@@ -192,6 +193,7 @@ app.post("/api/session/:id/note", function (req, res) {
     })
 });
 
+// Gets note by id
 app.get("/api/note/:id", function (req, res) {
   db.Note
     .findOne({ _id: req.params.id })

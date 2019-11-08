@@ -108,9 +108,7 @@ class ChildPage extends Component {
           </Card>
       
           {/* ############# CHILD PRORGRESS CHART ################ */}
-          <Card>
-            <SessionsGraph childId={this.props.match.params.id}/>
-          </Card>
+          <SessionsGraph childId={this.props.match.params.id}/>
       
           {/* ############# CHILD SESSION HISTORY ################ */}
           <SessionTable />

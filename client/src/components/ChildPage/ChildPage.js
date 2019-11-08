@@ -150,7 +150,7 @@ class ChildPage extends Component {
                             <Col md="4">
                                 <img src={this.state.img} id="resourceImage" style={{
                                         height: "246px",
-                                        maxWidth: "100%",
+                                        width: "100%",
                                         borderRadius: "12px 0px 0px 12px",
                                         objectFit: "cover"
                                 }}

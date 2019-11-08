@@ -23,10 +23,15 @@ class SessionTable extends React.Component {
     const href = window.location.href.split("/")
 
     API.getOneChild(href[href.length - 1]).then((res) => {
-      this.setState({
-        sessions: res.data.sessions
+      // Sorts sessions in order of date
+      let sessions = res.data.sessions;
+      sessions.sort(function(a, b) {
+        return new Date(a.date) - new Date(b.date);
       })
-      console.log(this.state.sessions);
+
+      this.setState({
+        sessions: sessions
+      })
     })
   }
 

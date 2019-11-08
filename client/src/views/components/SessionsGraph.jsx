@@ -131,7 +131,7 @@ render() {
     <>
       <Card className="card-chart">
         <CardHeader>
-          <CardTitle>Session Progress</CardTitle>
+          <CardTitle><h4>Session Progress</h4></CardTitle>
         </CardHeader>
         <CardBody>
           <Line

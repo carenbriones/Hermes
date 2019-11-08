@@ -51,33 +51,28 @@ class OneResource extends Component {
 
         <Row>
           <Col>
-        <Card>
-        <CardImg top src={this.state.img} alt={this.state.title} style={{
-          maxHeight: "300px",
-          width: "100%",
-          objectFit: "cover"
-        }}></CardImg>
+            <Card>
+              <CardImg top src={this.state.img} alt={this.state.title} style={{
+                maxHeight: "300px",
+                width: "100%",
+                objectFit: "cover"
+                }}>
+              </CardImg>
 
-        <CardBody>
-          <CardTitle><h2 style={{marginBottom:"0px"}}>{this.state.title}</h2>
-          <strong className="text-muted">{this.state.category}</strong></CardTitle>
-          <CardText> {this.state.text.map(p => {return <p key={Math.floor(Math.random()*20)}>{p}</p>})}</CardText>
+              <CardBody>
+                <CardTitle><h2 style={{marginBottom:"0px"}}>{this.state.title}</h2>
+                  <strong className="text-muted">{this.state.category}</strong>
+                </CardTitle>
+                <CardText> {this.state.text.map(p => {return <p key={Math.floor(Math.random()*20)}>{p}</p>})}</CardText>
        
-        
-        <Link to="/admin/resources">Back to Resources</Link>
-        
-        </CardBody>
-          
-           
-        
-       
-      </Card>
-      </Col>
-      </Row>
+                <Link to="/admin/resources">Back to Resources</Link>
+              </CardBody>
+
+            </Card>
+          </Col>
+        </Row>
       </div>
     )}
 }
 
 export default withAuth(OneResource);
-
-// 

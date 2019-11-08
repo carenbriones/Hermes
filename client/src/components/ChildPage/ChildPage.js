@@ -22,10 +22,11 @@ import {
     Row,
     Col,
 } from "reactstrap";
-import resources from "./../../resources.json"
+import resources from "./../../resources.json";
 import { throwStatement } from '@babel/types';
 
 import SessionTable from "../../views/tables/SessionTable";
+import SessionsGraph from "../../views/components/SessionsGraph";
 
 class ChildPage extends Component {
 
@@ -156,19 +157,8 @@ class ChildPage extends Component {
 
 
 
-                    {/* ############# CHILD PRORGRESS CHART ################ */}
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>
-                                <h5>
-                                    Child's progress:
-                    </h5>
-                            </CardTitle>
-                        </CardHeader>
-                        <CardBody>
-
-                        </CardBody>
-                    </Card>
+                    {/* ############# CHILD PROGRESS CHART ################ */}
+                    <SessionsGraph childId={this.props.match.params.id}/>
 
 
                     {/* ############# CHILD SESSION HISTORY ################ */}
@@ -213,6 +203,7 @@ class ChildPage extends Component {
             </div>
         )
     }
-}
-
-export default withAuth(ChildPage);
+  }
+  
+  export default withAuth(ChildPage);
+  

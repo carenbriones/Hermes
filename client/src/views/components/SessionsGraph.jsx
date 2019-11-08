@@ -56,20 +56,17 @@ class SessionsGraph extends React.Component {
           label: "Positive Interactions",
           fill: false,
           lineTension: 0.1,
-          borderColor: "red", // The main line color
-          borderCapStyle: 'square',
+          borderColor: "red",
+          borderCapStyle: 'butt',
           borderDashOffset: 0.0,
           borderJoinStyle: 'miter',
           pointBorderColor: "black",
           pointBackgroundColor: "white",
           pointBorderWidth: 1,
           pointHoverRadius: 8,
-          pointHoverBackgroundColor: "yellow",
-          pointHoverBorderColor: "brown",
+          pointHoverBackgroundColor: "white",
+          pointHoverBorderColor: "black",
           pointHoverBorderWidth: 2,
-          pointRadius: 4,
-          pointHitRadius: 10,
-          // notice the gap in the data and the spanGaps: true
           data: positiveInteractions,
         }, {
           label: "Appropriate Requests",
@@ -79,23 +76,36 @@ class SessionsGraph extends React.Component {
           borderCapStyle: 'butt',
           borderDashOffset: 0.0,
           borderJoinStyle: 'miter',
-          pointBorderColor: "white",
-          pointBackgroundColor: "black",
+          pointBorderColor: "black",
+          pointBackgroundColor: "white",
           pointBorderWidth: 1,
           pointHoverRadius: 8,
-          pointHoverBackgroundColor: "brown",
-          pointHoverBorderColor: "yellow",
+          pointHoverBackgroundColor: "white",
+          pointHoverBorderColor: "black",
           pointHoverBorderWidth: 2,
-          pointRadius: 4,
-          pointHitRadius: 10,
-          // notice the gap in the data and the spanGaps: false
           data: appropriateRequests,
+        },
+        {
+          label: "Appropriate Responses",
+          fill: true,
+          lineTension: 0.1,
+          borderColor: "green",
+          borderCapStyle: 'butt',
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: "black",
+          pointBackgroundColor: "white",
+          pointBorderWidth: 1,
+          pointHoverRadius: 8,
+          pointHoverBackgroundColor: "white",
+          pointHoverBorderColor: "black",
+          pointHoverBorderWidth: 2,
+          data: appropriateResponse,
         }
         
       ]
     }})
     
-    // Notice the scaleLabel at the same level as Ticks
     this.setState({
       options:{
 
@@ -119,17 +129,17 @@ class SessionsGraph extends React.Component {
 render() {
   return (
     <>
-    <Card className="card-chart">
-    <CardHeader>
-    <CardTitle>Session Progress</CardTitle>
-    </CardHeader>
-    <CardBody>
-    <Line
-      data={this.state.data}
-      options={this.state.options}
-    />
-    </CardBody>
-    </Card>
+      <Card className="card-chart">
+        <CardHeader>
+          <CardTitle>Session Progress</CardTitle>
+        </CardHeader>
+        <CardBody>
+          <Line
+            data={this.state.data}
+            options={this.state.options}
+          />
+        </CardBody>
+      </Card>
     </>
     )
   }

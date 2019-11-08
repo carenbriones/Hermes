@@ -91,6 +91,7 @@ app.get("/api/child", function (req, res) {
     })
 });
 
+// Gets a single child by ID
 app.get("/api/child/:id", function (req, res) {
   db.Child
     .findOne({ _id: req.params.id })
@@ -143,6 +144,7 @@ app.post("/api/child/:id/sessions", function (req, res) {
     })
 });
 
+// Gets single session by id
 app.get("/api/session/:id", function (req, res) {
   db.Session
     .findOne({ _id: req.params.id })
@@ -153,6 +155,20 @@ app.get("/api/session/:id", function (req, res) {
       res.json(err)
     })
 });
+
+// Gets all sessions of a child by child's ID
+app.get("/api/child/:id/sessions", function (req, res) {
+  db.Child
+    .findOne({_id: req.params.id})
+    .populate("sessions")
+    .then(function (dbChild) {
+      res.json(dbChild.sessions);
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+});
+
 
 //---NOTES---//
 

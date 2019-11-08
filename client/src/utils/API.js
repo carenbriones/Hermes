@@ -29,8 +29,8 @@ export default {
   signUpUser: (name, email, password, address, phoneNumber) => {
     return axios.post('/auth/api/signup', {name: name, email: email, password: password, address: address, phoneNumber: phoneNumber});
   },
-  postNewNote: (noteId, newNote) => {
-    return axios.post(`/api/session/${noteId}/note`, newNote)
+  postNewNote: (sessionId, newNote) => {
+    return axios.post(`/api/session/${sessionId}/note`, newNote)
   },
   getOneNote: (noteId) => {
     return axios.get(`/api/note/${noteId}`)

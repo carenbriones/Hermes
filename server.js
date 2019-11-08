@@ -146,6 +146,7 @@ app.post("/api/child/:id/sessions", function (req, res) {
 app.get("/api/session/:id", function (req, res) {
   db.Session
     .findOne({ _id: req.params.id })
+    .populate("notes")
     .then(function (dbSession) {
       res.json(dbSession);
     })

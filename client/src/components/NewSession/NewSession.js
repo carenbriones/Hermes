@@ -122,7 +122,7 @@ class NewSession extends Component {
   render() {
     return (
       <div className="content container">
-        <Link to={"../child/" + this.state._id}><i className="nc-icon nc-minimal-left" />Back to {this.state.firstName} {this.state.lastName} Profile</Link>
+        <Link to={"../child/" + this.state._id}><i className="nc-icon nc-minimal-left" />Back to {this.state.firstName}'s Profile</Link>
         <Card>
           <Row>
             <Col md="4">

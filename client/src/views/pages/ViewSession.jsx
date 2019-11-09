@@ -9,6 +9,7 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
+  CardSubtitle,
   FormGroup,
   Form,
   Input,
@@ -98,8 +99,7 @@ class ViewSession extends Component {
   render() {
     return (
       <div className="content container">
-
-        <Card className="card-signup  mt-5">
+        <Card className="card-signup">
           <CardHeader className="text-center">
             <CardTitle tag="h4">SESSION ON {this.state.date.slice(0, 10)}</CardTitle>
           </CardHeader>
@@ -181,6 +181,21 @@ class ViewSession extends Component {
               </FormGroup>
 
               <label style={{ fontSize: "1rem" }}>NOTES:</label>
+              {this.state.notes.map( note => {
+                return (
+                  <Card>
+                <p key={note._id}></p>
+                <CardBody style={{marginBottom:"0px"}}>
+                <CardSubtitle className="text-muted"><i> Note By: {note.author}</i>
+                <small className="float-right text-muted">
+                  Date: {note.date.slice(0, 10)}</small></CardSubtitle>
+                  <p>"{note.note}"
+                  </p>
+                  </CardBody>
+                  
+                </Card>
+                )
+              })}
               <FormGroup>
                 <Input
                   className="form-control"
@@ -194,18 +209,7 @@ class ViewSession extends Component {
                   />
               </FormGroup>
 
-              <label style={{ fontSize: "1rem" }}>Notes:</label>
-              {this.state.notes.map( note => {
-                return (<p key={note._id}>
-                  <strong>
-                  {note.date.slice(0, 10)}</strong>
-                  <br/>
-                  {note.note}
-                  <br/>
-                  <i>
-                  {note.author}</i>
-                </p>)
-              })}
+            
             </Form>
           </CardBody>
           <CardFooter>

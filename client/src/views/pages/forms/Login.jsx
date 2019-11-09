@@ -1,5 +1,5 @@
 import React from "react";
-import AuthService from '../../components/AuthService';
+import AuthService from '../../../components/AuthService';
 
 // reactstrap components
 import {

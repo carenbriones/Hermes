@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import withAuth from '../withAuth';
-import API from '../../utils/API';
+import withAuth from '../../../components/withAuth';
+import API from '../../../utils/API';
 import { Link } from 'react-router-dom';
 import ReactDatetime from "react-datetime";
 import {
@@ -16,6 +16,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 class NewSession extends Component {
 
@@ -36,7 +37,9 @@ class NewSession extends Component {
     hasIEP: "",
     school: "",
     diagnosis: "",
-    therapist: ""
+    therapist: "",
+
+    alert: null
   };
 
   componentDidMount() {
@@ -52,32 +55,37 @@ class NewSession extends Component {
     //console.log(this.props.user.id, this.state);
     console.log("CHILD ID", this.props.match.params.id, "state", this.state)
 
-    API.postNewSession(this.props.match.params.id,
-      {
-        positiveInteractions: this.state.positiveInteractions,
-        appropriateRequests: this.state.appropriateRequests,
-        appropriateResponse: this.state.appropriateResponse,
-        difficultyWith: this.state.difficultyWith,
-        successWith: this.state.successWith,
-        date: document.getElementById("date").value
-
+    if (document.getElementById("date").value === "") {
+      // Session should not be posted; modal message
+      this.requireAlert();
+      console.log("Date is missing");
+    } else {
+      API.postNewSession(this.props.match.params.id,
+        {
+          positiveInteractions: this.state.positiveInteractions,
+          appropriateRequests: this.state.appropriateRequests,
+          appropriateResponse: this.state.appropriateResponse,
+          difficultyWith: this.state.difficultyWith,
+          successWith: this.state.successWith,
+          date: document.getElementById("date").value
+        })
+        .then(res => {
+          console.log("DATA SAVED!", res.data.session)
+          // console.log("DATE: ", res )
+          this.props.history.replace(`/admin/child/${this.props.match.params.id}`)
+        })
+        .catch(err => console.log(err))
+  
+      this.setState({
+        positiveInteractions: 0,
+        appropriateRequests: 0,
+        appropriateResponse: 0,
+        difficultyWith: "",
+        successWith: "",
+        date: ""
       })
-      .then(res => {
-        console.log("DATA SAVED!", res.data.session)
-        // console.log("DATE: ", res )
-        this.props.history.replace(`/admin/child/${this.props.match.params.id}`)
-      })
-      .catch(err => console.log(err))
+    }
 
-    this.setState({
-      positiveInteractions: 0,
-      appropriateRequests: 0,
-      appropriateResponse: 0,
-      difficultyWith: "",
-      successWith: "",
-      date: ""
-
-    })
   }
 
   handleNoteSubmit = event => {
@@ -119,6 +127,21 @@ class NewSession extends Component {
     });
   };
 
+  requireAlert(){
+    this.setState({
+      alert: (
+        <SweetAlert
+          title="Date required"
+          onConfirm={() => this.hideAlert()}
+          onCancel={() => this.hideAlert()}
+          confirmBtnBsStyle="info"
+        >
+          Please select the date for this session.
+        </SweetAlert>
+      )
+    });
+  }
+
   render() {
     return (
       <div className="content container">
@@ -126,7 +149,7 @@ class NewSession extends Component {
         <Card>
           <Row>
             <Col md="4">
-              <img src={require("../../assets/img/childavatar.jpg")}
+              <img src={require("../../../assets/img/childavatar.jpg")}
               />
             </Col>
 

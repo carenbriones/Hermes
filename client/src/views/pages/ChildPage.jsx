@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import withAuth from './../withAuth';
-import API from './../../utils/API';
+import withAuth from '../../components/withAuth';
+import API from '../../utils/API';
 import {
     Button,
     Card,
@@ -14,8 +14,8 @@ import {
 } from "reactstrap";
 import resources from "./../../resources.json"
 
-import SessionTable from "../../views/tables/SessionTable";
-import SessionsGraph from "../../views/components/SessionsGraph";
+import SessionTable from "../tables/SessionTable";
+import SessionsGraph from "../components/SessionsGraph";
 
 class ChildPage extends Component {
 

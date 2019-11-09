@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import withAuth from '../withAuth';
-import API from '../../utils/API';
+import withAuth from '../../../components/withAuth';
+import API from '../../../utils/API';
 import { Link } from 'react-router-dom';
 import ReactDatetime from "react-datetime";
 import {
@@ -14,7 +14,11 @@ import {
   Form,
   Input,
   Row,
-  Col
+  Col,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 
 class NewSession extends Component {
@@ -36,7 +40,9 @@ class NewSession extends Component {
     hasIEP: "",
     school: "",
     diagnosis: "",
-    therapist: ""
+    therapist: "",
+
+    modal: false
   };
 
   componentDidMount() {
@@ -52,32 +58,37 @@ class NewSession extends Component {
     //console.log(this.props.user.id, this.state);
     console.log("CHILD ID", this.props.match.params.id, "state", this.state)
 
-    API.postNewSession(this.props.match.params.id,
-      {
-        positiveInteractions: this.state.positiveInteractions,
-        appropriateRequests: this.state.appropriateRequests,
-        appropriateResponse: this.state.appropriateResponse,
-        difficultyWith: this.state.difficultyWith,
-        successWith: this.state.successWith,
-        date: document.getElementById("date").value
-
+    if (document.getElementById("date").value === "") {
+      // Session should not be posted; modal message
+      this.toggleModal();
+      console.log("Date is missing");
+    } else {
+      API.postNewSession(this.props.match.params.id,
+        {
+          positiveInteractions: this.state.positiveInteractions,
+          appropriateRequests: this.state.appropriateRequests,
+          appropriateResponse: this.state.appropriateResponse,
+          difficultyWith: this.state.difficultyWith,
+          successWith: this.state.successWith,
+          date: document.getElementById("date").value
+        })
+        .then(res => {
+          console.log("DATA SAVED!", res.data.session)
+          // console.log("DATE: ", res )
+          this.props.history.replace(`/admin/child/${this.props.match.params.id}`)
+        })
+        .catch(err => console.log(err))
+  
+      this.setState({
+        positiveInteractions: 0,
+        appropriateRequests: 0,
+        appropriateResponse: 0,
+        difficultyWith: "",
+        successWith: "",
+        date: ""
       })
-      .then(res => {
-        console.log("DATA SAVED!", res.data.session)
-        // console.log("DATE: ", res )
-        this.props.history.replace(`/admin/child/${this.props.match.params.id}`)
-      })
-      .catch(err => console.log(err))
+    }
 
-    this.setState({
-      positiveInteractions: 0,
-      appropriateRequests: 0,
-      appropriateResponse: 0,
-      difficultyWith: "",
-      successWith: "",
-      date: ""
-
-    })
   }
 
   handleNoteSubmit = event => {
@@ -119,6 +130,12 @@ class NewSession extends Component {
     });
   };
 
+  toggleModal(){
+    this.setState({
+        modal: !this.state.modal
+    });
+  }
+
   render() {
     return (
       <div className="content container">
@@ -126,7 +143,7 @@ class NewSession extends Component {
         <Card>
           <Row>
             <Col md="4">
-              <img src={require("../../assets/img/childavatar.jpg")}
+              <img src={require("../../../assets/img/childavatar.jpg")}
               />
             </Col>
 
@@ -342,6 +359,22 @@ class NewSession extends Component {
             </Button>
           </CardFooter>
         </Card>
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+          <div className="modal-header justify-content-center">
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.toggleModal()}>
+              <span aria-hidden="true">×</span>
+            </button>
+            <h5 className="modal-title">Date Required</h5>
+          </div>
+          <ModalBody>
+              <p className="text-center">Please choose the date for the session.</p>
+          </ModalBody>
+          <ModalFooter>
+              <Button className="mr-2" color="secondary" onClick={() => this.toggleModal()}>
+                  Close
+              </Button>
+          </ModalFooter>
+        </Modal>
 
       </div>
     )

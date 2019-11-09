@@ -30,7 +30,6 @@ class ViewSession extends Component {
     notes: [],
     note: "",
     author: "",
-    date: "",
     noteDate: "",
     alert: null
   };

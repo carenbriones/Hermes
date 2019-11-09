@@ -7,13 +7,25 @@ var Schema = mongoose.Schema;
 // This is similar to a Sequelize model
 var SessionSchema = new Schema({
   // `title` is of type String
-  positiveInteractions: Number,
+  positiveInteractions: {
+    type: Number,
+    required: true
+  },
   // `body` is of type String
-  appropriateRequests: Number,
-  appropriateResponse: Number,
+  appropriateRequests: {
+    type: Number,
+    required: true
+  },
+  appropriateResponse: {
+    type: Number,
+    required: true
+  },
   difficultyWith: String,
   successWith: String,
-  date: Date,
+  date: {
+    type: Date,
+    required: true
+  },
   notes: [
     {
       type: Schema.Types.ObjectId,

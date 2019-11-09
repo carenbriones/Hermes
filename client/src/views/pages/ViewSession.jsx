@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import withAuth from '../../components/withAuth';
 import API from '../../utils/API';
-import { Link } from 'react-router-dom';
-import ReactDatetime from "react-datetime";
-import therapists from "./../../therapists.json"
 
 import {
   Button,
@@ -12,20 +9,13 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  // eslint-disable-next-line
-  Label,
-  // eslint-disable-next-line
+  CardSubtitle,
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
   Row,
   Col,
 } from "reactstrap";
-import { parse } from 'url';
 
 class ViewSession extends Component {
 
@@ -109,8 +99,7 @@ class ViewSession extends Component {
   render() {
     return (
       <div className="content container">
-
-        <Card className="card-signup  mt-5">
+        <Card className="card-signup">
           <CardHeader className="text-center">
             <CardTitle tag="h4">SESSION ON {this.state.date.slice(0, 10)}</CardTitle>
           </CardHeader>
@@ -192,6 +181,21 @@ class ViewSession extends Component {
               </FormGroup>
 
               <label style={{ fontSize: "1rem" }}>NOTES:</label>
+              {this.state.notes.map( note => {
+                return (
+                  <Card>
+                <p key={note._id}></p>
+                <CardBody style={{marginBottom:"0px"}}>
+                <CardSubtitle className="text-muted"><i> Note By: {note.author}</i>
+                <small className="float-right text-muted">
+                  Date: {note.date.slice(0, 10)}</small></CardSubtitle>
+                  <p>"{note.note}"
+                  </p>
+                  </CardBody>
+                  
+                </Card>
+                )
+              })}
               <FormGroup>
                 <Input
                   className="form-control"
@@ -205,18 +209,7 @@ class ViewSession extends Component {
                   />
               </FormGroup>
 
-              <label style={{ fontSize: "1rem" }}>Notes:</label>
-              {this.state.notes.map( note => {
-                return (<p key={note._id}>
-                  <strong>
-                  {note.date.slice(0, 10)}</strong>
-                  <br/>
-                  {note.note}
-                  <br/>
-                  <i>
-                  {note.author}</i>
-                </p>)
-              })}
+            
             </Form>
           </CardBody>
           <CardFooter>

@@ -10,20 +10,12 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  // eslint-disable-next-line
-  Label,
-  // eslint-disable-next-line
   FormGroup,
   Form,
   Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
   Row,
-  Col,
+  Col
 } from "reactstrap";
-import { parse } from 'url';
 
 class NewSession extends Component {
 
@@ -60,14 +52,15 @@ class NewSession extends Component {
     //console.log(this.props.user.id, this.state);
     console.log("CHILD ID", this.props.match.params.id, "state", this.state)
 
-    API.postNewSession(this.props.match.params.id, 
-      {positiveInteractions: this.state.positiveInteractions,
-      appropriateRequests: this.state.appropriateRequests,
-      appropriateResponse: this.state.appropriateResponse,
-      difficultyWith: this.state.difficultyWith,
-      successWith: this.state.successWith,
-      date: document.getElementById("date").value
-      
+    API.postNewSession(this.props.match.params.id,
+      {
+        positiveInteractions: this.state.positiveInteractions,
+        appropriateRequests: this.state.appropriateRequests,
+        appropriateResponse: this.state.appropriateResponse,
+        difficultyWith: this.state.difficultyWith,
+        successWith: this.state.successWith,
+        date: document.getElementById("date").value
+
       })
       .then(res => {
         console.log("DATA SAVED!", res.data.session)
@@ -85,7 +78,7 @@ class NewSession extends Component {
       date: ""
 
     })
-}
+  }
 
   handleNoteSubmit = event => {
     event.preventDefault();
@@ -94,13 +87,25 @@ class NewSession extends Component {
     console.log(this.props.match.params.id)
   }
 
-  handleClick = event => {
+  handleClickAdd = event => {
     event.preventDefault();
     const { name, value } = event.target;
 
     this.setState({
       [name]: parseInt(value) + 1
     })
+  }
+
+  handleClickSubtract = event => {
+    event.preventDefault();
+    const { name, value } = event.target;
+
+    if (this.state[name] > 0) {
+      this.setState({
+        [name]: parseInt(value) - 1
+      })
+    }
+
   }
 
   handleChange = event => {
@@ -117,7 +122,7 @@ class NewSession extends Component {
   render() {
     return (
       <div className="content container">
-        <Link to={"../child/" + this.state._id}><i className="nc-icon nc-minimal-left" />Back to {this.state.firstName} {this.state.lastName} Profile</Link>
+        <Link to={"../child/" + this.state._id}><i className="nc-icon nc-minimal-left" />Back to {this.state.firstName}'s Profile</Link>
         <Card>
           <Row>
             <Col md="4">
@@ -186,8 +191,19 @@ class NewSession extends Component {
                         id="positiveInteractions"
                         autoComplete="positiveInteractions"
                         value={this.state.positiveInteractions}
-                        onClick={this.handleClick}>
+                        onClick={this.handleClickAdd}>
                         <i className="nc-icon nc-simple-add" /> Interactions
+                  </Button>
+                      <Button style={{ marginLeft: "0px"}}
+                        className="btn-block"
+                        color="default"
+                        placeholder="Positive Interactions"
+                        name="positiveInteractions"
+                        id="positiveInteractions"
+                        autoComplete="positiveInteractions"
+                        value={this.state.positiveInteractions}
+                        onClick={this.handleClickSubtract}>
+                        <i className="nc-icon nc-simple-delete" /> Interactions
                   </Button>
                     </CardBody>
                   </Card>
@@ -212,8 +228,20 @@ class NewSession extends Component {
                         id="appropriateRequests"
                         autoComplete="appropriateRequests"
                         value={this.state.appropriateRequests}
-                        onClick={this.handleClick}>
+                        onClick={this.handleClickAdd}>
                         <i className="nc-icon nc-simple-add" />Requests
+                  </Button>
+
+                      <Button style={{ marginLeft: "0px"}}
+                        className="btn-block"
+                        color="default"
+                        placeholder="Appropriate Requests"
+                        name="appropriateRequests"
+                        id="appropriateRequests"
+                        autoComplete="appropriateRequests"
+                        value={this.state.appropriateRequests}
+                        onClick={this.handleClickSubtract}>
+                        <i className="nc-icon nc-simple-delete" />Requests
                   </Button>
                     </CardBody>
                   </Card>
@@ -239,8 +267,20 @@ class NewSession extends Component {
                         id="appropriateResponse"
                         autoComplete="appropriateResponse"
                         value={this.state.appropriateResponse}
-                        onClick={this.handleClick}>
+                        onClick={this.handleClickAdd}>
                         <i className="nc-icon nc-simple-add" /> Responses
+                  </Button>
+
+                      <Button style={{ marginLeft: "0px"}}
+                        className="btn-block"
+                        color="defualt"
+                        placeholder="Appropriate Responses"
+                        name="appropriateResponse"
+                        id="appropriateResponse"
+                        autoComplete="appropriateResponse"
+                        value={this.state.appropriateResponse}
+                        onClick={this.handleClickSubtract}>
+                        <i className="nc-icon nc-simple-delete" /> Responses
                   </Button>
 
                     </CardBody>
@@ -281,16 +321,16 @@ class NewSession extends Component {
               <label style={{ fontSize: "1rem" }}>Session Date:</label>
               <FormGroup>
                 <ReactDatetime
-                inputProps={{
-                  className:"form-control",
-                  name:"date",
-                  id:"date",
-                  autoComplete:"date"
-                  
-                }}
+                  inputProps={{
+                    className: "form-control",
+                    name: "date",
+                    id: "date",
+                    autoComplete: "date"
+
+                  }}
                   timeFormat={false}
-                  // onChange={this.handleChange} 
-                  />
+                // onChange={this.handleChange} 
+                />
               </FormGroup>
             </Form>
           </CardBody>

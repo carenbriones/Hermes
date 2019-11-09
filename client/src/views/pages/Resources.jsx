@@ -3,26 +3,9 @@ import ResourcesCard from "../components/cards/ResourcesCard"
 import resources from "../../resources.json"
 // reactstrap components
 import {
-    Button,
-    Card,
-    CardHeader,
-    CardBody,
-    CardImg,
-    CardText,
-    CardFooter,
-    CardTitle,
-    FormGroup,
-    Form,
-    Input,
-    ListGroup,
-    ListGroupItem,
-    Table,
-    Row,
-    Col
+    Row
 } from "reactstrap";
 
-import withAuth from "../../components/withAuth";
-import API from "../../utils/API";
 
 class Resources extends React.Component {
 

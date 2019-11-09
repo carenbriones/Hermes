@@ -6,7 +6,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 
 import avatar from "assets/img/default-avatar.png";
 import logo from "assets/img/hermes-logo.png";
-import API from "../../utils/API";
+
 
 import AuthService from '../AuthService';
 
@@ -162,7 +162,7 @@ class Sidebar extends React.Component {
         <div className="logo">
           
           <a
-            href="/admin/dashboard"
+            href="/admin/user-profile"
             className="simple-text logo-mini"
           >
             {/* <div className="logo-img"> */}
@@ -170,7 +170,7 @@ class Sidebar extends React.Component {
             {/* </div> */}
           </a>
           <a
-            href="/admin/dashboard"
+            href="/admin/user-profile"
             className="simple-text logo-normal"
           >
             HERMES TRACKER

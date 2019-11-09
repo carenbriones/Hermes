@@ -1,32 +1,16 @@
 import React, { Component } from 'react';
 import withAuth from '../withAuth';
-import API from '../../utils/API';
 import { Link } from 'react-router-dom';
 import {
-  Button,
   Card,
-  CardHeader,
   CardBody,
-  CardFooter,
   CardImg,
   CardText,
   CardTitle,
-  // eslint-disable-next-line
-  Label,
-  // eslint-disable-next-line
-  FormGroup,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
   Row,
   Col,
 } from "reactstrap";
-import { parse } from 'url';
-import resources from "./../../resources.json"
-import { throwStatement } from '@babel/types';
+import resources from "./../../resources.json";
 
 class OneResource extends Component {
 

@@ -15,7 +15,11 @@ import {
   InputGroup,
   Container,
   Col,
-  Row
+  Row,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 
 class Login extends React.Component {
@@ -24,6 +28,9 @@ class Login extends React.Component {
     this.Auth = new AuthService();
   }
 
+  state = {
+    modal: false
+  }
 
   componentDidMount() {
     document.body.classList.toggle("login-page");
@@ -42,7 +49,7 @@ class Login extends React.Component {
         this.props.history.replace(`/admin/user-profile`);
       })
       .catch(err => {
-        alert(err.response.data.message)
+        this.toggleModal();
       });
   };
 
@@ -53,6 +60,11 @@ class Login extends React.Component {
     });
   };
 
+  toggleModal(){
+    this.setState({
+        modal: !this.state.modal
+    });
+  }
 
   render() {
     return (
@@ -123,6 +135,24 @@ class Login extends React.Component {
             backgroundImage: `url(${require("assets/img/bg/learning-can-be-real-fun.jpg")})`
           }}
         />
+
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+          <div className="modal-header justify-content-center">
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.toggleModal()}>
+              <span aria-hidden="true">×</span>
+            </button>
+            <h5 className="modal-title">Incorrect Login</h5>
+          </div>
+          <ModalBody>
+            <p className="text-center">There was an error with your e-mail/password combination. Please try again.</p>
+          </ModalBody>
+          <ModalFooter>
+            <Button className="mr-2" color="secondary" onClick={() => this.toggleModal()}>
+                Close
+            </Button>
+          </ModalFooter>
+        </Modal>
+
       </div>
     );
   }

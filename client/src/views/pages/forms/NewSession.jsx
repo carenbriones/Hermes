@@ -42,7 +42,7 @@ class NewSession extends Component {
     diagnosis: "",
     therapist: "",
 
-    modalDemo: false
+    modal: false
   };
 
   componentDidMount() {
@@ -60,7 +60,7 @@ class NewSession extends Component {
 
     if (document.getElementById("date").value === "") {
       // Session should not be posted; modal message
-      this.toggleModalDemo();
+      this.toggleModal();
       console.log("Date is missing");
     } else {
       API.postNewSession(this.props.match.params.id,
@@ -130,9 +130,9 @@ class NewSession extends Component {
     });
   };
 
-  toggleModalDemo(){
+  toggleModal(){
     this.setState({
-        modalDemo: !this.state.modalDemo
+        modal: !this.state.modal
     });
   }
 
@@ -359,9 +359,9 @@ class NewSession extends Component {
             </Button>
           </CardFooter>
         </Card>
-        <Modal isOpen={this.state.modalDemo} toggle={this.toggleModalDemo}>
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
           <div className="modal-header justify-content-center">
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.toggleModalDemo()}>
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.toggleModal()}>
               <span aria-hidden="true">×</span>
             </button>
             <h5 className="modal-title">Date Required</h5>
@@ -370,11 +370,11 @@ class NewSession extends Component {
               <p className="text-center">Please choose the date for the session.</p>
           </ModalBody>
           <ModalFooter>
-              <Button color="secondary" onClick={() => this.toggleModalDemo()}>
+              <Button className="mr-2" color="secondary" onClick={() => this.toggleModal()}>
                   Close
               </Button>
           </ModalFooter>
-      </Modal>
+        </Modal>
 
       </div>
     )

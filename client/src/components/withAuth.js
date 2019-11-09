@@ -10,7 +10,7 @@ export default function withAuth(AuthComponent) {
 
         componentDidMount() {
             if (!Auth.loggedIn()) {
-                this.props.history.replace('/auth/login');
+                this.props.history.replace('/auth/register');
             }
             else {
                 try {

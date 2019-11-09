@@ -37,7 +37,7 @@ class ChildTable extends React.Component {
             <CardTitle><h3>You Have Not Added Any Children</h3></CardTitle>
             <CardText>Please add a child, to access session tracking tools.  </CardText>
             <Button href="/admin/addChild" className=" btn-primary">
-              Addd A Child
+              Add A Child
                       </Button>
           </CardBody>
         </Card>

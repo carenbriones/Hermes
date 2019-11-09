@@ -14,9 +14,12 @@ import {
   Form,
   Input,
   Row,
-  Col
+  Col,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
-import SweetAlert from 'react-bootstrap-sweetalert';
 
 class NewSession extends Component {
 
@@ -39,7 +42,7 @@ class NewSession extends Component {
     diagnosis: "",
     therapist: "",
 
-    alert: null
+    modalDemo: false
   };
 
   componentDidMount() {
@@ -57,7 +60,7 @@ class NewSession extends Component {
 
     if (document.getElementById("date").value === "") {
       // Session should not be posted; modal message
-      this.requireAlert();
+      this.toggleModalDemo();
       console.log("Date is missing");
     } else {
       API.postNewSession(this.props.match.params.id,
@@ -127,18 +130,9 @@ class NewSession extends Component {
     });
   };
 
-  requireAlert(){
+  toggleModalDemo(){
     this.setState({
-      alert: (
-        <SweetAlert
-          title="Date required"
-          onConfirm={() => this.hideAlert()}
-          onCancel={() => this.hideAlert()}
-          confirmBtnBsStyle="info"
-        >
-          Please select the date for this session.
-        </SweetAlert>
-      )
+        modalDemo: !this.state.modalDemo
     });
   }
 
@@ -365,6 +359,22 @@ class NewSession extends Component {
             </Button>
           </CardFooter>
         </Card>
+        <Modal isOpen={this.state.modalDemo} toggle={this.toggleModalDemo}>
+          <div className="modal-header justify-content-center">
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.toggleModalDemo()}>
+              <span aria-hidden="true">×</span>
+            </button>
+            <h5 className="modal-title">Date Required</h5>
+          </div>
+          <ModalBody>
+              <p className="text-center">Please choose the date for the session.</p>
+          </ModalBody>
+          <ModalFooter>
+              <Button color="secondary" onClick={() => this.toggleModalDemo()}>
+                  Close
+              </Button>
+          </ModalFooter>
+      </Modal>
 
       </div>
     )

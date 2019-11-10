@@ -33,6 +33,7 @@
     "mongoose": "^5.5.3",
     "morgan": "^1.9.1",
     "react": "^16.11.0",
+    "react-bootstrap-sweetalert": "^5.1.6",
     "react-dom": "^16.11.0",
     "reactstrap": "^8.1.1"
   }

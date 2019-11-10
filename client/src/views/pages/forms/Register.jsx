@@ -1,6 +1,6 @@
 import React from "react";
-import AuthService from '../../components/AuthService';
-import API from '../../utils/API';
+import AuthService from '../../../components/AuthService';
+import API from '../../../utils/API';
 import { Redirect } from 'react-router-dom';
 
 // reactstrap components

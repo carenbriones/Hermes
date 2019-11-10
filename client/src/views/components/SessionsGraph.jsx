@@ -7,7 +7,8 @@ import {
   Card,
   CardHeader,
   CardBody,
-  CardTitle
+  CardTitle,
+  CardText
   
 } from "reactstrap";
 
@@ -131,17 +132,18 @@ class SessionsGraph extends React.Component {
   render() {
     return (
       <>
-        <Card className="card-chart">
-          <CardHeader>
-            <CardTitle><h4>Session Progress</h4></CardTitle>
-          </CardHeader>
-          <CardBody>
-            <Line
-              data={this.state.data}
-              options={this.state.options}
-            />
-          </CardBody>
-        </Card>
+        {this.state.sessions.length > 0 ?
+          <Card className="card-chart text-center">
+            <CardBody>
+              <CardTitle ><h3>Session Progress</h3></CardTitle>
+                <Line
+                  data={this.state.data}
+                  options={this.state.options}
+                /> 
+            </CardBody>
+          </Card> :
+          <></>
+        }
       </>
     )
   }

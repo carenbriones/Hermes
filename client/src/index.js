@@ -12,6 +12,7 @@ import "assets/scss/paper-dashboard.scss?v=1.1.0";
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
+import NewSession from "./views/pages/forms/NewSession"
 
 const hist = createBrowserHistory();
 

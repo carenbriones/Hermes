@@ -42,10 +42,10 @@ const ChildSchema = new Schema({
   },
   sessions: [
     {
-  type: Schema.Types.ObjectId,
-  ref: "Session"
+      type: Schema.Types.ObjectId,
+      ref: "Session"
     }
-    ]
+  ]
 });
 
 const Child = mongoose.model('Child', ChildSchema);

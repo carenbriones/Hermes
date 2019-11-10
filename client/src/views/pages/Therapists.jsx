@@ -14,7 +14,7 @@ function Therapists () {
             <div className="content">
                 <Container>
                     {/* ############# THERAPIST INFO CARD ################ */}
-                        <h2>Meet the Therapists! <i className="nc-icon nc-favourite-28"></i></h2>
+                    <h2><i className="fa fa-user-md"></i> Meet the Therapists! </h2>
                         {therapists.map(therapist => 
                         { return (
                             <Card>

@@ -17,45 +17,15 @@ import {
 } from "reactstrap";
 
 class Register extends React.Component {
-  constructor() {
-    super();
-    this.Auth = new AuthService();
-  }
+ 
 
-  componentDidMount() {
-    document.body.classList.toggle("register-page");
-  }
-  componentWillUnmount() {
-    document.body.classList.toggle("register-page");
-  }
-
-  handleFormSubmit = event => {
-    event.preventDefault();
-    API.signUpUser(this.state.name, this.state.email, this.state.password, this.state.address, this.state.phoneNumber)
-      .then(res => {
-        // once the user has signed up
-        // send them to the login page
-        this.props.history.replace('/auth/login');
-      })
-      .catch(err => alert(err));
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
 
 
   render() {
-    // go to home page after signup
-    if (this.Auth.loggedIn()) {
-      return <Redirect to="/" />
-    }
+    
     return (
-      <div className="register-page">
-          <Container>
+      <div className="content">
+        <Container>
         <Alert color="primary" className="text-center">
         Hermes Tracker was built on a MERN Stack. <a style={{color:"#4b4b4b"}} href="https://github.com/carenbriones/Hermes">View our GitHub Repo for full details.</a> 
         
@@ -63,7 +33,7 @@ class Register extends React.Component {
           <Row>
             <Col className="ml-auto mr-auto text-center">
               <h1 className="title">About Us</h1>
-              <h4 className="description" style={{color:"white"}}>
+              <h4 className="description" style={{color:"#2b2a2a"}}>
                 We are students (now Graduates) at UCSD's Full Stack Development program. Over the
                 course of our program we came together on multiple projects. We found that each of us
                 brought a valuable set of skills that complimented the other team members. Check out our
@@ -220,12 +190,7 @@ class Register extends React.Component {
           </Row>
          
         </Container >
-      <div
-        className="full-page-background"
-        style={{
-          backgroundImage: `url(${require("assets/img/bg/girl-and-speech-therapist.jpg")})`
-        }}
-      />
+      
       </div >
     );
   }

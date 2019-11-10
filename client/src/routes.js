@@ -11,7 +11,7 @@ import ChildTable from "./views/tables/ChildTable";
 import Therapists from "views/pages/Therapists";
 import ViewSession from "views/pages/ViewSession";
 import About from "views/pages/About.jsx";
-
+import DevTeam from "views/pages/DevTeam";
 
 const routes = [
   
@@ -87,11 +87,13 @@ const routes = [
   },
   {
     path: "/about",
-    name: "Resource",
+    name: "About",
     component: About,
     layout: "/auth",
     invisible: true
   },
+  
+  
   {
     path: "/therapists",
     name: "Therapists",
@@ -108,6 +110,14 @@ const routes = [
   },
 
   {
+    path: "/dev-team",
+    name: "Dev Team",
+    icon: "nc-icon nc-atom",
+    component: DevTeam,
+    layout: "/admin",
+  },
+
+  {
     path: "/login",
     name: "Login",
     component: Login,
@@ -121,6 +131,7 @@ const routes = [
     layout: "/auth",
     invisible: true
   }
+  
 
 ]
 

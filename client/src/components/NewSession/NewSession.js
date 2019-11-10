@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import withAuth from '../withAuth';
 import API from '../../utils/API';
 import { Link } from 'react-router-dom';
 import ReactDatetime from "react-datetime";
@@ -126,7 +125,7 @@ class NewSession extends Component {
         <Card>
           <Row>
             <Col md="4">
-              <img src={require("../../assets/img/childavatar.jpg")}
+              <img src={require("../../assets/img/childavatar.jpg")} alt={this.state.lastname}
               />
             </Col>
 

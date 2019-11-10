@@ -21,7 +21,7 @@ function Therapists () {
                                 <CardBody>
                                     <Row key={Math.floor(Math.random() * 20)}>
                                         <Col md="2">
-                                            <img src={therapist.img}/>
+                                            <img src={therapist.img} alt={therapists.name}/>
                                         </Col>
                                         <Col md="7">
                                             <h6 className="text-primary"> {therapist.name}, {therapist.title}. <i className="nc-icon nc-badge"></i></h6>
@@ -31,7 +31,7 @@ function Therapists () {
                                         </Col>
                                         <Col md="3">
                                             
-                                            <img className="float=left"src="https://www.healthdesign.org/sites/default/files/styles/responsive_image/public/pebble/partners/childrens.2color.jpg" />
+                                            <img className="float=left"src="https://www.healthdesign.org/sites/default/files/styles/responsive_image/public/pebble/partners/childrens.2color.jpg" alt={therapist.location}/>
                                         </Col>
                                     </Row>
                                 </CardBody>

@@ -46,7 +46,7 @@ class AuthNavbar extends React.Component {
         <Container>
           <div className="navbar-wrapper">
             <NavbarBrand>
-            <img src="https://i.ibb.co/sV4Hhd0/Heremes-Logo-Small.png"/> Hermes Therapy Tracker
+            <img src="https://i.ibb.co/sV4Hhd0/Heremes-Logo-Small.png" alt="Hermes Logo" /> Hermes Therapy Tracker
             </NavbarBrand>
           </div>
           <button
@@ -68,7 +68,12 @@ class AuthNavbar extends React.Component {
             navbar
           >
             <Nav navbar>
-
+            <NavItem>
+                <NavLink to="/auth/about" className="nav-link">
+                  <i className="nc-icon nc-atom" />
+                  Dev Team
+                </NavLink>
+              </NavItem>
               
 
               <NavItem>

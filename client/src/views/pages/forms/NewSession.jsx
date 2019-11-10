@@ -143,11 +143,7 @@ class NewSession extends Component {
         <Card>
           <Row>
             <Col md="4">
-<<<<<<< HEAD:client/src/components/NewSession/NewSession.js
-              <img src={require("../../assets/img/childavatar.jpg")} alt={this.state.lastname}
-=======
-              <img src={require("../../../assets/img/childavatar.jpg")}
->>>>>>> master:client/src/views/pages/forms/NewSession.jsx
+              <img src={require("../../../assets/img/childavatar.jpg")} alt={this.state.lastname}
               />
             </Col>
 

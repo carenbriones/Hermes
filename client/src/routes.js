@@ -106,7 +106,8 @@ const routes = [
     name: "Calendar",
     icon: "nc-icon nc-calendar-60",
     component: Calendar,
-    layout: "/admin"
+    layout: "/admin",
+    invisible: true
   },
 
   {

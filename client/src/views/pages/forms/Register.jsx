@@ -18,13 +18,20 @@ import {
   InputGroup,
   Container,
   Row,
-  Col
+  Col,
+  Modal,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 
 class Register extends React.Component {
   constructor() {
     super();
     this.Auth = new AuthService();
+  }
+
+  state = {
+    modal: false
   }
 
   componentDidMount() {
@@ -36,13 +43,28 @@ class Register extends React.Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    API.signUpUser(this.state.name, this.state.email, this.state.password, this.state.address, this.state.phoneNumber)
-      .then(res => {
-        // once the user has signed up
-        // send them to the login page
-        this.props.history.replace('/auth/login');
-      })
-      .catch(err => alert(err));
+
+    // if any field is empty, display modal
+    if (
+      this.state.name === ""||
+      this.state.email === ""||
+      this.state.password === ""||
+      this.state.address === ""||
+      this.state.phoneNumber === ""
+    ) {
+      this.toggleModal();
+    }
+    else {
+      // Submit form
+      API.signUpUser(this.state.name, this.state.email, this.state.password, this.state.address, this.state.phoneNumber)
+        .then(res => {
+          // once the user has signed up
+          // send them to the login page
+          this.props.history.replace('/auth/login');
+        })
+        .catch(() => this.toggleModal());
+    }
+
   };
 
   handleChange = event => {
@@ -52,6 +74,11 @@ class Register extends React.Component {
     });
   };
 
+  toggleModal(){
+    this.setState({
+        modal: !this.state.modal
+    });
+  }
 
   render() {
      // go to home page after signup
@@ -213,6 +240,23 @@ class Register extends React.Component {
             backgroundImage: `url(${require("assets/img/bg/girl-and-speech-therapist.jpg")})`
           }}
         />
+
+        <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+          <div className="modal-header justify-content-center">
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.toggleModal()}>
+              <span aria-hidden="true">×</span>
+            </button>
+            <h5 className="modal-title">Form Incomplete</h5>
+          </div>
+          <ModalBody>
+            <p className="text-center">All fields on this form are required. Please fill out each field.</p>
+          </ModalBody>
+          <ModalFooter>
+            <Button className="mr-2" color="secondary" onClick={() => this.toggleModal()}>
+                Close
+            </Button>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }

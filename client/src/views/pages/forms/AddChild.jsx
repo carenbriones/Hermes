@@ -14,7 +14,10 @@ import {
   Form,
   Input,
   Row,
-  Col
+  Col,
+  Modal,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 
 
@@ -30,7 +33,8 @@ class AddChild extends Component {
     school: "",
     diagnosis: "",
     therapist: "",
-    _id: ""
+    _id: "",
+    modal: false
   };
 
   componentDidMount() {
@@ -85,6 +89,12 @@ class AddChild extends Component {
       [name]: value
     });
   };
+
+  toggleModal(){
+    this.setState({
+        modal: !this.state.modal
+    });
+  }
 
   render() {
     return (
@@ -302,6 +312,23 @@ class AddChild extends Component {
 
             </Col>
           </Row>
+
+          <Modal isOpen={this.state.modal} toggle={this.toggleModal}>
+          <div className="modal-header justify-content-center">
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.toggleModal()}>
+              <span aria-hidden="true">×</span>
+            </button>
+            <h5 className="modal-title">Incorrect Login</h5>
+          </div>
+          <ModalBody>
+            <p className="text-center">There was an error with your e-mail/password combination. Please try again.</p>
+          </ModalBody>
+          <ModalFooter>
+            <Button className="mr-2" color="secondary" onClick={() => this.toggleModal()}>
+                Close
+            </Button>
+          </ModalFooter>
+        </Modal>
 
           </div>
     )

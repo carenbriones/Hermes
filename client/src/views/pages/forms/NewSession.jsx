@@ -143,7 +143,7 @@ class NewSession extends Component {
         <Card>
           <Row>
             <Col md="4">
-              <img src={require("../../../assets/img/childavatar.jpg")}
+              <img src={require("../../../assets/img/childavatar.jpg")} alt={this.state.lastname}
               />
             </Col>
 

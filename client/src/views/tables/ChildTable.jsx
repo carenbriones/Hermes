@@ -96,6 +96,7 @@ class ChildTable extends React.Component {
   render() {
     return (
       <>
+      <div className="content">
         {/* <Card>
         <CardHeader>
           <h5 className="title float-left">Children</h5>
@@ -134,6 +135,7 @@ class ChildTable extends React.Component {
       </Card> */}
 
         {this.showChildren(this.state.children)}
+        </div>
       </>
     )
   }

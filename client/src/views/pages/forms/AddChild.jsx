@@ -48,36 +48,50 @@ class AddChild extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    // console.log(this.state)
-
-    API.postNewChild(this.state._id,
-      {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        dateOfBirth: document.getElementById("dateOfBirth").value,
-        gender: this.state.gender,
-        hasIEP: this.state.hasIEP,
-        school: this.state.school,
-        diagnosis: this.state.diagnosis,
-        therapist: this.state.therapist
+    // If any field is empty, display modal
+    if (
+      this.state.firstName === ""||
+      this.state.lastName === ""||
+      document.getElementById("dateOfBirth").value === ""||
+      this.state.gender === ""||
+      this.state.hasIEP === "" ||
+      this.state.school === "" ||
+      this.state.diagnosis === "" ||
+      this.state.therapist === ""
+    ) {
+      this.toggleModal();
+    }
+    else {
+      API.postNewChild(this.state._id,
+        {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          dateOfBirth: document.getElementById("dateOfBirth").value,
+          gender: this.state.gender,
+          hasIEP: this.state.hasIEP,
+          school: this.state.school,
+          diagnosis: this.state.diagnosis,
+          therapist: this.state.therapist
+        })
+        .then(res => {
+          console.log("data saved", res.data)
+          this.props.history.replace("/admin/user-profile")
+        })
+        .catch(err => alert(err));
+  
+      this.setState({
+        firstName: "",
+        lastName: "",
+        dateOfBirth: "",
+        gender: "",
+        hasIEP: "",
+        school: "",
+        diagnosis: "",
+        therapist: ""
       })
-      .then(res => {
-        console.log("data saved", res.data)
-        this.props.history.replace("/admin/user-profile")
-      })
-      .catch(err => alert(err));
+    }
 
-    this.setState({
-      firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      gender: "",
-      hasIEP: "",
-      school: "",
-      diagnosis: "",
-      therapist: ""
-    })
-    console.log(this.state)
+
   };
 
   handleChange = event => {
@@ -318,10 +332,10 @@ class AddChild extends Component {
             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => this.toggleModal()}>
               <span aria-hidden="true">×</span>
             </button>
-            <h5 className="modal-title">Incorrect Login</h5>
+            <h5 className="modal-title">Form Incomplete</h5>
           </div>
           <ModalBody>
-            <p className="text-center">There was an error with your e-mail/password combination. Please try again.</p>
+            <p className="text-center">All fields on this form are required. Please fill out each field.</p>
           </ModalBody>
           <ModalFooter>
             <Button className="mr-2" color="secondary" onClick={() => this.toggleModal()}>

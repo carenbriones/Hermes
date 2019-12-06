@@ -63,26 +63,23 @@ class Register extends React.Component {
                     <CardBody>
                       <CardTitle tag="h4">Caren Briones</CardTitle>
                       <h5 className="category" style={{fontSize: "1.3em"}}>Back-end</h5>
-                      {/* <p className="card-description" style={{
-                        fontSize: "1.2em",
-                        color:"#2b2a2a"
-                      }}>
-                        Think in the morning. Act in the noon. Eat in the
-                        evening. Sleep in the night......
-                          </p> */}
                       <CardFooter>
                         <Button
                           className="btn btn-linkedin mx-1"
-                          href="https://www.linkedin.com/in/caren-briones-a62b74123/"
-                          onClick={e => e.preventDefault()}
+                          onClick={e => {
+                            e.preventDefault();
+                            window.open("https://www.linkedin.com/in/caren-briones-a62b74123/")
+                          }}
                         >
                           <i className="fa fa-linkedin"></i>
                           LinkedIn
                         </Button>
                         <Button
                           className="btn btn-reddit mx-1"
-                          href="https://github.com/carenbriones"
-                          onClick={e => e.preventDefault()}
+                          onClick={e => {
+                            e.preventDefault();
+                            window.open("https://github.com/carenbriones")
+                          }}
                         >
                           <i className="fa fa-github"></i>
                           GitHub
@@ -109,26 +106,24 @@ class Register extends React.Component {
                     <CardBody>
                       <CardTitle tag="h4">Wendy Garcia</CardTitle>
                       <h5 className="category" style={{fontSize: "1.3em"}}>Database Architect</h5>
-                      {/* <p className="card-description" style={{
-                        fontSize: "1.2em",
-                        color:"#2b2a2a"
-                      }}>
-                        Think in the morning. Act in the noon. Eat in the
-                        evening. Sleep in the night......
-                          </p> */}
                       <CardFooter>
                         <Button
                           className="btn btn-linkedin mx-1"
-                          href="https://www.linkedin.com/in/wendy-garcia-97682a31/"
-                          onClick={e => e.preventDefault()}
+                          // onclick=" window.open('http://google.com','_blank')"
+                          onClick={e => {
+                            e.preventDefault();
+                            window.open("https://www.linkedin.com/in/wendy-garcia-97682a31/")
+                          }}
                         >
                           <i className="fa fa-linkedin"></i>
                           LinkedIn
                         </Button>
                         <Button
                           className="btn btn-reddit mx-1"
-                          href="https://github.com/wendygarcia84"
-                          onClick={e => e.preventDefault()}
+                          onClick={e => {
+                            e.preventDefault();
+                            window.open("https://github.com/wendygarcia84")
+                          }}
                         >
                           <i className="fa fa-github"></i>
                           GitHub
@@ -155,26 +150,23 @@ class Register extends React.Component {
                     <CardBody>
                       <CardTitle tag="h4">Jeff McLean</CardTitle>
                       <h5 className="category" style={{fontSize: "1.3em"}}>Front-end</h5>
-                      {/* <p className="card-description" style={{
-                        fontSize: "1.2em",
-                        color:"#2b2a2a"
-                      }}>
-                        Think in the morning. Act in the noon. Eat in the
-                        evening. Sleep in the night......
-                          </p> */}
                       <CardFooter>
                         <Button
                           className="btn btn-linkedin mx-1"
-                          href="https://www.linkedin.com/in/jeffreymclean22/"
-                          onClick={e => e.preventDefault()}
+                          onClick={e => {
+                            e.preventDefault();
+                            window.open("https://www.linkedin.com/in/jeffreymclean22/")
+                          }}
                         >
                           <i className="fa fa-linkedin"></i>
                           LinkedIn
                         </Button>
                         <Button
                           className="btn btn-reddit mx-1"
-                          href="https://github.com/jmmarketing"
-                          onClick={e => e.preventDefault()}
+                          onClick={e => {
+                            e.preventDefault();
+                            window.open("https://github.com/jmmarketing")
+                          }}
                         >
                           <i className="fa fa-github"></i>
                           GitHub

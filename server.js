@@ -30,8 +30,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 mongoose
-  // .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', { useNewUrlParser: true, useCreateIndex: true })
-  .connect(process.env.MONGODB_URI || 'mongodb://user1:password1@ds141248.mlab.com:41248/heroku_mr3t7zbs', { useNewUrlParser: true, useCreateIndex: true })
+  .connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/appDB', { useNewUrlParser: true, useCreateIndex: true })
+  // .connect(process.env.MONGODB_URI || 'mongodb://user1:password1@ds141248.mlab.com:41248/heroku_mr3t7zbs', { useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("MongoDB Connected!"))
   .catch(err => console.error(err));
 
@@ -211,6 +211,52 @@ app.get("/api/note/:id", function (req, res) {
 
 //----------------end of OUR NOTES---------------//
 
+//---- Events ----//
+
+// Creates an event
+app.post("/api/user/:id/event", function (req, res) {
+  db.Event
+    .create(req.body)
+    .then(function (dbEvent) {
+      return db.User
+        .findOneAndUpdate(
+          { _id: req.params.id },
+          { $push: { events: dbEvent._id } },
+          { new: true}
+        );
+    })
+    .then(function (dbEvent) {
+      res.json(dbEvent);
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+})
+
+// Gets an event by its id
+app.get("/api/event/:id", function (req, res) {
+  db.Event
+    .findOne({ _id: req.params.id })
+    .then(function(dbEvent) {
+      res.json(dbEvent);
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+})
+
+// Gets all events of a user by the user ID
+app.get("api/user/:id/events", function (req, res) {
+  db.User
+    .findOne({ _id: req.params.id})
+    .populate("events")
+    .then(function (dbUser) {
+      res.json(dbUser.events);
+    })
+    .catch(function (err) {
+      res.json(err);
+    })
+})
 
 
 app.get('/', isAuthenticated /* Using the express jwt MW here */, (req, res) => {

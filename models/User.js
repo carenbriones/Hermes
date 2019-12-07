@@ -34,6 +34,12 @@ const UserSchema = new Schema({
       ref: "Child"
     }
   ],
+  events: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Event"
+    }
+  ],
   address: {
     type: String
   },

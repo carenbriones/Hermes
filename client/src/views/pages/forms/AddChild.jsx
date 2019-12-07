@@ -215,6 +215,20 @@ class AddChild extends Component {
                            <span className="form-check-sign"></span>
                             </Label>
                           </div>
+                          <div className="form-check-radio form-check-inline">
+                          <Label check>
+                              <Input
+                                
+                                id="NB"
+                                type="radio"
+                                name="gender"
+                                // checked={this.state.gender = "Female"}
+                                onChange={this.handleChange}
+                                value="Non-Binary" />
+                              Non-Binary
+                           <span className="form-check-sign"></span>
+                            </Label>
+                          </div>
                         </FormGroup>
                       </Col>
                       

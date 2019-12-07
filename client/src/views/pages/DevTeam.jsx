@@ -34,7 +34,7 @@ class Register extends React.Component {
             <Col className="ml-auto mr-auto text-center">
               <h1 className="title">About Us</h1>
               <h4 className="description" style={{color:"#2b2a2a"}}>
-                We are students (now Graduates) at UCSD's Full Stack Development program. Over the
+                We are graduates of UCSD's Full Stack Development program. Over the
                 course of our program we came together on multiple projects. We found that each of us
                 brought a valuable set of skills that complimented the other team members. Check out our
                 LinkedIn and GitHub profiles for other projects we worked on together. 

@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 export default {
   // Gets a single user by id
   getUser: (id) => {
     return axios.get(`/api/user/${id}`);
   },
   getChildren: () => {
-    return axios.get(`/api/child`);
+    return axios.get("/api/child");
   },
   //get a child by id, populated with sessions /api/child/:id
   getOneChild: (id) => {
@@ -15,7 +15,7 @@ export default {
   getOneSession: (id) => {
     return axios.get(`/api/session/${id}`);
   },
-  getChildSessions: (id) => {
+  getChildSessions: id => {
     return axios.get(`/api/child/${id}/sessions`);
   },
   //post a new child /api/user/:id
@@ -27,12 +27,18 @@ export default {
     return axios.post(`/api/child/${childId}/sessions`, newSession);
   },
   signUpUser: (name, email, password, address, phoneNumber) => {
-    return axios.post('/auth/api/signup', {name: name, email: email, password: password, address: address, phoneNumber: phoneNumber});
+    return axios.post("/auth/api/signup", {name: name, email: email, password: password, address: address, phoneNumber: phoneNumber});
   },
   postNewNote: (sessionId, newNote) => {
-    return axios.post(`/api/session/${sessionId}/note`, newNote)
+    return axios.post(`/api/session/${sessionId}/note`, newNote);
   },
-  getOneNote: (noteId) => {
-    return axios.get(`/api/note/${noteId}`)
+  getOneNote: noteId => {
+    return axios.get(`/api/note/${noteId}`);
+  },
+  postEvent: (userId, event) => {
+    return axios.post(`api/user/${userId}/event`, event);
+  },
+  getEvent: eventId => {
+    return axios.get(`api/event/${eventId}`);
   }
 };

@@ -1,67 +1,23 @@
-# Create React Express App
+# [Hermes Therapy Tracker](https://hermes-tracker.herokuapp.com/)
+The Hermes Therapy Tracker is a web application that allows guardians with children in therapy to track their child's progress.
 
-## About This Boilerplate
+Users may register an account, where they may fill out a form to add a child (or multiple children) to their account.  
 
-This setup allows for a Node/Express/React/JWT app which can be easily deployed to Heroku.
+Guardians may track their child's therapy sessions by filling out a form for each session. As session forms are submitted, a graph is generated to show the child's progress during therapy over time. Guardians may also view past sessions, where they can add comments that they may want to revisit, or that they may want their child's therapist to see.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+Resources provided by the child's therapist (e.g. articles, pamphlets, etc.) are made available to the guardian via the child's display page. Each time a new session is submitted, the resource associated with that session is displayed on the child's page.
 
-An article on how the server is setup with JWT can be found [here](https://hptechblogs.com/using-json-web-token-for-authentication/). This has been modified to use a mongo database instead of hardcoded array of users.
+A list of therapists and their contact information is available to the users via the sidebar on the left.
 
-The front end has been setup to use JWT as a way of authenticating users and routes. To understand it's structure better please refer to the following article [here](https://hptechblogs.com/using-json-web-token-react/)
+## New Technologies Used
+- ReactStrap, for page styling
+- ChartJS, to make child progress line graph
 
-Please feel free to modify this code in anyway you see fit for your project. It is a boilerplate setup that tries to make sure you can get something up and running without having to worry about setting up user authentication from scratch.
-I highly suggest you read the articles before jumping in so you can have an better understanding of how everything works in the code.
-
-Server-side article and using JWT: https://hptechblogs.com/using-json-web-token-for-authentication/
-
-Front End article on using the JWT on a react application: https://hptechblogs.com/using-json-web-token-react/
-
-## Starting the app locally
-
-Add a .env at the top level of this project.
-
-Then inside of the .env add a SERVER_SECRET set to any value you'd like
-
-```
-SERVER_SECRET = 123456
-```
-
-First off make sure you have a local version of MongoDB running on your machine. This project will make a local database for you called `appDB`.
-
-```
-mongod
-```
-
-Start by installing front and backend dependencies. While in the root directory, run the following command:
-
-```
-npm install
-```
-
-After all installations complete, run the following command in your terminal:
-
-```
-npm start
-```
-
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-### Create a Git Repo
-
-Once you're ready to deploy, start by making sure your project is a git repository. If so, proceed to the next section, otherwise run the following commands in your terminal:
-
-```
-git init
-git add .
-git commit -m "Initial commit"
-```
-
-### Deploying
-
-1. Go onto your heroku account and link your repository through the UI
-2. Go to resources and find mLab as a Add-on
-3. Provision a Mongo Database
-4. Go back and click "Deploy"
+## Future Enhancements
+- Therapist user role, where the child therapists can do the following:
+  - Comment on their patients' past sessions
+  - Add resources for their patients to view
+- Calendar where users may view past sessions by day
+- Notifications (in-app and email) for guardians when new resources are added or when a therapist comments on one of their child's sessions
+- Avatar select/image upload for profiles
+- Parent Checkpoints in the form of quizzes to ensure that parents are reading the resources from their thrapists

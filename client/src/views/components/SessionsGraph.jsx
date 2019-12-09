@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 // react plugin used to create charts
 import { Line } from "react-chartjs-2";
@@ -5,10 +6,8 @@ import { Line } from "react-chartjs-2";
 // reactstrap components
 import {
   Card,
-  CardHeader,
   CardBody,
-  CardTitle,
-  CardText
+  CardTitle
   
 } from "reactstrap";
 
@@ -24,21 +23,21 @@ class SessionsGraph extends React.Component {
   
   componentDidMount() {
     API.getChildSessions(this.props.childId)
-    .then(res => {
+      .then(res => {
 
-      // Sorts sessions in order of date
-      let sessions = res.data;
-      sessions.sort(function(a, b) {
-        return new Date(a.date) - new Date(b.date);
-      })
+        // Sorts sessions in order of date
+        let sessions = res.data;
+        sessions.sort(function(a, b) {
+          return new Date(a.date) - new Date(b.date);
+        });
 
-      this.setState({
-        sessions: sessions
-      })
+        this.setState({
+          sessions: sessions
+        });
 
-      this.setData(sessions);
-      this.setOptions();
-    })
+        this.setData(sessions);
+        this.setOptions();
+      });
   }
 
   setData(sessions) {
@@ -61,9 +60,9 @@ class SessionsGraph extends React.Component {
         fill: false,
         lineTension: 0.1,
         borderColor: "#007bff",
-        borderCapStyle: 'butt',
+        borderCapStyle: "butt",
         borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
+        borderJoinStyle: "miter",
         pointBorderColor: "black",
         pointBackgroundColor: "white",
         pointBorderWidth: 1,
@@ -77,9 +76,9 @@ class SessionsGraph extends React.Component {
         fill: true,
         lineTension: 0.1,
         borderColor: "#51cbce",
-        borderCapStyle: 'butt',
+        borderCapStyle: "butt",
         borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
+        borderJoinStyle: "miter",
         pointBorderColor: "black",
         pointBackgroundColor: "white",
         pointBorderWidth: 1,
@@ -94,9 +93,9 @@ class SessionsGraph extends React.Component {
         fill: true,
         lineTension: 0.1,
         borderColor: "#6bd098",
-        borderCapStyle: 'butt',
+        borderCapStyle: "butt",
         borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
+        borderJoinStyle: "miter",
         pointBorderColor: "black",
         pointBackgroundColor: "white",
         pointBorderWidth: 1,
@@ -106,7 +105,7 @@ class SessionsGraph extends React.Component {
         pointHoverBorderWidth: 2,
         data: appropriateResponse,
       }]
-    }})
+    }});
   }
 
   setOptions() {
@@ -119,7 +118,7 @@ class SessionsGraph extends React.Component {
             },
             scaleLabel: {
               display: true,
-              labelString: 'Number of Actions',
+              labelString: "Number of Actions",
               fontSize: 20 
             }
           }]            
@@ -136,16 +135,16 @@ class SessionsGraph extends React.Component {
           <Card className="card-chart text-center">
             <CardBody>
               <CardTitle ><h3>Session Progress</h3></CardTitle>
-                <Line
-                  data={this.state.data}
-                  options={this.state.options}
-                /> 
+              <Line
+                data={this.state.data}
+                options={this.state.options}
+              /> 
             </CardBody>
           </Card> :
           <></>
         }
       </>
-    )
+    );
   }
 }
 

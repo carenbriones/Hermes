@@ -59,6 +59,7 @@ class Calendar extends React.Component {
       alert: null
     });
   };
+  // eslint-disable-next-line no-unused-vars
   eventColors = (event, start, end, isSelected) => {
     var backgroundColor = "event-";
     event.color

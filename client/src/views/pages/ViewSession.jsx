@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import withAuth from '../../components/withAuth';
-import API from '../../utils/API';
+/* eslint-disable react/prop-types */
+import React, { Component } from "react";
+import withAuth from "../../components/withAuth";
+import API from "../../utils/API";
 
 import {
   Button,
@@ -38,25 +39,25 @@ class ViewSession extends Component {
   componentDidMount() {
     API.getOneSession(this.props.match.params.id)
       .then(res => {
-        this.setState(res.data)
-        console.log("CURRENT SESSION IS", res.data)
+        this.setState(res.data);
       })
       .then(
         this.setState({
           noteDate: new Date()
         })
       )
-      .catch(err => console.log(err))
+      // eslint-disable-next-line no-console
+      .catch(err => console.log(err));
     API.getUser(this.props.user.id)
       .then(res => {
-        console.log("CURRENT USER", res.data)
         this.setState({
           author: res.data.name
-        })
+        });
       })
       .catch(err => {
-        console.log(err)
-      })
+        // eslint-disable-next-line no-console
+        console.log(err);
+      });
   }
 
   handleClick = event => {
@@ -65,13 +66,13 @@ class ViewSession extends Component {
 
     this.setState({
       [name]: parseInt(value) + 1
-    })
+    });
   }
 
   handleChange = event => {
     event.preventDefault();
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -87,12 +88,13 @@ class ViewSession extends Component {
       note: this.state.note,
       author: this.state.author
     })
-      .then(res => {
+      .then(() => {
         window.location.reload(false);
       })
       .catch(err => {
-        console.log(err)
-      })
+        // eslint-disable-next-line no-console
+        console.log(err);
+      });
   }
 
   render() {
@@ -182,18 +184,18 @@ class ViewSession extends Component {
               <label style={{ fontSize: "1rem" }}>NOTES:</label>
               {this.state.notes.map( note => {
                 return (
-                  <Card>
-                <p key={note._id}></p>
-                <CardBody style={{marginBottom:"0px"}}>
-                <CardSubtitle className="text-muted"><i> Note By: {note.author}</i>
-                <small className="float-right text-muted">
+                  <Card key={note._id}>
+                    <p key={note._id}></p>
+                    <CardBody style={{marginBottom:"0px"}}>
+                      <CardSubtitle className="text-muted"><i> Note By: {note.author}</i>
+                        <small className="float-right text-muted">
                   Date: {note.date.slice(0, 10)}</small></CardSubtitle>
-                  <p>"{note.note}"
-                  </p>
-                  </CardBody>
+                      <p>&quot;{note.note}&quot;
+                      </p>
+                    </CardBody>
                   
-                </Card>
-                )
+                  </Card>
+                );
               })}
               <FormGroup>
                 <Input
@@ -205,7 +207,7 @@ class ViewSession extends Component {
                   autoComplete="note"
                   value={this.state.note}
                   onChange={this.handleChange}
-                  />
+                />
               </FormGroup>
 
             
@@ -221,7 +223,7 @@ class ViewSession extends Component {
         </Card>
 
       </div>
-    )
+    );
   }
 }
 

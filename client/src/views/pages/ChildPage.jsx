@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import withAuth from '../../components/withAuth';
-import API from '../../utils/API';
+/* eslint-disable react/prop-types */
+import React, { Component } from "react";
+import withAuth from "../../components/withAuth";
+import API from "../../utils/API";
 import {
-    Button,
-    Card,
-    CardHeader,
-    CardBody,
-    CardTitle,
-    CardText,
-    Container,
-    Row,
-    Col
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardTitle,
+  CardText,
+  Container,
+  Row,
+  Col
 } from "reactstrap";
-import resources from "./../../resources.json"
+import resources from "./../../resources.json";
 
 import SessionTable from "../tables/SessionTable";
 import SessionsGraph from "../components/SessionsGraph";
@@ -42,13 +43,14 @@ class ChildPage extends Component {
   componentDidMount() {
     API.getOneChild(this.props.match.params.id)
       .then(res => {
-        this.setState(res.data)
+        this.setState(res.data);
       })
       .then(() => {
-        const { title, img, text, id, brief, category } = resources[this.state.sessions.length]
-        this.setState({ title, img, text, id, brief, category })
+        const { title, img, text, id, brief, category } = resources[this.state.sessions.length];
+        this.setState({ title, img, text, id, brief, category });
       })
-      .catch(err => console.log(err))
+      // eslint-disable-next-line no-console
+      .catch(err => console.log(err));
   }
 
   showResource(arr) {
@@ -62,7 +64,7 @@ class ChildPage extends Component {
             <Button href="/admin/resources" color="primary">View All Resources</Button>
           </CardBody>
         </Card>
-      )} else {
+      );} else {
       return (
         <Card>
           <Row>
@@ -91,7 +93,7 @@ class ChildPage extends Component {
 
           </Row>
         </Card>
-      )
+      );
     }
   }
 
@@ -153,7 +155,7 @@ class ChildPage extends Component {
 
         </Container>
       </div>
-    )
+    );
   }
 }
   

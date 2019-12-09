@@ -1,5 +1,5 @@
-const db = require('../models');
-const jwt = require('jsonwebtoken');
+const db = require("../models");
+const jwt = require("jsonwebtoken");
 
 module.exports = {
   logUserIn: function (email, password) {
@@ -16,6 +16,6 @@ module.exports = {
           }
         });
       }).catch(err => reject({ success: false, message: "User not found", error: err }));
-    })
+    });
   }
-}
+};

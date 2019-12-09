@@ -22,22 +22,20 @@ class SessionTable extends React.Component {
   }
 
   componentDidMount() {
-    const href = window.location.href.split("/")
+    const href = window.location.href.split("/");
 
     API.getOneChild(href[href.length - 1]).then((res) => {
       // Sorts sessions in order of date
       let sessions = res.data.sessions;
       sessions.sort(function(a, b) {
         return new Date(a.date) - new Date(b.date);
-      })
+      });
 
       this.setState({
         sessions: res.data.sessions,
         child: res.data
-      })
-      console.log(this.state.sessions);
-      console.log(res.data._id)
-    })
+      });
+    });
   }
 
   showSessions(arr) {
@@ -50,10 +48,10 @@ class SessionTable extends React.Component {
             <CardText>After you track your first session you will be able to view all your past sessions here. </CardText>
             <Button href={`../newSession/${this.state.child._id}`} className=" btn-primary">
               Track Session
-                      </Button>
+            </Button>
           </CardBody>
         </Card>
-      )
+      );
 
     } else {
 
@@ -63,7 +61,7 @@ class SessionTable extends React.Component {
             <h5 className="title float-left">Sessions</h5>
             <Button href={`../newSession/${this.state.child._id}`} className="btn-sm btn-primary float-right">
               Track Session
-                    </Button>
+            </Button>
           </CardHeader>
           <CardBody>
             <Table responsive>
@@ -78,11 +76,11 @@ class SessionTable extends React.Component {
                 {this.state.sessions.map((session) =>
                   <tr key={session._id}>
                     <td>{session.date.slice(0, 10)}</td>
-                <td className="text-center">{session.notes.length > 0 ? <i className="nc-icon nc-paper"/> : ""}</td>
+                    <td className="text-center">{session.notes.length > 0 ? <i className="nc-icon nc-paper"/> : ""}</td>
                     <td className="text-center">
                       <Button href={`../viewSession/${session._id}`} color="info" size="sm">
                         View Session
-                    </Button>
+                      </Button>
                     </td>
                   </tr>
                 )}
@@ -90,7 +88,7 @@ class SessionTable extends React.Component {
             </Table>
           </CardBody>
         </Card>
-      )
+      );
     }
   }
 
@@ -100,7 +98,7 @@ class SessionTable extends React.Component {
   
         {this.showSessions(this.state.sessions)}
       </>
-    )
+    );
   }
 
 }

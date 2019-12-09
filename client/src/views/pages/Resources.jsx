@@ -1,39 +1,40 @@
 import React from "react";
-import ResourcesCard from "../components/cards/ResourcesCard"
-import resources from "../../resources.json"
+import ResourcesCard from "../components/cards/ResourcesCard";
+import resources from "../../resources.json";
 // reactstrap components
 import {
-    Row
+  Row
 } from "reactstrap";
 
 
 class Resources extends React.Component {
 
     state = {
-        resources
+      resources
     };
 
 
     render() {
-        return (
+      return (
             <>
                 <div className="content">
-                    <Row>
-                        {this.state.resources.map(resource => (
-                            <ResourcesCard
-                            img={resource.img}
-                            title={resource.title}
-                            brief={resource.brief}
-                            id={resource.id}
-                            category={resource.category}
-                            />
+                  <Row>
+                    {this.state.resources.map(resource => (
+                      <ResourcesCard
+                        key={resource.id}
+                        img={resource.img}
+                        title={resource.title}
+                        brief={resource.brief}
+                        id={resource.id}
+                        category={resource.category}
+                      />
 
-                        ))}
+                    ))}
 
-                    </Row>
+                  </Row>
                 </div>
             </>
-        );
+      );
     }
 }
 

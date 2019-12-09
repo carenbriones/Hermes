@@ -12,14 +12,12 @@ import "assets/scss/paper-dashboard.scss?v=1.1.0";
 import "assets/demo/demo.css";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
-import NewSession from "./views/pages/forms/NewSession"
-
 const hist = createBrowserHistory();
 
 // Here is if we have an id_token in localStorage
 if(localStorage.getItem("id_token")) {
   // then we will attach it to the headers of each request from react application via axios
-  axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('id_token')}`;
+  axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem("id_token")}`;
 }
 
 

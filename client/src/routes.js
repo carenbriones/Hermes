@@ -22,54 +22,96 @@ const routes = [
     component: UserProfile,
     layout: "/admin"
   },
-
   {
-    collapse: true,
+    path: "/viewChildren",
     name: "Children",
     icon: "nc-icon nc-single-02",
-    state: "childrenCollapse",
-    views: [
-      {
-        path: "/addChild",
-        name: "Add Child",
-        mini: "AC",
-        component: AddChild,
-        layout: "/admin"
-      },
-      {
-        path: "/viewChildren",
-        name: "View Children",
-        mini: "VC",
-        component: ChildTable,
-        layout: "/admin"
-      },
-      {
-        path: "/newSession/:id",
-        name: "New Session",
-        mini: "NS",
-        component: NewSession,
-        layout: "/admin",
-        invisible: true
-      },
-      {
-        path: "/child/:id",
-        name: "Child Info",
-        mini: "NS",
-        component: ChildPage,
-        layout: "/admin",
-        invisible: true
-      },
-      {
-        path: "/viewSession/:id",
-        name: "Child Info",
-        mini: "NS",
-        component: ViewSession,
-        layout: "/admin",
-        invisible: true
-      }
-
-    ]
+    component: ChildTable,
+    layout: "/admin"
   },
+  {
+    path: "/addChild",
+    name: "Add Child",
+    mini: "AC",
+    component: AddChild,
+    layout: "/admin",
+    invisible: true
+  },
+  {
+    path: "/newSession/:id",
+    name: "New Session",
+    mini: "NS",
+    component: NewSession,
+    layout: "/admin",
+    invisible: true
+  },
+  {
+    path: "/child/:id",
+    name: "Child Info",
+    mini: "NS",
+    component: ChildPage,
+    layout: "/admin",
+    invisible: true
+  },
+  {
+    path: "/viewSession/:id",
+    name: "View Session",
+    mini: "NS",
+    component: ViewSession,
+    layout: "/admin",
+    invisible: true
+  },
+
+
+
+  // {
+  //   collapse: true,
+  //   name: "Children",
+  //   icon: "nc-icon nc-single-02",
+  //   state: "childrenCollapse",
+  //   views: [
+  //     {
+  //       path: "/addChild",
+  //       name: "Add Child",
+  //       mini: "AC",
+  //       component: AddChild,
+  //       layout: "/admin",
+  //       invisible: true
+  //     },
+  //     {
+  //       path: "/viewChildren",
+  //       name: "View Children",
+  //       mini: "VC",
+  //       component: ChildTable,
+  //       layout: "/admin"
+  //     },
+  //     {
+  //       path: "/newSession/:id",
+  //       name: "New Session",
+  //       mini: "NS",
+  //       component: NewSession,
+  //       layout: "/admin",
+  //       invisible: true
+  //     },
+  //     {
+  //       path: "/child/:id",
+  //       name: "Child Info",
+  //       mini: "NS",
+  //       component: ChildPage,
+  //       layout: "/admin",
+  //       invisible: true
+  //     },
+  //     {
+  //       path: "/viewSession/:id",
+  //       name: "Child Info",
+  //       mini: "NS",
+  //       component: ViewSession,
+  //       layout: "/admin",
+  //       invisible: true
+  //     }
+
+  //   ]
+  // },
 
   {
     path: "/resources",

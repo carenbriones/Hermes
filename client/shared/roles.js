@@ -23,6 +23,6 @@ const Roles = {
     });
     return valid;
   }
-}
+};
 
 module.exports = Roles;

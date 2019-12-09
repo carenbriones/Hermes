@@ -1,3 +1,5 @@
+/* eslint-disable react/no-string-refs */
+/* eslint-disable react/prop-types */
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, Collapse } from "reactstrap";
@@ -8,7 +10,7 @@ import avatar from "assets/img/default-avatar.png";
 import logo from "assets/img/hermes-logo.png";
 
 
-import AuthService from '../AuthService';
+import AuthService from "../AuthService";
 
 const Auth = new AuthService();
 
@@ -25,7 +27,7 @@ class Sidebar extends React.Component {
   // that it gets through this.props.routes
   getCollapseStates = routes => {
     let initialState = {};
-    routes.map((prop, key) => {
+    routes.map((prop) => {
       if (prop.collapse) {
         initialState = {
           [prop.state]: this.getCollapseInitialState(prop.views),
@@ -53,14 +55,14 @@ class Sidebar extends React.Component {
   // this function creates the links and collapses that appear in the sidebar (left menu)
   createLinks = routes => {
     return routes.map((prop, key) => {
-      if(prop.invisible) return null;
+      if (prop.invisible) {return null;}
       
       if (prop.redirect) {
         return null;
       }
       if (prop.collapse) {
         var st = {};
-        st[prop["state"]] = !this.state[prop.state];
+        st[prop.state] = !this.state[prop.state];
         return (
           <li
             className={this.getCollapseInitialState(prop.views) ? "active" : ""}
@@ -131,10 +133,6 @@ class Sidebar extends React.Component {
         suppressScrollY: false
       });
     }
-    console.log(this.props);
-    // API.getUser(this.props.user.id).then(res => {
-    //   this.setState({user: res.data});
-    // })
   }
   componentWillUnmount() {
     // we need to destroy the false scrollbar when we navigate
@@ -147,7 +145,7 @@ class Sidebar extends React.Component {
   // Allows for Logging out of an Account
   handleLogout = () => {
     Auth.logout();
-    this.props.history.replace('/auth/login');
+    this.props.history.replace("/auth/login");
   };
 
 
@@ -166,7 +164,7 @@ class Sidebar extends React.Component {
             className="simple-text logo-mini"
           >
             {/* <div className="logo-img"> */}
-              <img src={logo} alt="react-logo" className="logo-mini"/>
+            <img src={logo} alt="react-logo" className="logo-mini"/>
             {/* </div> */}
           </a>
           <a

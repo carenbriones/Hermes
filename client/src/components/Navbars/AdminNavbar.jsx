@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import classnames from "classnames";
 import {
@@ -57,9 +58,9 @@ class AdminNavbar extends React.Component {
       collapseOpen: !this.state.collapseOpen
     };
     if (!this.state.collapseOpen) {
-      newState["color"] = "bg-white";
+      newState.color = "bg-white";
     } else {
-      newState["color"] = "navbar-transparent";
+      newState.color = "navbar-transparent";
     }
     this.setState(newState);
   };

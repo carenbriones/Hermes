@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-string-refs */
 import React from "react";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 import { Route, Switch } from "react-router-dom";
-import API from '../utils/API';
-import withAuth from "../components/withAuth"
+import API from "../utils/API";
+import withAuth from "../components/withAuth";
 
 
 import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
@@ -35,7 +37,7 @@ class Admin extends React.Component {
       this.setState({caren: res.data});
     }).then(() => {
       // console.log(this.state);
-    })
+    });
   }
   componentWillUnmount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -96,10 +98,10 @@ class Admin extends React.Component {
           <AdminNavbar {...this.props} handleMiniClick={this.handleMiniClick} />
           <Switch>{this.getRoutes(routes)}</Switch>
           {// we don't want the Footer to be rendered on full screen maps page
-          this.props.location.pathname.indexOf("full-screen-map") !==
+            this.props.location.pathname.indexOf("full-screen-map") !==
           -1 ? null : (
-            <Footer fluid />
-          )}
+                <Footer fluid />
+              )}
         </div>
         
       </div>

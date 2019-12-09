@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import withAuth from '../../../components/withAuth';
-import API from '../../../utils/API';
-import { Link } from 'react-router-dom';
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
+import React, { Component } from "react";
+import API from "../../../utils/API";
+import { Link } from "react-router-dom";
 import ReactDatetime from "react-datetime";
 import {
   Button,
@@ -16,7 +17,6 @@ import {
   Row,
   Col,
   Modal,
-  ModalHeader,
   ModalBody,
   ModalFooter
 } from "reactstrap";
@@ -48,15 +48,15 @@ class NewSession extends Component {
   componentDidMount() {
     API.getOneChild(this.props.match.params.id)
       .then(res => {
-        this.setState(res.data)
+        this.setState(res.data);
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 
   handleFormSubmit = event => {
     event.preventDefault();
     //console.log(this.props.user.id, this.state);
-    console.log("CHILD ID", this.props.match.params.id, "state", this.state)
+    console.log("CHILD ID", this.props.match.params.id, "state", this.state);
 
     if (document.getElementById("date").value === "") {
       // Session should not be posted; modal message
@@ -72,12 +72,12 @@ class NewSession extends Component {
           successWith: this.state.successWith,
           date: document.getElementById("date").value
         })
-        .then(res => {
-          console.log("DATA SAVED!", res.data.session)
-          // console.log("DATE: ", res )
-          this.props.history.replace(`/admin/child/${this.props.match.params.id}`)
+        .then(() => {
+          // API.postEvent()
+          
+          this.props.history.replace(`/admin/child/${this.props.match.params.id}`);
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
   
       this.setState({
         positiveInteractions: 0,
@@ -86,16 +86,13 @@ class NewSession extends Component {
         difficultyWith: "",
         successWith: "",
         date: ""
-      })
+      });
     }
 
   }
 
   handleNoteSubmit = event => {
     event.preventDefault();
-
-    console.log("NOTE SUBMITTED")
-    console.log(this.props.match.params.id)
   }
 
   handleClickAdd = event => {
@@ -104,7 +101,7 @@ class NewSession extends Component {
 
     this.setState({
       [name]: parseInt(value) + 1
-    })
+    });
   }
 
   handleClickSubtract = event => {
@@ -114,7 +111,7 @@ class NewSession extends Component {
     if (this.state[name] > 0) {
       this.setState({
         [name]: parseInt(value) - 1
-      })
+      });
     }
 
   }
@@ -122,7 +119,7 @@ class NewSession extends Component {
   handleChange = event => {
     event.preventDefault();
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -132,14 +129,14 @@ class NewSession extends Component {
 
   toggleModal(){
     this.setState({
-        modal: !this.state.modal
+      modal: !this.state.modal
     });
   }
 
   render() {
     return (
       <div className="content container">
-        <Link to={"../child/" + this.state._id}><i className="nc-icon nc-minimal-left" />Back to {this.state.firstName}'s Profile</Link>
+        <Link to={"../child/" + this.state._id}><i className="nc-icon nc-minimal-left"/>Back to {this.state.firstName}&#39;s Profile</Link>
         <Card>
           <Row>
             <Col md="4">
@@ -182,7 +179,7 @@ class NewSession extends Component {
         <Card className="card-signup  mt-5">
           <CardHeader className="text-center">
             <CardTitle tag="h4">NEW SESSION {this.state.childId}</CardTitle>
-            <span><i>Use the form below to keep track of your child's interactions during their therapy session.</i></span>
+            <span><i>Use the form below to keep track of your child&#39;s interactions during their therapy session.</i></span>
           </CardHeader>
           <CardBody>
             <hr></hr>
@@ -210,7 +207,7 @@ class NewSession extends Component {
                         value={this.state.positiveInteractions}
                         onClick={this.handleClickAdd}>
                         <i className="nc-icon nc-simple-add" /> Interactions
-                  </Button>
+                      </Button>
                       <Button style={{ marginLeft: "0px"}}
                         className="btn-block"
                         color="default"
@@ -221,7 +218,7 @@ class NewSession extends Component {
                         value={this.state.positiveInteractions}
                         onClick={this.handleClickSubtract}>
                         <i className="nc-icon nc-simple-delete" /> Interactions
-                  </Button>
+                      </Button>
                     </CardBody>
                   </Card>
                 </Col>
@@ -247,7 +244,7 @@ class NewSession extends Component {
                         value={this.state.appropriateRequests}
                         onClick={this.handleClickAdd}>
                         <i className="nc-icon nc-simple-add" />Requests
-                  </Button>
+                      </Button>
 
                       <Button style={{ marginLeft: "0px"}}
                         className="btn-block"
@@ -259,7 +256,7 @@ class NewSession extends Component {
                         value={this.state.appropriateRequests}
                         onClick={this.handleClickSubtract}>
                         <i className="nc-icon nc-simple-delete" />Requests
-                  </Button>
+                      </Button>
                     </CardBody>
                   </Card>
                 </Col>
@@ -286,7 +283,7 @@ class NewSession extends Component {
                         value={this.state.appropriateResponse}
                         onClick={this.handleClickAdd}>
                         <i className="nc-icon nc-simple-add" /> Responses
-                  </Button>
+                      </Button>
 
                       <Button style={{ marginLeft: "0px"}}
                         className="btn-block"
@@ -298,7 +295,7 @@ class NewSession extends Component {
                         value={this.state.appropriateResponse}
                         onClick={this.handleClickSubtract}>
                         <i className="nc-icon nc-simple-delete" /> Responses
-                  </Button>
+                      </Button>
 
                     </CardBody>
                   </Card>
@@ -367,17 +364,17 @@ class NewSession extends Component {
             <h5 className="modal-title">Date Required</h5>
           </div>
           <ModalBody>
-              <p className="text-center">Please choose the date for the session.</p>
+            <p className="text-center">Please choose the date for the session.</p>
           </ModalBody>
           <ModalFooter>
-              <Button className="mr-2" color="secondary" onClick={() => this.toggleModal()}>
-                  Close
-              </Button>
+            <Button className="mr-2" color="secondary" onClick={() => this.toggleModal()}>
+              Close
+            </Button>
           </ModalFooter>
         </Modal>
 
       </div>
-    )
+    );
   }
 }
 

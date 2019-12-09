@@ -131,17 +131,18 @@ app.post("/api/child/:id/sessions", function (req, res) {
   db.Session
     .create(req.body)
     .then(function (dbSession) {
-      return db.Child
+      db.Child
         .findOneAndUpdate(
           { _id: req.params.id },
           { $push: { sessions: dbSession } },
           { new: true });
+      return dbSession;
     })
-    .then(function (dbChild) {
-      res.json(dbChild)
+    .then(function (dbSession) {
+      res.json(dbSession);
     })
     .catch(function (err) {
-      res.json(err)
+      res.json(err);
     })
 });
 

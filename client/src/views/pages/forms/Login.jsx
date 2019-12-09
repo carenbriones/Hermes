@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import AuthService from '../../../components/AuthService';
+import AuthService from "../../../components/AuthService";
 
 // reactstrap components
 import {
@@ -17,7 +18,6 @@ import {
   Col,
   Row,
   Modal,
-  ModalHeader,
   ModalBody,
   ModalFooter
 } from "reactstrap";
@@ -43,12 +43,12 @@ class Login extends React.Component {
     event.preventDefault();
 
     this.Auth.login(this.state.email, this.state.password)
-      .then(res => {
+      .then(() => {
         // once user is logged in
         // take them to their profile page
-        this.props.history.replace(`/admin/user-profile`);
+        this.props.history.replace("/admin/user-profile");
       })
-      .catch(err => {
+      .catch(() => {
         this.toggleModal();
       });
   };
@@ -62,7 +62,7 @@ class Login extends React.Component {
 
   toggleModal(){
     this.setState({
-        modal: !this.state.modal
+      modal: !this.state.modal
     });
   }
 
@@ -87,12 +87,12 @@ class Login extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input 
-                      placeholder="Email..."
-                      type="email"
-                      name="email"
-                      id="email"
-                      autoComplete="email"
-                      onChange={this.handleChange}
+                        placeholder="Email..."
+                        type="email"
+                        name="email"
+                        id="email"
+                        autoComplete="email"
+                        onChange={this.handleChange}
                       />
                     </InputGroup>
                     <InputGroup>
@@ -102,12 +102,12 @@ class Login extends React.Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input
-                       placeholder="Password"
-                       type="password"
-                       name="password"
-                       id="pwd"
-                       autoComplete="current-password"
-                       onChange={this.handleChange}
+                        placeholder="Password"
+                        type="password"
+                        name="password"
+                        id="pwd"
+                        autoComplete="current-password"
+                        onChange={this.handleChange}
                       />
                     </InputGroup>
                     <br />

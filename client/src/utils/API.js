@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 export default {
   // Gets a single user by id
   getUser: (id) => {
     return axios.get(`/api/user/${id}`);
   },
   getChildren: () => {
-    return axios.get(`/api/child`);
+    return axios.get("/api/child");
   },
   //get a child by id, populated with sessions /api/child/:id
   getOneChild: (id) => {
@@ -27,7 +27,7 @@ export default {
     return axios.post(`/api/child/${childId}/sessions`, newSession);
   },
   signUpUser: (name, email, password, address, phoneNumber) => {
-    return axios.post('/auth/api/signup', {name: name, email: email, password: password, address: address, phoneNumber: phoneNumber});
+    return axios.post("/auth/api/signup", {name: name, email: email, password: password, address: address, phoneNumber: phoneNumber});
   },
   postNewNote: (sessionId, newNote) => {
     return axios.post(`/api/session/${sessionId}/note`, newNote);

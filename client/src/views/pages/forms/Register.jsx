@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import AuthService from '../../../components/AuthService';
-import API from '../../../utils/API';
-import { Redirect } from 'react-router-dom';
+import AuthService from "../../../components/AuthService";
+import API from "../../../utils/API";
+import { Redirect } from "react-router-dom";
 
 // reactstrap components
 import {
@@ -57,10 +58,10 @@ class Register extends React.Component {
     else {
       // Submit form
       API.signUpUser(this.state.name, this.state.email, this.state.password, this.state.address, this.state.phoneNumber)
-        .then(res => {
+        .then(() => {
           // once the user has signed up
           // send them to the login page
-          this.props.history.replace('/auth/login');
+          this.props.history.replace("/auth/login");
         })
         .catch(() => this.toggleModal());
     }
@@ -76,14 +77,14 @@ class Register extends React.Component {
 
   toggleModal(){
     this.setState({
-        modal: !this.state.modal
+      modal: !this.state.modal
     });
   }
 
   render() {
-     // go to home page after signup
-     if (this.Auth.loggedIn()) {
-      return <Redirect to="/" />
+    // go to home page after signup
+    if (this.Auth.loggedIn()) {
+      return <Redirect to="/" />;
     }
     return (
       <div className="register-page">
@@ -228,7 +229,7 @@ class Register extends React.Component {
                   <Button
                     type="submit" className="btn btn-info" onClick={this.handleFormSubmit}>
                     Get Started
-                </Button>
+                  </Button>
                 </CardFooter>
               </Card>
             </Col>

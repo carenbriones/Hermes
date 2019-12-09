@@ -126,19 +126,18 @@ app.post("/api/user/:id/children", function (req, res) {
 //--SESSION--//
 app.post("/api/child/:id/sessions", function (req, res) {
   //takes a while on postman
-  console.log("SESSION'S BODY", req.body);
+  console.log("SESSION'S BODY", req.body)
   db.Session
     .create(req.body)
     .then(function (dbSession) {
-      db.Child
+      return db.Child
         .findOneAndUpdate(
           { _id: req.params.id },
           { $push: { sessions: dbSession } },
           { new: true });
-      return dbSession;
     })
-    .then(function (dbSession) {
-      res.json(dbSession);
+    .then(function (dbChild) {
+      res.json(dbChild);
     })
     .catch(function (err) {
       res.json(err);

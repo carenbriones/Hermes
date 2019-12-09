@@ -61,7 +61,6 @@ class NewSession extends Component {
     if (document.getElementById("date").value === "") {
       // Session should not be posted; modal message
       this.toggleModal();
-      console.log("Date is missing");
     } else {
       API.postNewSession(this.props.match.params.id,
         {
@@ -72,7 +71,8 @@ class NewSession extends Component {
           successWith: this.state.successWith,
           date: document.getElementById("date").value
         })
-        .then(() => {
+        .then(res => {
+          console.log(res);
           // API.postEvent()
           
           this.props.history.replace(`/admin/child/${this.props.match.params.id}`);

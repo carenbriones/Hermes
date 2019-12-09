@@ -3,7 +3,7 @@ import Login from "views/pages/forms/Login.jsx";
 import Register from "views/pages/forms/Register.jsx";
 import UserProfile from "views/pages/UserProfile.jsx";
 import ChildPage from "views/pages/ChildPage";
-import OneResource from "views/pages/OneResource"
+import OneResource from "views/pages/OneResource";
 import Resources from "views/pages/Resources";
 import AddChild from "./views/pages/forms/AddChild";
 import NewSession from "./views/pages/forms/NewSession";
@@ -133,8 +133,6 @@ const routes = [
     invisible: true
   }
   
-
-]
-
+];
 
 export default routes;

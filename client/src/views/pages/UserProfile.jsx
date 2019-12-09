@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
 // reactstrap components
@@ -27,7 +28,6 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.id)
 
     API.getUser(this.props.user.id).then(res => {
       this.setState({
@@ -37,8 +37,8 @@ class UserProfile extends React.Component {
         role: res.data.role,
         phoneNumber: res.data.phoneNumber,
         children: res.data.children,
-      })
-    })
+      });
+    });
   }
 
   render() {
@@ -69,28 +69,28 @@ class UserProfile extends React.Component {
 
                   <ListGroup flush>
 
-                  <ListGroupItem><p className="text-center" style={{
-                    fontSize: "1rem",
-                    marginBottom: "0px"
-                  }}>
-                  <i className="nc-icon nc-email-85 mx-2" />    {this.state.email}</p>
-                  </ListGroupItem>
+                    <ListGroupItem><p className="text-center" style={{
+                      fontSize: "1rem",
+                      marginBottom: "0px"
+                    }}>
+                      <i className="nc-icon nc-email-85 mx-2" />    {this.state.email}</p>
+                    </ListGroupItem>
 
-                  <ListGroupItem><p className="text-center" style={{
-                    fontSize: "1rem",
-                    marginBottom: "0px"
-                  }}>
-                  <i className="nc-icon nc-mobile mx-2" /> 
-                    {this.state.phoneNumber}</p>
-                  </ListGroupItem>
+                    <ListGroupItem><p className="text-center" style={{
+                      fontSize: "1rem",
+                      marginBottom: "0px"
+                    }}>
+                      <i className="nc-icon nc-mobile mx-2" /> 
+                      {this.state.phoneNumber}</p>
+                    </ListGroupItem>
 
-                  <ListGroupItem><p className="text-center" style={{
-                    fontSize: "1rem",
-                    marginBottom: "0px"
-                  }}>
-                  <i className="nc-icon nc-pin-3 mx-2" /> 
-                    {this.state.address} </p>
-                  </ListGroupItem>
+                    <ListGroupItem><p className="text-center" style={{
+                      fontSize: "1rem",
+                      marginBottom: "0px"
+                    }}>
+                      <i className="nc-icon nc-pin-3 mx-2" /> 
+                      {this.state.address} </p>
+                    </ListGroupItem>
 
                   </ListGroup>
                 </CardBody>
